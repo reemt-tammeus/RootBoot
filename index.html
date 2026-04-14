@@ -40,7 +40,7 @@
             <div class="text-box" id="task-display">Wird geladen...</div>
             <div class="input-section">
                 <p class="label" id="task-hint">Stammwort: <strong>-</strong></p>
-                <input type="text" id="task-input" class="app-input" readonly placeholder="...">
+                <input type="text" id="task-input" class="app-input" readonly tabindex="-1" inputmode="none" placeholder="...">
             </div>
             <div id="app-keyboard" class="keyboard"></div>
             <button class="btn action-btn" id="btn-check">PRÜFEN</button>
@@ -49,10 +49,9 @@
         <main id="result-screen" class="screen hidden">
             <h1 id="result-title">Boot Camp beendet!</h1>
             <p>Dein Score: <span id="final-score">0</span></p>
-            <button class="btn primary-btn" onclick="location.reload()">Hauptmenü</button>
+            <button class="btn primary-btn" onclick="location.reload()">Neustart</button>
         </main>
 
-        <footer id="branding-footer">created by Mr. T.</footer>
     </div>
     <script src="app.js"></script>
 </body>
