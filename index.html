@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Word Formation Trainer</title>
+    <title>RootBoot - Word Formation Trainer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,48 +15,47 @@
         </header>
 
         <main id="start-screen" class="screen active">
-            <h1>Word Formation<br><span>Trainer</span></h1>
-            <p>Wähle deinen Trainingsmodus:</p>
-            <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Vokabeln)</button>
-            <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Texte)</button>
+            <div id="logo-container">
+                <div class="rootboot-logo">RB</div>
+            </div>
+            <h1>Root<span>Boot</span></h1>
+            <p>Linguistics Boot Camp: Master your Word Formation.</p>
+            <div class="menu-buttons">
+                <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Training)</button>
+                <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Exam)</button>
+            </div>
         </main>
 
         <main id="drill-screen" class="screen hidden">
-            <div class="question-box">
-                <p class="label">Bilde das Nomen zu:</p>
-                <h2 id="drill-word">DECIDE</h2>
+            <div id="drill-sorting-container">
+                <div class="drop-zone" data-type="noun"><span class="zone-label">Nouns</span><div class="ghost-slot-container" id="slots-noun"></div></div>
+                <div class="drop-zone" data-type="verb"><span class="zone-label">Verbs</span><div class="ghost-slot-container" id="slots-verb"></div></div>
+                <div class="drop-zone" data-type="adjective"><span class="zone-label">Adjectives</span><div class="ghost-slot-container" id="slots-adjective"></div></div>
+                <div class="drop-zone" data-type="adverb"><span class="zone-label">Adverbs</span><div class="ghost-slot-container" id="slots-adverb"></div></div>
             </div>
-            
-            <div class="input-section">
-                <input type="text" id="drill-input" class="app-input" placeholder="Deine Lösung..." readonly>
+            <div id="active-word-area">
+                <p class="label" id="sorting-label">Ordne zu:</p>
+                <h2 id="current-tap-word">---</h2>
             </div>
-
-            <div id="drill-keyboard" class="keyboard"></div>
-
-            <button class="btn action-btn" id="btn-check-drill">Prüfen</button>
         </main>
 
-        <main id="ap-screen" class="screen hidden">
-            <div class="text-box" id="ap-text-container">
-                Text lädt...
-            </div>
-
+        <main id="task-screen" class="screen hidden">
+            <div class="text-box" id="task-display"> Satz lädt... </div>
             <div class="input-section">
-                <p class="label" id="ap-current-base-word">Stammwort: <strong>-</strong></p>
-                <input type="text" id="ap-input" class="app-input" placeholder="Lücke ausfüllen..." readonly>
+                <p class="label" id="task-hint">Stammwort: <strong>-</strong></p>
+                <input type="text" id="task-input" class="app-input" readonly placeholder="...">
             </div>
-
-            <div id="ap-keyboard" class="keyboard"></div>
-
-            <button class="btn action-btn" id="btn-check-ap">Lücke prüfen</button>
+            <div id="app-keyboard" class="keyboard"></div>
+            <button class="btn action-btn" id="btn-check">PRÜFEN</button>
         </main>
 
         <main id="result-screen" class="screen hidden">
-            <h1 id="result-title">Game Over!</h1>
-            <p>Dein Score: <span id="final-score">0</span></p>
-            <button class="btn primary-btn" id="btn-restart">Zurück zum Menü</button>
+            <h1 id="result-title">Boot Camp beendet!</h1>
+            <p>Score: <span id="final-score">0</span></p>
+            <button class="btn primary-btn" onclick="location.reload()">Hauptmenü</button>
         </main>
 
+        <footer id="branding-footer">created by Mr. T.</footer>
     </div>
 
     <script src="app.js"></script>
