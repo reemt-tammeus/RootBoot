@@ -1,0 +1,1794 @@
+[
+  {
+    "id": 1,
+    "noun": ["shock"],
+    "verb": ["shock"],
+    "adjective": ["shocking", "shocked"],
+    "adverb": ["shockingly"],
+    "sentence": "They will get a shock when they see him."
+  },
+  {
+    "id": 2,
+    "noun": ["relaxation"],
+    "verb": ["relax"],
+    "adjective": ["relaxing", "relaxed"],
+    "adverb": ["relaxingly"],
+    "sentence": "We spent a relaxing afternoon on the beach."
+  },
+  {
+    "id": 3,
+    "noun": ["care"],
+    "verb": ["care"],
+    "adjective": ["careful", "careless", "caring"],
+    "adverb": ["carefully", "carelessly", "caringly"],
+    "sentence": "I don't care if we win or lose the match."
+  },
+  {
+    "id": 4,
+    "noun": ["reaction"],
+    "verb": ["react"],
+    "adjective": ["reactive", "reacting"],
+    "adverb": ["reactively"],
+    "sentence": "How did he react to your idea?"
+  },
+  {
+    "id": 5,
+    "noun": ["experience"],
+    "verb": ["experience"],
+    "adjective": ["experienced", "inexperienced"],
+    "adverb": ["experientially"],
+    "sentence": "She is still too young and inexperienced."
+  },
+  {
+    "id": 6,
+    "noun": ["freedom"],
+    "verb": ["free"],
+    "adjective": ["free"],
+    "adverb": ["freely"],
+    "sentence": "Kids have too much freedom these days."
+  },
+  {
+    "id": 7,
+    "noun": ["life", "lives"],
+    "verb": ["live"],
+    "adjective": ["alive", "live", "lively", "living"],
+    "adverb": ["livelily"],
+    "sentence": "He is one of the greatest living authors."
+  },
+  {
+    "id": 8,
+    "noun": ["invitation"],
+    "verb": ["invite"],
+    "adjective": ["inviting", "invited"],
+    "adverb": ["invitingly"],
+    "sentence": "Did you get an invitation for the party?"
+  },
+  {
+    "id": 9,
+    "noun": ["discrimination"],
+    "verb": ["discriminate"],
+    "adjective": ["discriminating", "discriminative"],
+    "adverb": ["discriminatingly"],
+    "sentence": "The law discriminates against the blacks."
+  },
+  {
+    "id": 10,
+    "noun": ["employer", "employee", "employment"],
+    "verb": ["employ"],
+    "adjective": ["employed", "unemployed", "employing"],
+    "adverb": ["employably"],
+    "sentence": "Are you in full-time employment?"
+  },
+  {
+    "id": 11,
+    "noun": ["violence"],
+    "verb": ["violate"],
+    "adjective": ["violent", "violated"],
+    "adverb": ["violently"],
+    "sentence": "There is too much violence on television."
+  },
+  {
+    "id": 12,
+    "noun": ["change"],
+    "verb": ["change"],
+    "adjective": ["changeable", "changing", "changed"],
+    "adverb": ["changeably"],
+    "sentence": "The weather was very changeable."
+  },
+  {
+    "id": 13,
+    "noun": ["pride"],
+    "verb": ["pride"],
+    "adjective": ["proud"],
+    "adverb": ["proudly"],
+    "sentence": "He prides himself of being extremely clever."
+  },
+  {
+    "id": 14,
+    "noun": ["birth", "birthday"],
+    "verb": ["bear"],
+    "adjective": ["bearable", "born"],
+    "adverb": ["bearably"],
+    "sentence": "My grandfather was born in 1919."
+  },
+  {
+    "id": 15,
+    "noun": ["explanation"],
+    "verb": ["explain"],
+    "adjective": ["explanatory", "explained", "explaining"],
+    "adverb": ["explanatorily"],
+    "sentence": "I’m waiting to hear your explanation."
+  },
+  {
+    "id": 16,
+    "noun": ["choice"],
+    "verb": ["choose"],
+    "adjective": ["choosy", "chosen", "choosing"],
+    "adverb": ["choosily"],
+    "sentence": "She needs a job and cannot be choosy."
+  },
+  {
+    "id": 17,
+    "noun": ["difference"],
+    "verb": ["differ"],
+    "adjective": ["different", "differing"],
+    "adverb": ["differently"],
+    "sentence": "There’s not much difference in price."
+  },
+  {
+    "id": 18,
+    "noun": ["settlement", "settler"],
+    "verb": ["settle"],
+    "adjective": ["settled", "settling"],
+    "adverb": ["settledly"],
+    "sentence": "His ancestors decided to settle in California."
+  },
+  {
+    "id": 19,
+    "noun": ["writer", "writing"],
+    "verb": ["write"],
+    "adjective": ["written", "writing"],
+    "adverb": ["writingly"],
+    "sentence": "First of all he had to do a written test."
+  },
+  {
+    "id": 20,
+    "noun": ["immigration", "immigrant"],
+    "verb": ["immigrate"],
+    "adjective": ["immigrant", "immigrating"],
+    "adverb": ["immigrantly"],
+    "sentence": "Immigration fell in the past ten years."
+  },
+  {
+    "id": 21,
+    "noun": ["heat", "heater", "heating"],
+    "verb": ["heat"],
+    "adjective": ["hot", "heated", "heating"],
+    "adverb": ["hotly", "heatedly"],
+    "sentence": "You will have to heat the water until it boils."
+  },
+  {
+    "id": 22,
+    "noun": ["expectation"],
+    "verb": ["expect"],
+    "adjective": ["expected", "unexpected", "expectant"],
+    "adverb": ["expectedly", "unexpectedly", "expectantly"],
+    "sentence": "Against all expectations they reached the top."
+  },
+  {
+    "id": 23,
+    "noun": ["power"],
+    "verb": ["power"],
+    "adjective": ["powerful", "powered"],
+    "adverb": ["powerfully"],
+    "sentence": "The motor is powered by a solar battery."
+  },
+  {
+    "id": 24,
+    "noun": ["knowledge"],
+    "verb": ["know"],
+    "adjective": ["known", "well-known", "unknown", "knowing"],
+    "adverb": ["knowingly"],
+    "sentence": "His knowledge of this area is very poor."
+  },
+  {
+    "id": 25,
+    "noun": ["risk"],
+    "verb": ["risk"],
+    "adjective": ["risky", "risking"],
+    "adverb": ["riskily"],
+    "sentence": "There was some risk of a fire."
+  },
+  {
+    "id": 26,
+    "noun": ["protection", "protector"],
+    "verb": ["protect"],
+    "adjective": ["protective", "protected", "protecting"],
+    "adverb": ["protectively"],
+    "sentence": "You will definitely need protective clothing."
+  },
+  {
+    "id": 27,
+    "noun": ["food"],
+    "verb": ["feed"],
+    "adjective": ["fed", "fed up", "feeding"],
+    "adverb": ["feedingly"],
+    "sentence": "I'm really fed up with this horrible weather."
+  },
+  {
+    "id": 28,
+    "noun": ["recommendation"],
+    "verb": ["recommend"],
+    "adjective": ["recommendable", "recommended", "recommending"],
+    "adverb": ["recommendably"],
+    "sentence": "They recommended changing the oil after 500 miles."
+  },
+  {
+    "id": 29,
+    "noun": ["solution"],
+    "verb": ["solve"],
+    "adjective": ["soluble", "unsolved", "solved"],
+    "adverb": ["solubly"],
+    "sentence": "The best solution for his parents would be to separate."
+  },
+  {
+    "id": 30,
+    "noun": ["occupation"],
+    "verb": ["occupy"],
+    "adjective": ["occupational", "occupied", "unoccupied", "occupying"],
+    "adverb": ["occupationally"],
+    "sentence": "This will keep the kids occupied for a while."
+  },
+  {
+    "id": 31,
+    "noun": ["admission", "admittance"],
+    "verb": ["admit"],
+    "adjective": ["admitted", "admissible"],
+    "adverb": ["admittedly"],
+    "sentence": "The bully did not get admittance to the club."
+  },
+  {
+    "id": 32,
+    "noun": ["demonstration", "demonstrator"],
+    "verb": ["demonstrate"],
+    "adjective": ["demonstrative", "demonstrated", "demonstrating"],
+    "adverb": ["demonstratively"],
+    "sentence": "They took part in the demonstration."
+  },
+  {
+    "id": 33,
+    "noun": ["effect"],
+    "verb": ["effect"],
+    "adjective": ["effective", "ineffective", "effected"],
+    "adverb": ["effectively", "ineffectively"],
+    "sentence": "These ads are simple but effective."
+  },
+  {
+    "id": 34,
+    "noun": ["freezer"],
+    "verb": ["freeze"],
+    "adjective": ["frozen", "freezing"],
+    "adverb": ["freezingly"],
+    "sentence": "She put the meat into the freezer."
+  },
+  {
+    "id": 35,
+    "noun": ["inhabitant"],
+    "verb": ["inhabit"],
+    "adjective": ["inhabitable", "inhabited", "inhabiting"],
+    "adverb": ["inhabitantly"],
+    "sentence": "The capital city has 6 million inhabitants."
+  },
+  {
+    "id": 36,
+    "noun": ["development"],
+    "verb": ["develop"],
+    "adjective": ["developing", "developed", "undeveloped"],
+    "adverb": ["developmentally"],
+    "sentence": "Many developing countries have a lack of water."
+  },
+  {
+    "id": 37,
+    "noun": ["achievement"],
+    "verb": ["achieve"],
+    "adjective": ["achievable", "achieved", "achieving"],
+    "adverb": ["achievingly"],
+    "sentence": "This was quite an achievement."
+  },
+  {
+    "id": 38,
+    "noun": ["product", "producer", "production"],
+    "verb": ["produce"],
+    "adjective": ["productive", "unproductive", "produced", "producing"],
+    "adverb": ["productively"],
+    "sentence": "This country is one of the world's largest coffee producers."
+  },
+  {
+    "id": 39,
+    "noun": ["proof"],
+    "verb": ["prove"],
+    "adjective": ["proven", "proving"],
+    "adverb": ["provenly"],
+    "sentence": "Do you have any proof that he really did it?"
+  },
+  {
+    "id": 40,
+    "noun": ["catch"],
+    "verb": ["catch"],
+    "adjective": ["catching", "caught"],
+    "adverb": ["catchingly"],
+    "sentence": "The fisherman reported record catches."
+  },
+  {
+    "id": 41,
+    "noun": ["composer", "composition"],
+    "verb": ["compose"],
+    "adjective": ["composed", "composing"],
+    "adverb": ["composedly"],
+    "sentence": "His latest composition became a Top Ten hit."
+  },
+  {
+    "id": 42,
+    "noun": ["repetition"],
+    "verb": ["repeat"],
+    "adjective": ["repeated", "repeating"],
+    "adverb": ["repeatedly"],
+    "sentence": "The fans wanted a repetition of the song."
+  },
+  {
+    "id": 43,
+    "noun": ["success"],
+    "verb": ["succeed"],
+    "adjective": ["successful", "succeeding"],
+    "adverb": ["successfully"],
+    "sentence": "Their world tour was a big success."
+  },
+  {
+    "id": 44,
+    "noun": ["preparation"],
+    "verb": ["prepare"],
+    "adjective": ["preparatory", "prepared", "preparing"],
+    "adverb": ["preparatorily"],
+    "sentence": "This training is a good preparation for many careers."
+  },
+  {
+    "id": 45,
+    "noun": ["doubt"],
+    "verb": ["doubt"],
+    "adjective": ["doubtful", "doubtless", "doubting"],
+    "adverb": ["doubtfully", "doubtlessly"],
+    "sentence": "She looked doubtful when she heard his story."
+  },
+  {
+    "id": 46,
+    "noun": ["performer", "performance"],
+    "verb": ["perform"],
+    "adjective": ["performing", "performed"],
+    "adverb": ["performatively"],
+    "sentence": "The performance of the band was really disappointing."
+  },
+  {
+    "id": 47,
+    "noun": ["satisfaction"],
+    "verb": ["satisfy"],
+    "adjective": ["satisfied", "satisfying", "satisfactory"],
+    "adverb": ["satisfactorily", "satisfyingly"],
+    "sentence": "None of his answers was satisfactory."
+  },
+  {
+    "id": 48,
+    "noun": ["expression"],
+    "verb": ["express"],
+    "adjective": ["expressive", "expressed", "expressing"],
+    "adverb": ["expressively"],
+    "sentence": "She looked at him with an expression of sympathy."
+  },
+  {
+    "id": 49,
+    "noun": ["attention"],
+    "verb": ["attend"],
+    "adjective": ["attentive", "attended", "attending"],
+    "adverb": ["attentively"],
+    "sentence": "Nobody was paying attention although the concert had already started."
+  },
+  {
+    "id": 50,
+    "noun": ["payment"],
+    "verb": ["pay"],
+    "adjective": ["well-paid", "paid", "paying"],
+    "adverb": ["payably"],
+    "sentence": "They offer a discount for cash payment."
+  },
+  {
+    "id": 51,
+    "noun": ["applause"],
+    "verb": ["applaud"],
+    "adjective": ["applauded", "applauding"],
+    "adverb": ["enthusiastically"],
+    "sentence": "At the end of the concert the fans applauded enthusiastically."
+  },
+  {
+    "id": 52,
+    "noun": ["receiver", "reception"],
+    "verb": ["receive"],
+    "adjective": ["receptive", "received", "receiving"],
+    "adverb": ["receptively"],
+    "sentence": "The poor reception made it difficult for them to understand the news programme."
+  },
+  {
+    "id": 53,
+    "noun": ["excitement"],
+    "verb": ["excite"],
+    "adjective": ["excited", "exciting"],
+    "adverb": ["excitedly", "excitingly"],
+    "sentence": "It was an exciting moment for all of them."
+  },
+  {
+    "id": 54,
+    "noun": ["destruction"],
+    "verb": ["destroy"],
+    "adjective": ["destructive", "destroyed", "destroying"],
+    "adverb": ["destructively"],
+    "sentence": "The whole stage was destroyed by the fire."
+  },
+  {
+    "id": 55,
+    "noun": ["thinker", "thought"],
+    "verb": ["think"],
+    "adjective": ["thoughtful", "thoughtless", "thinking"],
+    "adverb": ["thoughtfully", "thoughtlessly"],
+    "sentence": "I've just had a thought."
+  },
+  {
+    "id": 56,
+    "noun": ["correction"],
+    "verb": ["correct"],
+    "adjective": ["correct", "corrected", "corrective"],
+    "adverb": ["correctly", "incorrectly"],
+    "sentence": "He made all the necessary corrections."
+  },
+  {
+    "id": 57,
+    "noun": ["hope"],
+    "verb": ["hope"],
+    "adjective": ["hopeful", "hopeless", "hoping"],
+    "adverb": ["hopefully", "hopelessly"],
+    "sentence": "They're feeling hopeful about the future."
+  },
+  {
+    "id": 58,
+    "noun": ["marriage"],
+    "verb": ["marry"],
+    "adjective": ["married", "unmarried", "marrying"],
+    "adverb": ["maritally"],
+    "sentence": "Are you married or single?"
+  },
+  {
+    "id": 59,
+    "noun": ["attraction"],
+    "verb": ["attract"],
+    "adjective": ["attractive", "attracted", "attracting"],
+    "adverb": ["attractively"],
+    "sentence": "They were the main attraction of the party."
+  },
+  {
+    "id": 60,
+    "noun": ["favour", "favourite"],
+    "verb": ["favour"],
+    "adjective": ["favourite", "favoured", "favouring"],
+    "adverb": ["favourably"],
+    "sentence": "What's your favourite pop group at the moment?"
+  },
+  {
+    "id": 61,
+    "noun": ["retirement"],
+    "verb": ["retire"],
+    "adjective": ["retired", "retiring"],
+    "adverb": ["retiredly", "retiringly"],
+    "sentence": "He hopes to retire at the age of 63."
+  },
+  {
+    "id": 62,
+    "noun": ["consideration"],
+    "verb": ["consider"],
+    "adjective": ["considerable", "considered", "considering"],
+    "adverb": ["considerably"],
+    "sentence": "After long consideration I've decided to leave."
+  },
+  {
+    "id": 63,
+    "noun": ["dependence", "independence"],
+    "verb": ["depend"],
+    "adjective": ["dependent", "independent", "depending"],
+    "adverb": ["dependently", "independently"],
+    "sentence": "The amount you pay depends on where you live."
+  },
+  {
+    "id": 64,
+    "noun": ["improvement"],
+    "verb": ["improve"],
+    "adjective": ["improved", "improving"],
+    "adverb": ["improvingly"],
+    "sentence": "The electronic controls are a big improvement."
+  },
+  {
+    "id": 65,
+    "noun": ["sense", "sensitivity"],
+    "verb": ["sense"],
+    "adjective": ["sensible", "sensitive", "insensitive", "sensory"],
+    "adverb": ["sensibly", "sensitively"],
+    "sentence": "There's no sense in getting excited."
+  },
+  {
+    "id": 66,
+    "noun": ["exception"],
+    "verb": ["except"],
+    "adjective": ["exceptional", "excepted"],
+    "adverb": ["exceptionally"],
+    "sentence": "My mother was the only exception."
+  },
+  {
+    "id": 67,
+    "noun": ["imagination"],
+    "verb": ["imagine"],
+    "adjective": ["imaginative", "imaginary", "imaginable", "imagined"],
+    "adverb": ["imaginatively"],
+    "sentence": "She could see the place in her imagination."
+  },
+  {
+    "id": 68,
+    "noun": ["approach"],
+    "verb": ["approach"],
+    "adjective": ["approachable", "approaching"],
+    "adverb": ["approachably"],
+    "sentence": "He approached the animal carefully."
+  },
+  {
+    "id": 69,
+    "noun": ["announcer", "announcement"],
+    "verb": ["announce"],
+    "adjective": ["announced", "announcing"],
+    "adverb": ["announcedly"],
+    "sentence": "He announced that he wanted to leave."
+  },
+  {
+    "id": 70,
+    "noun": ["home"],
+    "verb": ["home"],
+    "adjective": ["homeless", "homing"],
+    "adverb": ["homely"],
+    "sentence": "He wants to help homeless children."
+  },
+  {
+    "id": 71,
+    "noun": ["sadness"],
+    "verb": ["sadden"],
+    "adjective": ["sad", "saddened", "saddening"],
+    "adverb": ["sadly"],
+    "sentence": "He looks so sad."
+  },
+  {
+    "id": 72,
+    "noun": ["intention"],
+    "verb": ["intend"],
+    "adjective": ["intentional", "intended", "intending"],
+    "adverb": ["intentionally"],
+    "sentence": "I have no intention of helping you."
+  },
+  {
+    "id": 73,
+    "noun": ["loser", "loss"],
+    "verb": ["lose"],
+    "adjective": ["lost", "losing"],
+    "adverb": ["lossy"],
+    "sentence": "The lost keys finally turned up."
+  },
+  {
+    "id": 74,
+    "noun": ["complaint"],
+    "verb": ["complain"],
+    "adjective": ["complaining"],
+    "adverb": ["complainingly"],
+    "sentence": "Why are they complaining?"
+  },
+  {
+    "id": 75,
+    "noun": ["practice", "practitioner"],
+    "verb": ["practise"],
+    "adjective": ["practised", "practising", "practical"],
+    "adverb": ["practically"],
+    "sentence": "It takes a practised eye to see the difference."
+  },
+  {
+    "id": 76,
+    "noun": ["election", "elector"],
+    "verb": ["elect"],
+    "adjective": ["elected", "electing"],
+    "adverb": ["electorally"],
+    "sentence": "She was elected to Parliament."
+  },
+  {
+    "id": 77,
+    "noun": ["representation", "representative"],
+    "verb": ["represent"],
+    "adjective": ["representative", "represented", "representing"],
+    "adverb": ["representatively"],
+    "sentence": "They fight for a fully representative democracy."
+  },
+  {
+    "id": 78,
+    "noun": ["opponent", "opposition"],
+    "verb": ["oppose"],
+    "adjective": ["opposing", "opposed", "opposite"],
+    "adverb": ["oppositely"],
+    "sentence": "They often have opposing views."
+  },
+  {
+    "id": 79,
+    "noun": ["meeting"],
+    "verb": ["meet"],
+    "adjective": ["met", "meeting"],
+    "adverb": ["meetly"],
+    "sentence": "Lots of people attended the meeting."
+  },
+  {
+    "id": 80,
+    "noun": ["run", "runner"],
+    "verb": ["run"],
+    "adjective": ["runaway", "rundown", "running"],
+    "adverb": ["runningly"],
+    "sentence": "Are you running in the 100 metres?"
+  },
+  {
+    "id": 81,
+    "noun": ["dust"],
+    "verb": ["dust"],
+    "adjective": ["dusty", "dusted"],
+    "adverb": ["dustily"],
+    "sentence": "They were driving along a dusty road."
+  },
+  {
+    "id": 82,
+    "noun": ["seller", "sale"],
+    "verb": ["sell"],
+    "adjective": ["sold", "selling"],
+    "adverb": ["soldly"],
+    "sentence": "This house has been for sale since 1998."
+  },
+  {
+    "id": 83,
+    "noun": ["servant", "service", "server"],
+    "verb": ["serve"],
+    "adjective": ["serving", "served"],
+    "adverb": ["servingly"],
+    "sentence": "Are we the masters or servants of computers?"
+  },
+  {
+    "id": 84,
+    "noun": ["tape"],
+    "verb": ["tape"],
+    "adjective": ["taped", "taping"],
+    "adverb": ["tapedly"],
+    "sentence": "We've got his new film on tape."
+  },
+  {
+    "id": 85,
+    "noun": ["cleaner", "cleanliness"],
+    "verb": ["clean"],
+    "adjective": ["clean", "cleaned", "cleaning"],
+    "adverb": ["cleanly"],
+    "sentence": "She cleans her room twice a week."
+  },
+  {
+    "id": 86,
+    "noun": ["order"],
+    "verb": ["order"],
+    "adjective": ["ordered", "orderly", "ordering"],
+    "adverb": ["orderly"],
+    "sentence": "She is proud of her orderly household."
+  },
+  {
+    "id": 87,
+    "noun": ["bite"],
+    "verb": ["bite"],
+    "adjective": ["biting", "bitten"],
+    "adverb": ["bitingly"],
+    "sentence": "A biting wind blew down from the hills."
+  },
+  {
+    "id": 88,
+    "noun": ["admirer", "admiration"],
+    "verb": ["admire"],
+    "adjective": ["admirable", "admiring", "admired"],
+    "adverb": ["admirably", "admiringly"],
+    "sentence": "He looked at her in admiration."
+  },
+  {
+    "id": 89,
+    "noun": ["growth"],
+    "verb": ["grow"],
+    "adjective": ["grown", "growing"],
+    "adverb": ["growingly"],
+    "sentence": "Before you think they will all be grown-up."
+  },
+  {
+    "id": 90,
+    "noun": ["punishment"],
+    "verb": ["punish"],
+    "adjective": ["punishable", "punishing", "punished"],
+    "adverb": ["punishingly"],
+    "sentence": "I sent him to bed early as a punishment."
+  },
+  {
+    "id": 91,
+    "noun": ["flight", "flyer"],
+    "verb": ["fly"],
+    "adjective": ["flying", "flown"],
+    "adverb": ["flyingly"],
+    "sentence": "These planes can fly at high speed."
+  },
+  {
+    "id": 92,
+    "noun": ["edition", "editor"],
+    "verb": ["edit"],
+    "adjective": ["edited", "editing"],
+    "adverb": ["editorially"],
+    "sentence": "I want to buy a paperback edition."
+  },
+  {
+    "id": 93,
+    "noun": ["print", "printer"],
+    "verb": ["print"],
+    "adjective": ["printable", "printed", "printing"],
+    "adverb": ["printably"],
+    "sentence": "He likes to see his name in print."
+  },
+  {
+    "id": 94,
+    "noun": ["publication", "publisher"],
+    "verb": ["publish"],
+    "adjective": ["published", "publishing"],
+    "adverb": ["publishingly"],
+    "sentence": "The book is ready for publication."
+  },
+  {
+    "id": 95,
+    "noun": ["acceptance"],
+    "verb": ["accept"],
+    "adjective": ["accepted", "acceptable", "accepting"],
+    "adverb": ["acceptably", "acceptingly"],
+    "sentence": "How did you manage to be accepted?"
+  },
+  {
+    "id": 96,
+    "noun": ["description"],
+    "verb": ["describe"],
+    "adjective": ["descriptive", "described", "describing"],
+    "adverb": ["descriptively"],
+    "sentence": "Please give details in your description."
+  },
+  {
+    "id": 97,
+    "noun": ["reliability"],
+    "verb": ["rely"],
+    "adjective": ["reliable", "reliant"],
+    "adverb": ["reliably"],
+    "sentence": "She is a very reliable person."
+  },
+  {
+    "id": 98,
+    "noun": ["variation", "variety"],
+    "verb": ["vary"],
+    "adjective": ["various", "variable", "varied", "varying"],
+    "adverb": ["variously", "variably"],
+    "sentence": "They come from a variety of backgrounds."
+  },
+  {
+    "id": 99,
+    "noun": ["death"],
+    "verb": ["die"],
+    "adjective": ["dead", "dying", "deadly"],
+    "adverb": ["deadly"],
+    "sentence": "The death of his brother was a great shock."
+  },
+  {
+    "id": 100,
+    "noun": ["survivor", "survival"],
+    "verb": ["survive"],
+    "adjective": ["surviving", "survived"],
+    "adverb": ["survivingly"],
+    "sentence": "Only 20 people survived the disaster."
+  },
+  {
+    "id": 101,
+    "noun": ["seat"],
+    "verb": ["sit"],
+    "adjective": ["seated", "sitting"],
+    "adverb": ["sittingly"],
+    "sentence": "She tried to rise from her seat."
+  },
+  {
+    "id": 102,
+    "noun": ["confusion"],
+    "verb": ["confuse"],
+    "adjective": ["confused", "confusing"],
+    "adverb": ["confusedly", "confusingly"],
+    "sentence": "After all the questions he was confused."
+  },
+  {
+    "id": 103,
+    "noun": ["arrest"],
+    "verb": ["arrest"],
+    "adjective": ["arrested", "arresting"],
+    "adverb": ["arrestingly"],
+    "sentence": "He was arrested for dangerous driving."
+  },
+  {
+    "id": 104,
+    "noun": ["establishment"],
+    "verb": ["establish"],
+    "adjective": ["established", "establishing"],
+    "adverb": ["establishedly"],
+    "sentence": "He is an established political figure."
+  },
+  {
+    "id": 105,
+    "noun": ["explosion"],
+    "verb": ["explode"],
+    "adjective": ["explosive", "exploding", "exploded"],
+    "adverb": ["explosively"],
+    "sentence": "The terrorists used plastic explosives."
+  },
+  {
+    "id": 106,
+    "noun": ["reduction"],
+    "verb": ["reduce"],
+    "adjective": ["reduced", "reducing"],
+    "adverb": ["reducedly"],
+    "sentence": "We can make a reduction if you pay cash."
+  },
+  {
+    "id": 107,
+    "noun": ["comprehension"],
+    "verb": ["comprehend"],
+    "adjective": ["comprehensible", "comprehensive", "comprehending"],
+    "adverb": ["comprehensibly", "comprehensively"],
+    "sentence": "He offered an easily comprehensible explanation."
+  },
+  {
+    "id": 108,
+    "noun": ["discovery"],
+    "verb": ["discover"],
+    "adjective": ["discovered", "discovering"],
+    "adverb": ["discoverably"],
+    "sentence": "The discovery of oil meant a boom."
+  },
+  {
+    "id": 109,
+    "noun": ["arrival"],
+    "verb": ["arrive"],
+    "adjective": ["arrived", "arriving"],
+    "adverb": ["arrivingly"],
+    "sentence": "His late arrival spoilt all our plans."
+  },
+  {
+    "id": 110,
+    "noun": ["conviction"],
+    "verb": ["convince"],
+    "adjective": ["convinced", "convincing"],
+    "adverb": ["convincedly", "convincingly"],
+    "sentence": "He is not a very convincing liar."
+  },
+  {
+    "id": 111,
+    "noun": ["damage"],
+    "verb": ["damage"],
+    "adjective": ["damaging", "damaged"],
+    "adverb": ["damagingly"],
+    "sentence": "The earthquake caused a lot of damage."
+  },
+  {
+    "id": 112,
+    "noun": ["harm"],
+    "verb": ["harm"],
+    "adjective": ["harmful", "harmless", "unharmed"],
+    "adverb": ["harmfully", "harmlessly"],
+    "sentence": "Criticizing does more harm than good."
+  },
+  {
+    "id": 113,
+    "noun": ["cooperation"],
+    "verb": ["cooperate"],
+    "adjective": ["cooperative", "cooperating"],
+    "adverb": ["cooperatively"],
+    "sentence": "The bank clerk was not very cooperative."
+  },
+  {
+    "id": 114,
+    "noun": ["organization"],
+    "verb": ["organize"],
+    "adjective": ["organized", "organizing"],
+    "adverb": ["organizedly"],
+    "sentence": "I'm not very organized these days."
+  },
+  {
+    "id": 115,
+    "noun": ["delivery"],
+    "verb": ["deliver"],
+    "adjective": ["delivered", "delivering"],
+    "adverb": ["deliverably"],
+    "sentence": "Deliveries should be made at the back entrance."
+  },
+  {
+    "id": 116,
+    "noun": ["weight"],
+    "verb": ["weigh"],
+    "adjective": ["weighted", "weighty", "weightless"],
+    "adverb": ["weightily"],
+    "sentence": "The weight of the baby was seven pounds."
+  },
+  {
+    "id": 117,
+    "noun": ["commitment"],
+    "verb": ["commit"],
+    "adjective": ["committed", "committing"],
+    "adverb": ["committedly"],
+    "sentence": "I was impressed by his commitment."
+  },
+  {
+    "id": 118,
+    "noun": ["pressure"],
+    "verb": ["press"],
+    "adjective": ["pressing", "pressed"],
+    "adverb": ["pressingly"],
+    "sentence": "There is a pressing need for food."
+  },
+  {
+    "id": 119,
+    "noun": ["invention", "inventor"],
+    "verb": ["invent"],
+    "adjective": ["inventive", "invented"],
+    "adverb": ["inventively"],
+    "sentence": "He is one of the most inventive artists."
+  },
+  {
+    "id": 120,
+    "noun": ["saving", "safety"],
+    "verb": ["save"],
+    "adjective": ["safe", "saved", "saving"],
+    "adverb": ["safely"],
+    "sentence": "I'd like to be on the safe side."
+  },
+  {
+    "id": 121,
+    "noun": ["accusation"],
+    "verb": ["accuse"],
+    "adjective": ["accusing", "accused"],
+    "adverb": ["accusingly"],
+    "sentence": "He did not like her accusing look."
+  },
+  {
+    "id": 122,
+    "noun": ["pleasure"],
+    "verb": ["please"],
+    "adjective": ["pleased", "pleasing", "pleasant"],
+    "adverb": ["pleasantly", "pleasingly"],
+    "sentence": "He was pleased to be invited to the party."
+  },
+  {
+    "id": 123,
+    "noun": ["visit", "visitor"],
+    "verb": ["visit"],
+    "adjective": ["visiting", "visitable"],
+    "adverb": ["visitingly"],
+    "sentence": "Last summer many visitors came to our town."
+  },
+  {
+    "id": 124,
+    "noun": ["education"],
+    "verb": ["educate"],
+    "adjective": ["educated", "educating", "educational"],
+    "adverb": ["educationally"],
+    "sentence": "They tried to give him a good education."
+  },
+  {
+    "id": 125,
+    "noun": ["construction"],
+    "verb": ["construct"],
+    "adjective": ["constructive", "constructed"],
+    "adverb": ["constructively"],
+    "sentence": "Of course I don't mind constructive criticism."
+  },
+  {
+    "id": 126,
+    "noun": ["pollution"],
+    "verb": ["pollute"],
+    "adjective": ["polluted", "polluting"],
+    "adverb": ["pollutedly"],
+    "sentence": "They tried to prevent the pollution of the beach."
+  },
+  {
+    "id": 127,
+    "noun": ["explorer", "exploration"],
+    "verb": ["explore"],
+    "adjective": ["explored", "exploring", "exploratory"],
+    "adverb": ["exploringly"],
+    "sentence": "An explorer travels to unknown areas."
+  },
+  {
+    "id": 128,
+    "noun": ["failure"],
+    "verb": ["fail"],
+    "adjective": ["failed", "failing"],
+    "adverb": ["failingly"],
+    "sentence": "He is the very example of a failed writer."
+  },
+  {
+    "id": 129,
+    "noun": ["fascination"],
+    "verb": ["fascinate"],
+    "adjective": ["fascinated", "fascinating"],
+    "adverb": ["fascinatedly", "fascinatingly"],
+    "sentence": "He was fascinated by the night sky."
+  },
+  {
+    "id": 130,
+    "noun": ["creation", "creativity", "creator"],
+    "verb": ["create"],
+    "adjective": ["creative", "created"],
+    "adverb": ["creatively"],
+    "sentence": "His behaviour creates a lot of problems."
+  },
+  {
+    "id": 131,
+    "noun": ["confidence"],
+    "verb": ["confide"],
+    "adjective": ["confident", "confidential"],
+    "adverb": ["confidently", "confidentially"],
+    "sentence": "What I'm telling you is strictly confidential."
+  },
+  {
+    "id": 132,
+    "noun": ["sight"],
+    "verb": ["see"],
+    "adjective": ["seen", "unseen", "seeing"],
+    "adverb": ["sightedly"],
+    "sentence": "They fell in love at first sight."
+  },
+  {
+    "id": 133,
+    "noun": ["hesitation"],
+    "verb": ["hesitate"],
+    "adjective": ["hesitant", "hesitating"],
+    "adverb": ["hesitantly", "hesitatingly"],
+    "sentence": "He answered the question without hesitation."
+  },
+  {
+    "id": 134,
+    "noun": ["injury"],
+    "verb": ["injure"],
+    "adjective": ["injured", "injurious"],
+    "adverb": ["injuriously"],
+    "sentence": "He was seriously injured in the accident."
+  },
+  {
+    "id": 135,
+    "noun": ["qualification"],
+    "verb": ["qualify"],
+    "adjective": ["qualified", "qualifying"],
+    "adverb": ["qualifiedly"],
+    "sentence": "Obviously his colleagues were better qualified."
+  },
+  {
+    "id": 136,
+    "noun": ["impression"],
+    "verb": ["impress"],
+    "adjective": ["impressed", "impressive", "impressing"],
+    "adverb": ["impressively", "impressedly"],
+    "sentence": "A long time ago it was an impressive building."
+  },
+  {
+    "id": 137,
+    "noun": ["equipment"],
+    "verb": ["equip"],
+    "adjective": ["equipped", "equipping"],
+    "adverb": ["equippedly"],
+    "sentence": "He was taken to a well - equipped hospital."
+  },
+  {
+    "id": 138,
+    "noun": ["agreement"],
+    "verb": ["agree"],
+    "adjective": ["agreed", "agreeable", "agreeing"],
+    "adverb": ["agreeably"],
+    "sentence": "The countries at war failed to reach an agreement."
+  },
+  {
+    "id": 139,
+    "noun": ["insurance", "insurer"],
+    "verb": ["insure"],
+    "adjective": ["insured", "insuring"],
+    "adverb": ["insuredly"],
+    "sentence": "We can claim for the damage on the insurance."
+  },
+  {
+    "id": 140,
+    "noun": ["danger"],
+    "verb": ["endanger"],
+    "adjective": ["dangerous", "endangered"],
+    "adverb": ["dangerously"],
+    "sentence": "People really didn't know how dangerous it was."
+  },
+  {
+    "id": 141,
+    "noun": ["act", "action", "activity", "actor", "actress"],
+    "verb": ["act"],
+    "adjective": ["active", "acting", "activated"],
+    "adverb": ["actively"],
+    "sentence": "He loves all sorts of outdoor activities."
+  },
+  {
+    "id": 142,
+    "noun": ["beginner", "beginning"],
+    "verb": ["begin"],
+    "adjective": ["beginning", "initial"],
+    "adverb": ["initially"],
+    "sentence": "This is the beginning of a new life."
+  },
+  {
+    "id": 143,
+    "noun": ["combination", "belief", "believer"],
+    "verb": ["combine", "believe"],
+    "adjective": ["combined", "believable", "unbelievable"],
+    "adverb": ["believably", "unbelievably"],
+    "sentence": "He forgot the combination for his safe."
+  },
+  {
+    "id": 144,
+    "noun": ["definition", "distance"],
+    "verb": ["define", "distance"],
+    "adjective": ["defined", "definite", "distant"],
+    "adverb": ["definitely", "distantly"],
+    "sentence": "He tried to give a definition of the word."
+  },
+  {
+    "id": 145,
+    "noun": ["help", "helper", "frequency"],
+    "verb": ["help", "frequent"],
+    "adjective": ["helpful", "helpless", "frequent"],
+    "adverb": ["frequently", "helpfully"],
+    "sentence": "Thank you for your helpful advice."
+  },
+  {
+    "id": 146,
+    "noun": ["management", "manager", "friendship"],
+    "verb": ["manage", "befriend"],
+    "adjective": ["manageable", "friendly"],
+    "adverb": ["friendlily"],
+    "sentence": "He was asked to manage the new department."
+  },
+  {
+    "id": 147,
+    "noun": ["record", "recording", "help"],
+    "verb": ["record", "help"],
+    "adjective": ["recorded", "helpful", "helpless"],
+    "adverb": ["helpfully", "helplessly"],
+    "sentence": "Jim has a nice collection of Beatles records."
+  },
+  {
+    "id": 148,
+    "noun": ["speech", "speaker", "hunger"],
+    "verb": ["speak", "hunger"],
+    "adjective": ["spoken", "speechless", "hungry"],
+    "adverb": ["hungrily"],
+    "sentence": "I haven’t spoken to him about all this."
+  },
+  {
+    "id": 149,
+    "noun": ["teacher", "teaching", "length"],
+    "verb": ["teach", "lengthen"],
+    "adjective": ["taught", "long"],
+    "adverb": ["lengthily"],
+    "sentence": "Years ago his father taught him how to swim."
+  },
+  {
+    "id": 150,
+    "noun": ["trouble", "troublemaker", "noise"],
+    "verb": ["trouble", "noise"],
+    "adjective": ["troublefree", "noisy"],
+    "adverb": ["noisily"],
+    "sentence": "At this hotel you will have a troublefree holiday."
+  },
+  {
+    "id": 151,
+    "noun": ["adaptation"],
+    "verb": ["adapt"],
+    "adjective": ["adaptable", "adapted", "adapting"],
+    "adverb": ["adaptively"],
+    "sentence": "They find it hard to adapt to a new school."
+  },
+  {
+    "id": 152,
+    "noun": ["guide", "guideline"],
+    "verb": ["guide"],
+    "adjective": ["guided", "guiding"],
+    "adverb": ["guidedly"],
+    "sentence": "They took us on a guided tour."
+  },
+  {
+    "id": 153,
+    "noun": ["check", "checker"],
+    "verb": ["check"],
+    "adjective": ["checked", "checking"],
+    "adverb": ["checkingly"],
+    "sentence": "We need regular checks of the water quality."
+  },
+  {
+    "id": 154,
+    "noun": ["swim", "swimmer", "swimming"],
+    "verb": ["swim"],
+    "adjective": ["swimming"],
+    "adverb": ["swimmingly"],
+    "sentence": "Swimming is certainly good for your health."
+  },
+  {
+    "id": 155,
+    "noun": ["exchange", "patience"],
+    "verb": ["exchange"],
+    "adjective": ["exchangeable", "patient", "impatient"],
+    "adverb": ["patiently", "impatiently"],
+    "sentence": "Where can I exchange pounds for dollars?"
+  },
+  {
+    "id": 156,
+    "noun": ["beat", "beating", "safety"],
+    "verb": ["beat", "save"],
+    "adjective": ["beaten", "safe", "unsafe"],
+    "adverb": ["safely"],
+    "sentence": "They say this teacher is a child beater."
+  },
+  {
+    "id": 157,
+    "noun": ["rain", "strength"],
+    "verb": ["rain", "strengthen"],
+    "adjective": ["rainy", "strong"],
+    "adverb": ["strongly"],
+    "sentence": "I hate rainy and cold weather."
+  },
+  {
+    "id": 158,
+    "noun": ["decision", "truth"],
+    "verb": ["decide", "trust"],
+    "adjective": ["undecided", "true", "untrue"],
+    "adverb": ["truly"],
+    "sentence": "She was undecided whether to go or not."
+  },
+  {
+    "id": 159,
+    "noun": ["takeaway", "takeoff", "beauty"],
+    "verb": ["take", "beautify"],
+    "adjective": ["taken", "beautiful"],
+    "adverb": ["beautifully"],
+    "sentence": "Yesterday she took a day off."
+  },
+  {
+    "id": 160,
+    "noun": ["use", "user", "intelligence"],
+    "verb": ["use", "intellectualize"],
+    "adjective": ["useless", "intelligent"],
+    "adverb": ["intelligently"],
+    "sentence": "This sandy land is useless for farmers."
+  },
+  {
+    "id": 161,
+    "noun": ["hunt", "hunter", "hunting"],
+    "verb": ["hunt"],
+    "adjective": ["hunting", "hunted"],
+    "adverb": ["huntedly"],
+    "sentence": "The detective is busy hunting the killer."
+  },
+  {
+    "id": 162,
+    "noun": ["tale", "teller"],
+    "verb": ["tell"],
+    "adjective": ["telling", "told"],
+    "adverb": ["tellingly"],
+    "sentence": "She really loves fairy tales."
+  },
+  {
+    "id": 163,
+    "noun": ["circle", "speech", "speaker"],
+    "verb": ["circle", "speak"],
+    "adjective": ["circular", "spoken", "speechless"],
+    "adverb": ["unspeakably"],
+    "sentence": "The plane had to circle the airport."
+  },
+  {
+    "id": 164,
+    "noun": ["defence", "defender", "height"],
+    "verb": ["defend", "heighten"],
+    "adjective": ["defensive", "high"],
+    "adverb": ["highly"],
+    "sentence": "The champion wants to defend his title."
+  },
+  {
+    "id": 165,
+    "noun": ["ad", "advertisement", "breadth"],
+    "verb": ["advertise", "broaden"],
+    "adjective": ["advertised", "broad"],
+    "adverb": ["broadly"],
+    "sentence": "We prefer to advertise in the Sunday paper."
+  },
+  {
+    "id": 166,
+    "noun": ["meaning", "depth"],
+    "verb": ["mean", "deepen"],
+    "adjective": ["meaningless", "deep"],
+    "adverb": ["deeply"],
+    "sentence": "These songbooks are meaningless for me."
+  },
+  {
+    "id": 167,
+    "noun": ["reality", "width"],
+    "verb": ["realize", "widen"],
+    "adjective": ["realistic", "wide"],
+    "adverb": ["widely"],
+    "sentence": "One day his dream may become reality."
+  },
+  {
+    "id": 168,
+    "noun": ["smell", "youth"],
+    "verb": ["smell", "rejuvenate"],
+    "adjective": ["smelly", "youthful"],
+    "adverb": ["youthfully"],
+    "sentence": "There was a delicious smell in the kitchen."
+  },
+  {
+    "id": 169,
+    "noun": ["belief", "believer", "fame"],
+    "verb": ["believe", "defame"],
+    "adjective": ["believable", "famous"],
+    "adverb": ["famously"],
+    "sentence": "The characters in this story are believable."
+  },
+  {
+    "id": 170,
+    "noun": ["trick", "luck"],
+    "verb": ["trick", "luck"],
+    "adjective": ["tricky", "lucky", "unlucky"],
+    "adverb": ["luckily", "unluckily"],
+    "sentence": "My uncle often shows us card tricks."
+  },
+  {
+    "id": 171,
+    "noun": ["tour", "tourism", "tourist"],
+    "verb": ["tour"],
+    "adjective": ["touristy"],
+    "adverb": ["touristically"],
+    "sentence": "This town is too touristy for me."
+  },
+  {
+    "id": 172,
+    "noun": ["information"],
+    "verb": ["inform"],
+    "adjective": ["informative", "informed", "informing"],
+    "adverb": ["informatively"],
+    "sentence": "It is a really informative book."
+  },
+  {
+    "id": 173,
+    "noun": ["closure", "closeness"],
+    "verb": ["close"],
+    "adjective": ["close", "closed", "closing"],
+    "adverb": ["closely"],
+    "sentence": "She sat on a chair close to the window."
+  },
+  {
+    "id": 174,
+    "noun": ["walk", "walker", "walking", "health"],
+    "verb": ["walk", "heal"],
+    "adjective": ["walking", "healthy", "unhealthy"],
+    "adverb": ["healthily"],
+    "sentence": "My office is within walking distance."
+  },
+  {
+    "id": 175,
+    "noun": ["bend", "wealth"],
+    "verb": ["bend", "wealth"],
+    "adjective": ["bent", "wealthy"],
+    "adverb": ["wealthily"],
+    "sentence": "The car came round the bend at high speed."
+  },
+  {
+    "id": 176,
+    "noun": ["mix", "mixture", "anger"],
+    "verb": ["mix", "anger"],
+    "adjective": ["mixed", "angry"],
+    "adverb": ["angrily"],
+    "sentence": "Oil and water don’t mix."
+  },
+  {
+    "id": 177,
+    "noun": ["reservation", "reserves", "comparison"],
+    "verb": ["reserve", "compare"],
+    "adjective": ["reserved", "comparable"],
+    "adverb": ["comparatively"],
+    "sentence": "The country has huge oil reserves."
+  },
+  {
+    "id": 178,
+    "noun": ["smoke", "smoker", "necessity"],
+    "verb": ["smoke", "necessitate"],
+    "adjective": ["smoked", "necessary"],
+    "adverb": ["necessarily"],
+    "sentence": "My nephew loves to eat smoked fish."
+  },
+  {
+    "id": 179,
+    "noun": ["advice", "adviser", "variety"],
+    "verb": ["advise", "vary"],
+    "adjective": ["advisable", "various"],
+    "adverb": ["variously"],
+    "sentence": "He works for the firm as a financial adviser."
+  },
+  {
+    "id": 180,
+    "noun": ["design", "designer", "nature"],
+    "verb": ["design", "naturalize"],
+    "adjective": ["designed", "natural"],
+    "adverb": ["naturally"],
+    "sentence": "We need a well - designed software."
+  },
+  {
+    "id": 181,
+    "noun": ["disappointment"],
+    "verb": ["disappoint"],
+    "adjective": ["disappointed", "disappointing"],
+    "adverb": ["disappointedly", "disappointingly"],
+    "sentence": "My dad was more disappointed than angry."
+  },
+  {
+    "id": 182,
+    "noun": ["sail", "sailing", "sailor"],
+    "verb": ["sail"],
+    "adjective": ["sailing"],
+    "adverb": ["sailingly"],
+    "sentence": "She was the first to sail across the Atlantic."
+  },
+  {
+    "id": 183,
+    "noun": ["adventure", "adventurer"],
+    "verb": ["adventure"],
+    "adjective": ["adventurous"],
+    "adverb": ["adventurously"],
+    "sentence": "They had an adventurous trip through the jungle."
+  },
+  {
+    "id": 184,
+    "noun": ["science", "scientist"],
+    "verb": [],
+    "adjective": ["scientific"],
+    "adverb": ["scientifically"],
+    "sentence": "He is a famous scientist."
+  },
+  {
+    "id": 185,
+    "noun": ["music", "musician"],
+    "verb": [],
+    "adjective": ["musical"],
+    "adverb": ["musically"],
+    "sentence": "She is very musical."
+  },
+  {
+    "id": 186,
+    "noun": ["history", "historian"],
+    "verb": [],
+    "adjective": ["historic", "historical"],
+    "adverb": ["historically"],
+    "sentence": "The city has many historical buildings."
+  },
+  {
+    "id": 187,
+    "noun": ["economy", "economics", "economist"],
+    "verb": ["economize"],
+    "adjective": ["economic", "economical"],
+    "adverb": ["economically"],
+    "sentence": "The country's economy is growing."
+  },
+  {
+    "id": 188,
+    "noun": ["politics", "politician"],
+    "verb": ["politicize"],
+    "adjective": ["political"],
+    "adverb": ["politically"],
+    "sentence": "He is interested in politics."
+  },
+  {
+    "id": 189,
+    "noun": ["art", "artist"],
+    "verb": [],
+    "adjective": ["artistic"],
+    "adverb": ["artistically"],
+    "sentence": "The gallery exhibits modern art."
+  },
+  {
+    "id": 190,
+    "noun": ["person", "personality"],
+    "verb": ["personalize"],
+    "adjective": ["personal", "impersonal"],
+    "adverb": ["personally"],
+    "sentence": "It is a very personal matter."
+  },
+  {
+    "id": 191,
+    "noun": ["murder", "murderer"],
+    "verb": ["murder"],
+    "adjective": ["murderous"],
+    "adverb": ["murderously"],
+    "sentence": "Mr Jackson was found guilty of murder."
+  },
+  {
+    "id": 192,
+    "noun": ["thrill", "thriller"],
+    "verb": ["thrill"],
+    "adjective": ["thrilled", "thrilling"],
+    "adverb": ["thrillingly"],
+    "sentence": "Henry was thrilled to meet the girl."
+  },
+  {
+    "id": 193,
+    "noun": ["comparison"],
+    "verb": ["compare"],
+    "adjective": ["comparative", "comparable"],
+    "adverb": ["comparatively"],
+    "sentence": "It is a comparative study."
+  },
+  {
+    "id": 194,
+    "noun": ["conclusion"],
+    "verb": ["conclude"],
+    "adjective": ["conclusive", "inconclusive"],
+    "adverb": ["conclusively", "inconclusively"],
+    "sentence": "The investigation came to a conclusion."
+  },
+  {
+    "id": 195,
+    "noun": ["confidence"],
+    "verb": ["confide"],
+    "adjective": ["confident", "confidential"],
+    "adverb": ["confidently", "confidentially"],
+    "sentence": "He spoke with great confidence."
+  },
+  {
+    "id": 196,
+    "noun": ["convenience", "inconvenience"],
+    "verb": ["convene"],
+    "adjective": ["convenient", "inconvenient"],
+    "adverb": ["conveniently", "inconveniently"],
+    "sentence": "For your convenience, the shop is open late."
+  },
+  {
+    "id": 197,
+    "noun": ["curiosity"],
+    "verb": [],
+    "adjective": ["curious"],
+    "adverb": ["curiously"],
+    "sentence": "His curiosity led him to explore the room."
+  },
+  {
+    "id": 198,
+    "noun": ["decision"],
+    "verb": ["decide"],
+    "adjective": ["decisive", "indecisive", "decided"],
+    "adverb": ["decisively"],
+    "sentence": "It was a very difficult decision."
+  },
+  {
+    "id": 199,
+    "noun": ["definition"],
+    "verb": ["define"],
+    "adjective": ["definite", "indefinite", "defined"],
+    "adverb": ["definitely", "indefinitely"],
+    "sentence": "What is the definition of this word?"
+  },
+  {
+    "id": 200,
+    "noun": ["demand"],
+    "verb": ["demand"],
+    "adjective": ["demanding", "demanded"],
+    "adverb": ["demandingly"],
+    "sentence": "There is a high demand for skilled workers."
+  },
+  {
+    "id": 201,
+    "noun": ["name"],
+    "verb": ["name"],
+    "adjective": ["nameless"],
+    "adverb": ["namelessly"],
+    "sentence": "Suddenly I heard him call my name."
+  },
+  {
+    "id": 202,
+    "noun": ["work", "worksheet", "worker", "workshop"],
+    "verb": ["work"],
+    "adjective": ["working"],
+    "adverb": ["industriously"],
+    "sentence": "Jack left his hammer in his workshop."
+  },
+  {
+    "id": 203,
+    "noun": ["help", "helper"],
+    "verb": ["help"],
+    "adjective": ["helpful", "helpless", "helping"],
+    "adverb": ["helpfully", "helplessly"],
+    "sentence": "He is always ready to help."
+  },
+  {
+    "id": 204,
+    "noun": ["health"],
+    "verb": ["heal"],
+    "adjective": ["healthy", "unhealthy"],
+    "adverb": ["healthily", "unhealthily"],
+    "sentence": "Fruit is good for your health."
+  },
+  {
+    "id": 205,
+    "noun": ["wealth"],
+    "verb": ["wealth"],
+    "adjective": ["wealthy"],
+    "adverb": ["wealthily"],
+    "sentence": "He is a man of great wealth."
+  },
+  {
+    "id": 206,
+    "noun": ["length"],
+    "verb": ["lengthen"],
+    "adjective": ["long"],
+    "adverb": ["lengthily"],
+    "sentence": "What's the length of this boat?"
+  },
+  {
+    "id": 207,
+    "noun": ["depth"],
+    "verb": ["deepen"],
+    "adjective": ["deep"],
+    "adverb": ["deeply"],
+    "sentence": "The depth of the lake is unknown."
+  },
+  {
+    "id": 208,
+    "noun": ["broadness", "breadth"],
+    "verb": ["broaden"],
+    "adjective": ["broad"],
+    "adverb": ["broadly"],
+    "sentence": "Travel broadens the mind."
+  },
+  {
+    "id": 209,
+    "noun": ["width"],
+    "verb": ["widen"],
+    "adjective": ["wide"],
+    "adverb": ["widely"],
+    "sentence": "They are widening the road."
+  },
+  {
+    "id": 210,
+    "noun": ["strength"],
+    "verb": ["strengthen"],
+    "adjective": ["strong"],
+    "adverb": ["strongly"],
+    "sentence": "He has the strength to lift heavy weights."
+  },
+  {
+    "id": 211,
+    "noun": ["operation", "operator"],
+    "verb": ["operate"],
+    "adjective": ["operative", "operating"],
+    "adverb": ["operatively"],
+    "sentence": "The poor man had two operations in one month."
+  },
+  {
+    "id": 212,
+    "noun": ["worry", "worrier"],
+    "verb": ["worry"],
+    "adjective": ["worried", "worrying"],
+    "adverb": ["worriedly", "worryingly"],
+    "sentence": "I'm not going to worry about it."
+  },
+  {
+    "id": 213,
+    "noun": ["identification"],
+    "verb": ["identify"],
+    "adjective": ["identifiable", "identified"],
+    "adverb": ["identifiably"],
+    "sentence": "He was asked for some form of identification."
+  },
+  {
+    "id": 221,
+    "noun": ["love", "lover"],
+    "verb": ["love"],
+    "adjective": ["lovely", "loving", "lovable", "loveless"],
+    "adverb": ["lovingly"],
+    "sentence": "You look lovely in that pink dress."
+  },
+  {
+    "id": 231,
+    "noun": ["drawer", "drawing"],
+    "verb": ["draw"],
+    "adjective": ["drawn", "drawing"],
+    "adverb": ["drawingly"],
+    "sentence": "Actually I’ve never been good at drawing."
+  },
+  {
+    "id": 232,
+    "noun": ["copier", "copy"],
+    "verb": ["copy"],
+    "adjective": ["copied"],
+    "adverb": ["copiably"],
+    "sentence": "Please make three copies of the document."
+  },
+  {
+    "id": 233,
+    "noun": ["sleep", "sleeper"],
+    "verb": ["sleep"],
+    "adjective": ["sleepy", "sleepless", "sleeping"],
+    "adverb": ["sleepily", "sleeplessly"],
+    "sentence": "The heat in the room made her feel sleepy."
+  },
+  {
+    "id": 234,
+    "noun": ["singer", "singing", "song"],
+    "verb": ["sing"],
+    "adjective": ["sung", "singing"],
+    "adverb": ["singingly"],
+    "sentence": "We had a good time singing."
+  },
+  {
+    "id": 235,
+    "noun": ["support", "supporter"],
+    "verb": ["support"],
+    "adjective": ["supporting", "supportive"],
+    "adverb": ["supportingly", "supportively"],
+    "sentence": "Tom only played a supporting role in the film."
+  },
+  {
+    "id": 236,
+    "noun": ["light", "lightness", "lighter", "lightning"],
+    "verb": ["light"],
+    "adjective": ["light", "lighted", "lighting"],
+    "adverb": ["lightly"],
+    "sentence": "Barbara looked at the lighted window."
+  },
+  {
+    "id": 237,
+    "noun": ["paint", "painter", "painting"],
+    "verb": ["paint"],
+    "adjective": ["painted", "painting"],
+    "adverb": ["paintingly"],
+    "sentence": "Please help me hang up the painting."
+  },
+  {
+    "id": 238,
+    "noun": ["enjoyment"],
+    "verb": ["enjoy"],
+    "adjective": ["enjoyable", "enjoyed", "enjoying"],
+    "adverb": ["enjoyably"],
+    "sentence": "It certainly was an enjoyable evening."
+  },
+  {
+    "id": 239,
+    "noun": ["fight", "fighter", "fighting"],
+    "verb": ["fight"],
+    "adjective": ["fighting"],
+    "adverb": ["combatively"],
+    "sentence": "Actually they never really stopped fighting."
+  },
+  {
+    "id": 240,
+    "noun": ["belief", "believer"],
+    "verb": ["believe"],
+    "adjective": ["believable", "unbelievable", "believing", "believed"],
+    "adverb": ["believably", "unbelievably"],
+    "sentence": "I want you to tell the truth."
+  }
+]

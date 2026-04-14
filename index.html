@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Word Formation Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <header id="top-bar" class="hidden">
+            <div id="lives-container">❤️❤️❤️</div>
+            <div id="score-container">Score: <span id="score">0</span></div>
+        </header>
+
+        <main id="start-screen" class="screen active">
+            <h1>Word Formation<br><span>Trainer</span></h1>
+            <p>Wähle deinen Trainingsmodus:</p>
+            <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Vokabeln)</button>
+            <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Texte)</button>
+        </main>
+
+        <main id="drill-screen" class="screen hidden">
+            <div class="question-box">
+                <p class="label">Bilde das Nomen zu:</p>
+                <h2 id="drill-word">DECIDE</h2>
+            </div>
+            
+            <div class="input-section">
+                <input type="text" id="drill-input" class="app-input" placeholder="Deine Lösung..." readonly>
+            </div>
+
+            <div id="drill-keyboard" class="keyboard"></div>
+
+            <button class="btn action-btn" id="btn-check-drill">Prüfen</button>
+        </main>
+
+        <main id="ap-screen" class="screen hidden">
+            <div class="text-box" id="ap-text-container">
+                Text lädt...
+            </div>
+
+            <div class="input-section">
+                <p class="label" id="ap-current-base-word">Stammwort: <strong>-</strong></p>
+                <input type="text" id="ap-input" class="app-input" placeholder="Lücke ausfüllen..." readonly>
+            </div>
+
+            <div id="ap-keyboard" class="keyboard"></div>
+
+            <button class="btn action-btn" id="btn-check-ap">Lücke prüfen</button>
+        </main>
+
+        <main id="result-screen" class="screen hidden">
+            <h1 id="result-title">Game Over!</h1>
+            <p>Dein Score: <span id="final-score">0</span></p>
+            <button class="btn primary-btn" id="btn-restart">Zurück zum Menü</button>
+        </main>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1179 @@
+[
+  {
+    "block_id": 1,
+    "text": "History shows that changes we make to our landscape often affect our culture. One example is the treeless flatlands which are {1} as the British Fens. Once they were moorlands of uncertain ground, flooding streams and fog. Their {2} were said to have skin growing between their fingers. This extraordinary swampy landscape made people {3} tales about strange creatures who were half fish, half man. All this changed in the 17th century when the Dutch engineer Cornelius Vermuyden dried out the Fens to gain {4} farmland. He faced {5} opposition from the fishermen who were depending on the moor and its fish. Today, the Fens are one of England’s richest farmable areas.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "KNOWLEDGE",
+        "solution": ["known"]
+      },
+      {
+        "id": "2",
+        "base_word": "INHABIT",
+        "solution": ["inhabitants"]
+      },
+      {
+        "id": "3",
+        "base_word": "IMAGINATION",
+        "solution": ["imagine"]
+      },
+      {
+        "id": "4",
+        "base_word": "ADD",
+        "solution": ["additional"]
+      },
+      {
+        "id": "5",
+        "base_word": "STRENGTH",
+        "solution": ["strong"]
+      }
+    ]
+  },
+  {
+    "block_id": 2,
+    "text": "„Nelson Mandela International Day“ is celebrated on July 18 in honour of the political leader who committed himself to promoting {1} justice. The day supports Mandela’s vision of {2} and freedom. It is a time to reflect upon all that one person might accomplish, and emphasizes that everyone has the {3} to take action. Therefore, it is meant as an invitation to all of us to {4}. Its focus is on constant {5}. Mandela Day 2018 marked a 100 years since Mandela’s birth and was dedicated to ”Action Against Poverty“.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "SOCIETY",
+        "solution": ["social"]
+      },
+      {
+        "id": "2",
+        "base_word": "EQUAL",
+        "solution": ["equality"]
+      },
+      {
+        "id": "3",
+        "base_word": "RESPONSIBLE",
+        "solution": ["responsibility"]
+      },
+      {
+        "id": "4",
+        "base_word": "CONTRIBUTION",
+        "solution": ["contribute"]
+      },
+      {
+        "id": "5",
+        "base_word": "IMPROVE",
+        "solution": ["improvement"]
+      }
+    ]
+  },
+  {
+    "block_id": 3,
+    "text": "The Chicago Bulls joined the National Basketball Association (NBA) for the 1966-67 season. The 1970s in the Bulls’ history were {1} by great passion, incredible toughness and the {2} of their defense. The Bulls’ fame {3} increased in 1984 with the signing of Michael Jordan, the best player of all times. In the early 1990s the Bulls went on to win three titles at the Chicago Stadium. With this great {4} the team gained legendary status. To this day the Bulls are {5} throughout the world.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "DEFINITION",
+        "solution": ["defined"]
+      },
+      {
+        "id": "2",
+        "base_word": "STRONG",
+        "solution": ["strength"]
+      },
+      {
+        "id": "3",
+        "base_word": "GREATNESS",
+        "solution": ["greatly"]
+      },
+      {
+        "id": "4",
+        "base_word": "ACHIEVE",
+        "solution": ["achievement"]
+      },
+      {
+        "id": "5",
+        "base_word": "KNOWLEDGE",
+        "solution": ["known"]
+      }
+    ]
+  },
+  {
+    "block_id": 4,
+    "text": "Looking at 19th century English literature, one quickly realizes that this period is inseparably {1} to the name of one author: Charles Dickens. His many volumes {2} works such as A Christmas Carol and Oliver Twist. Dickens enjoyed great {3} during his lifetime. He was admired for {4} criticizing Britain’s social system. Finally, in March 1870, three months before his death, Queen Victoria {5} him at Buckingham Palace.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "CONNECTION",
+        "solution": ["connected"]
+      },
+      {
+        "id": "2",
+        "base_word": "INCLUSIVE",
+        "solution": ["include", "included"]
+      },
+      {
+        "id": "3",
+        "base_word": "POPULAR",
+        "solution": ["popularity"]
+      },
+      {
+        "id": "4",
+        "base_word": "STRENGTH",
+        "solution": ["strongly"]
+      },
+      {
+        "id": "5",
+        "base_word": "RECEIPT",
+        "solution": ["received"]
+      }
+    ]
+  },
+  {
+    "block_id": 5,
+    "text": "Zoos Victoria is Fighting Extinction. Their goal is to be the world’s {1} zoo-based conservation organisation, the Australian authority on the {2} of threatened species. Their aim is to {3} wildlife knowledge for conservation action. Zoos Victoria also work {4}. They are committed to the recovery of 21 endangered {5} species, as well as broad-based conservation programs in six countries.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "LEADER",
+        "solution": ["leading"]
+      },
+      {
+        "id": "2",
+        "base_word": "MANAGING",
+        "solution": ["management"]
+      },
+      {
+        "id": "3",
+        "base_word": "DELIVERY",
+        "solution": ["deliver"]
+      },
+      {
+        "id": "4",
+        "base_word": "GLOBE",
+        "solution": ["globally"]
+      },
+      {
+        "id": "5",
+        "base_word": "LOCATION",
+        "solution": ["local"]
+      }
+    ]
+  },
+  {
+    "block_id": 6,
+    "text": "Unlike many experienced actors, Tony Shopkins says he had an uneasy {1} with the work of William Shakespeare. He once admitted he was not {2} with his stage performance of Shakespeare’s King Lear. That’s why he turned to making movies fulltime. Thirty years later he said he now understands the man: “Lear was hardly a {3} fellow. There’s something {4} about him. I’m looking forward to {5} him again – now I’d do him like Mike Tyson.”",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "RELATION",
+        "solution": ["relationship"]
+      },
+      {
+        "id": "2",
+        "base_word": "SATISFACTION",
+        "solution": ["satisfied"]
+      },
+      {
+        "id": "3",
+        "base_word": "FRIENDSHIP",
+        "solution": ["friendly"]
+      },
+      {
+        "id": "4",
+        "base_word": "AGGRESSION",
+        "solution": ["aggressive"]
+      },
+      {
+        "id": "5",
+        "base_word": "PLAYER",
+        "solution": ["playing"]
+      }
+    ]
+  },
+  {
+    "block_id": 7,
+    "text": "Welcome to London Duck Tours! See London’s many {1} with London Duck Tours, a unique and exciting alternative to visit London’s {2} sights. You’ll experience a live {3} road tour of the City of Westminster as well as an {4} trip on the river, without ever leaving the comfort of your {5}. Splash down on to the river with London Duck Tours now!",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ATTRACTIVE",
+        "solution": ["attractions"]
+      },
+      {
+        "id": "2",
+        "base_word": "VARIETY",
+        "solution": ["various"]
+      },
+      {
+        "id": "3",
+        "base_word": "GUIDE",
+        "solution": ["guided"]
+      },
+      {
+        "id": "4",
+        "base_word": "FORGET",
+        "solution": ["unforgettable"]
+      },
+      {
+        "id": "5",
+        "base_word": "SIT",
+        "solution": ["seat"]
+      }
+    ]
+  },
+  {
+    "block_id": 8,
+    "text": "From bestselling author Bill Bryson comes an amazing biography of William Shakespeare, the most famous poet in the English language, who left behind {1} a million words of text. ‘Shakespeare’ is an {2} travel guide to 16th century England. As Bryson leads us through the {3} streets of Elizabethan England, he brings to life the characters and places that inspired Shakespeare’s work. Along the way, he {4} Shakespeare’s legacy to our literature, culture and {5}.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "NEAREST",
+        "solution": ["nearly"]
+      },
+      {
+        "id": "2",
+        "base_word": "AMUSEMENT",
+        "solution": ["amusing"]
+      },
+      {
+        "id": "3",
+        "base_word": "CROWD",
+        "solution": ["crowded"]
+      },
+      {
+        "id": "4",
+        "base_word": "CELEBRATION",
+        "solution": ["celebrates"]
+      },
+      {
+        "id": "5",
+        "base_word": "HISTORICAL",
+        "solution": ["history"]
+      }
+    ]
+  },
+  {
+    "block_id": 9,
+    "text": "Believe it or not, the mind behind the “Popsicles” was a boy from California. One evening in 1905, Frank Epperson left a glass filled with water outside overnight: a {1} of powdered soda and a little wooden stick for stirring. When {2} Frank found the glass the {3} morning, the drink was frozen hard, so he ran the glass under hot water and {4} the ice pop using the stick as a handle. In 1923, he made an application for a patent for his invention. The “Popsicle” was {5} born.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "MIXED",
+        "solution": ["mixture"]
+      },
+      {
+        "id": "2",
+        "base_word": "YOUTH",
+        "solution": ["young"]
+      },
+      {
+        "id": "3",
+        "base_word": "FOLLOW",
+        "solution": ["following"]
+      },
+      {
+        "id": "4",
+        "base_word": "REMOVAL",
+        "solution": ["removed"]
+      },
+      {
+        "id": "5",
+        "base_word": "FINAL",
+        "solution": ["finally"]
+      }
+    ]
+  },
+  {
+    "block_id": 10,
+    "text": "In 2016, the Lake District, England's largest national park, will submit a bid to finally become a World Heritage site. A {1} is expected in July 2017. Britain already has almost 30 sites on the World Heritage List, ranging from the Tower of London to the Giant’s Causeway. {2}, almost 1,000 sites are listed for their heritage value. The Culture Minister, Edward Vaizey, said: “The UK’s heritage is world-{3} and the Lake District is one of our natural heritage jewels.” It’s an {4} landscape, which has {5} over thousands of years.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "DECIDE",
+        "solution": ["decision"]
+      },
+      {
+        "id": "2",
+        "base_word": "GLOBE",
+        "solution": ["Globally", "globally"]
+      },
+      {
+        "id": "3",
+        "base_word": "FAME",
+        "solution": ["famous"]
+      },
+      {
+        "id": "4",
+        "base_word": "AMAZEMENT",
+        "solution": ["amazing"]
+      },
+      {
+        "id": "5",
+        "base_word": "DEVELOPMENT",
+        "solution": ["developed"]
+      }
+    ]
+  },
+  {
+    "block_id": 11,
+    "text": "Today, I would like to share two simple, fun and free apps. It is easy to forget to drink enough, especially if you’re not physically {1}. But it is important to take in enough water, both for weight {2} and just for your {3} level. If you own a smartphone, it is {4} your constant companion throughout the day, so why not let it handle your drinking water needs as well? The app WaterBuddy shows you how much water you should be drinking throughout a {5} day. OasisFinder allows users of the app to {6} find a good water fountain nearby. Carbodroid is a fun app that features an animated figure that celebrates with you if you {7} in reaching your goal.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ACTION",
+        "solution": ["active"]
+      },
+      {
+        "id": "2",
+        "base_word": "LOSE",
+        "solution": ["loss"]
+      },
+      {
+        "id": "3",
+        "base_word": "ENERGETIC",
+        "solution": ["energy"]
+      },
+      {
+        "id": "4",
+        "base_word": "PROBABILITY",
+        "solution": ["probably"]
+      },
+      {
+        "id": "5",
+        "base_word": "TYPE",
+        "solution": ["typical"]
+      },
+      {
+        "id": "6",
+        "base_word": "EASE",
+        "solution": ["easily"]
+      },
+      {
+        "id": "7",
+        "base_word": "SUCCESS",
+        "solution": ["succeed"]
+      }
+    ]
+  },
+  {
+    "block_id": 12,
+    "text": "Only three days a week. New Zealand’s government made the {1} that it would no longer maintain its {2} postal delivery in urban areas. From 2015 mail is to be delivered as {3} as three days a week to most customers in cities and towns. Many people fear that the quality of the {4} will get worse. Communications Minister Amy Adams has reached an {5} with New Zealand Post that it will limit any {6} of a minimum three-day delivery to urban areas only, maintaining five-day delivery in rural areas, where many people haven’t got internet and are not {7} to send e-mails.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ANNOUNCE",
+        "solution": ["announcement"]
+      },
+      {
+        "id": "2",
+        "base_word": "DAY",
+        "solution": ["daily"]
+      },
+      {
+        "id": "3",
+        "base_word": "INFREQUENT",
+        "solution": ["infrequently"]
+      },
+      {
+        "id": "4",
+        "base_word": "SERVE",
+        "solution": ["service"]
+      },
+      {
+        "id": "5",
+        "base_word": "AGREE",
+        "solution": ["agreement"]
+      },
+      {
+        "id": "6",
+        "base_word": "INTRODUCE",
+        "solution": ["introduction"]
+      },
+      {
+        "id": "7",
+        "base_word": "ABILITY",
+        "solution": ["able"]
+      }
+    ]
+  },
+  {
+    "block_id": 13,
+    "text": "A living wall. The increase in urban {1} has eliminated many of our green spaces. Many cities worldwide are starting to {2} new ideas in gardening that help purify the air {3}. Paris has become a centre of growing plants vertically. One of the most {4} vertical gardens was created by Patrick Blanc in the French capital. It has a {5} of 200 metres, is about 12 metres tall and consists of plants that climb the walls of a museum near the Eiffel Tower.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "DEVELOP",
+        "solution": ["development"]
+      },
+      {
+        "id": "2",
+        "base_word": "ADOPTION",
+        "solution": ["adopt"]
+      },
+      {
+        "id": "3",
+        "base_word": "NATURE",
+        "solution": ["naturally"]
+      },
+      {
+        "id": "4",
+        "base_word": "FAME",
+        "solution": ["famous"]
+      },
+      {
+        "id": "5",
+        "base_word": "LONG",
+        "solution": ["length"]
+      }
+    ]
+  },
+  {
+    "block_id": 14,
+    "text": "The Irish-American writer Frank McCourt was the first of seven children {1} to Malachy and Angela McCourt. At the age of four, he and his parents and brothers {2} to his mother’s native city, Limerick, in the Republic of Ireland. As Irish Catholics living in poor conditions, Frank and his family struggled against hunger and {3} problems. In his book “Angela’s Ashes”, Frank McCourt wrote about the period of his troubled {4} with great humor and {5} compassion for his family.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "BIRTH",
+        "solution": ["born"]
+      },
+      {
+        "id": "2",
+        "base_word": "MOVEMENT",
+        "solution": ["moved"]
+      },
+      {
+        "id": "3",
+        "base_word": "SOCIETY",
+        "solution": ["social"]
+      },
+      {
+        "id": "4",
+        "base_word": "CHILDISH",
+        "solution": ["childhood"]
+      },
+      {
+        "id": "5",
+        "base_word": "DEPTH",
+        "solution": ["deep"]
+      }
+    ]
+  },
+  {
+    "block_id": 15,
+    "text": "Shelford Bidwell was an English researcher. As early as in 1880, Bidwell had an idea which proved that he was a remarkable {1}: What if a picture could be broken into pure information and transmitted as an electric signal? So he built a machine to break up an image and a receiver which rebuilt it. His {2} worked! Bidwell found a way to {3} a picture to another person in another place. His idea was an {4} success but it would be many decades before digital photos became a {5}.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "INVENT",
+        "solution": ["inventor"]
+      },
+      {
+        "id": "2",
+        "base_word": "INNOVATIVE",
+        "solution": ["innovation"]
+      },
+      {
+        "id": "3",
+        "base_word": "TRANSFERABLE",
+        "solution": ["transfer"]
+      },
+      {
+        "id": "4",
+        "base_word": "IMPRESSION",
+        "solution": ["impressive"]
+      },
+      {
+        "id": "5",
+        "base_word": "REAL",
+        "solution": ["reality"]
+      }
+    ]
+  },
+  {
+    "block_id": 16,
+    "text": "Many countries base their parliamentary system on the British one. {1}, the UK is one of a handful of nations without a single written constitution. Instead, it relies on a huge number of separate {2} and laws which evolved over centuries. Furthermore, various decisions made by judges help {3} how the system works. A {4} number of features in the British political system are not regulated in a written constitution. For example, there is no {5} to have a Prime Minister.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "INTEREST",
+        "solution": ["Interestingly", "interestingly"]
+      },
+      {
+        "id": "2",
+        "base_word": "TRADITIONAL",
+        "solution": ["traditions"]
+      },
+      {
+        "id": "3",
+        "base_word": "DETERMINATION",
+        "solution": ["determine"]
+      },
+      {
+        "id": "4",
+        "base_word": "SURPRISE",
+        "solution": ["surprising"]
+      },
+      {
+        "id": "5",
+        "base_word": "REQUIRE",
+        "solution": ["requirement"]
+      }
+    ]
+  },
+  {
+    "block_id": 17,
+    "text": "William Caxton (1415 – 1492) was the person who brought printing to England. He {1} worked as a tradesman. His job took him to Germany, where he got in touch with the concept of Gutenberg’s printing press. After returning to Britain, he set up his first own press in London. His first printed books were a luxury aimed at {2} people. Caxton’s {3} in printing soon led to books becoming available at a cheaper price. This kick-started {4}, cultural and social changes. Without Caxton, the {5} of English literature would look very different.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ORIGIN",
+        "solution": ["originally"]
+      },
+      {
+        "id": "2",
+        "base_word": "WEALTH",
+        "solution": ["wealthy"]
+      },
+      {
+        "id": "3",
+        "base_word": "INNOVATE",
+        "solution": ["innovation", "innovations"]
+      },
+      {
+        "id": "4",
+        "base_word": "TECHNOLOGY",
+        "solution": ["technological"]
+      },
+      {
+        "id": "5",
+        "base_word": "HISTORICAL",
+        "solution": ["history"]
+      }
+    ]
+  },
+  {
+    "block_id": 18,
+    "text": "Did you know that Welsh is Britain’s oldest language? Over the centuries {1} elements of Latin, French and English were brought to the region. The decline of Welsh began when Henry VIII took a far-reaching {2}. He forbade the language in public administration. But {3}, things have changed. Today, thanks to the {4} of Welsh in education, there are lots of Welsh speakers in young age groups. Today there are plenty of Welsh newspapers and regional radio stations. So, the ancient language will {5} live on.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "VARIETY",
+        "solution": ["various"]
+      },
+      {
+        "id": "2",
+        "base_word": "DECIDE",
+        "solution": ["decision"]
+      },
+      {
+        "id": "3",
+        "base_word": "FORTUNE",
+        "solution": ["Fortunately", "fortunately"]
+      },
+      {
+        "id": "4",
+        "base_word": "GROW",
+        "solution": ["growth"]
+      },
+      {
+        "id": "5",
+        "base_word": "HOPE",
+        "solution": ["hopefully"]
+      }
+    ]
+  },
+  {
+    "block_id": 19,
+    "text": "Canadian entrepreneur Robert Bezeau has built a “castle” made from 40,000 plastic bottles. Bezeau’s mission is to collect and {1} the bottles for his projects. One key advantage is that the air inside the bottles can shield the rooms against the {2}. With his project, Bezeau wants to raise {3} of the need for plastic upcycling. He’s hoping that wherever waste is unavoidable, rubbish can at least be used for a {4} purpose. To this end, everyone can {5} his slogan: “Drink it and build with it”.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "SAFETY",
+        "solution": ["save"]
+      },
+      {
+        "id": "2",
+        "base_word": "HOT",
+        "solution": ["heat"]
+      },
+      {
+        "id": "3",
+        "base_word": "AWARE",
+        "solution": ["awareness"]
+      },
+      {
+        "id": "4",
+        "base_word": "MEANING",
+        "solution": ["meaningful"]
+      },
+      {
+        "id": "5",
+        "base_word": "ADOPTION",
+        "solution": ["adopt"]
+      }
+    ]
+  },
+  {
+    "block_id": 20,
+    "text": "Art viewed in its best light – In a small town in Bavaria, works of modern art like those of Andy Warhol and Georg Baselitz are presented in unglamorous {1} halls that have been converted into a daylight museum. The window modules in the roof {2} optimal lighting conditions and fit seamlessly into the interior design. As lightbeams {3} from above, windows on the façade are not needed. This maximizes the wall area for the presentation of the works of art. In contrast to the {4} practice in museums, the art is shown in the changing light of the day and the seasons; so the colours always {5} differently.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "INDUSTRY",
+        "solution": ["industrial"]
+      },
+      {
+        "id": "2",
+        "base_word": "CREATIVE",
+        "solution": ["create"]
+      },
+      {
+        "id": "3",
+        "base_word": "ENTRANCE",
+        "solution": ["enter"]
+      },
+      {
+        "id": "4",
+        "base_word": "USE",
+        "solution": ["usual"]
+      },
+      {
+        "id": "5",
+        "base_word": "APPEARANCE",
+        "solution": ["appear"]
+      }
+    ]
+  },
+  {
+    "block_id": 21,
+    "text": "The ability of producing water and oxygen on the Moon is fundamental for human exploration in space. There is lots of oxygen in the {1} of dust that surrounds the Moon. Scientists have demonstrated a process that can be {2} automated. Trying to optimize the process, the team are working with the oven temperature, the {3} and frequency of the washing, the gas mixtures, and the amounts of soil. “These experiments have deepened our understanding of each step in the process”, the team is happy to {4}. “It is not the end of the story, but it’s a very good {5} point.”",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "LAY",
+        "solution": ["layer", "layers"]
+      },
+      {
+        "id": "2",
+        "base_word": "FULL",
+        "solution": ["fully"]
+      },
+      {
+        "id": "3",
+        "base_word": "LONG",
+        "solution": ["length"]
+      },
+      {
+        "id": "4",
+        "base_word": "EXPLANATION",
+        "solution": ["explain"]
+      },
+      {
+        "id": "5",
+        "base_word": "START",
+        "solution": ["starting"]
+      }
+    ]
+  },
+  {
+    "block_id": 22,
+    "text": "The idea of a magical forest is one of the oldest in storytelling. From fairy tales like Snow White to modern sagas like Harry Potter, the forest has become an {1} stop on the hero’s journey, a place of danger and possibility. In some {2} plays, like A Midsummer Night’s Dream by Shakespeare, young people flee into the woods. There they seek escape from {3} situations. When they try to find their way back out, the landscape becomes a {4} of their minds and visions. As forests shrink, writers are more likely to describe them as an oasis of {5} from the troubles of civilisation.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ESSENCE",
+        "solution": ["essential"]
+      },
+      {
+        "id": "2",
+        "base_word": "FAME",
+        "solution": ["famous"]
+      },
+      {
+        "id": "3",
+        "base_word": "CHALLENGE",
+        "solution": ["challenging"]
+      },
+      {
+        "id": "4",
+        "base_word": "REFLECT",
+        "solution": ["reflection"]
+      },
+      {
+        "id": "5",
+        "base_word": "FREE",
+        "solution": ["freedom"]
+      }
+    ]
+  },
+  {
+    "block_id": 23,
+    "text": "New parents anxiously await their child’s Apgar score, which is the gold standard for determining the {1} of a newborn. Virginia Apgar devised that score in 1953, developing the first {2} tool to evaluate a baby’s risks. She is said to have created her {3} checklist in response to a question from a student. The Apgar test has become a {4}-saving standard. Former U.S. Surgeon General Richmond once said that Apgar had “done more to {5} the lives of mothers, babies, and unborn infants than anyone else in the 20th century.”",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "HEAL",
+        "solution": ["health"]
+      },
+      {
+        "id": "2",
+        "base_word": "SCIENCE",
+        "solution": ["scientific"]
+      },
+      {
+        "id": "3",
+        "base_word": "POWER",
+        "solution": ["powerful"]
+      },
+      {
+        "id": "4",
+        "base_word": "LIVE",
+        "solution": ["life"]
+      },
+      {
+        "id": "5",
+        "base_word": "IMPROVEMENT",
+        "solution": ["improve"]
+      }
+    ]
+  },
+  {
+    "block_id": 24,
+    "text": "Thomas Alva Edison was born on February 11, 1847, in Ohio. One day he decided to {1} useful devices. The phonograph, for example, was the first machine that could record someone’s {2} and play it back. Starting in 1878, Edison worked {3} on the light bulb. In fact, it was an electric light system which became his greatest {4}. Edison knew it meant hard work to turn dreams into {5}.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "INVENTION",
+        "solution": ["invent"]
+      },
+      {
+        "id": "2",
+        "base_word": "VOCAL",
+        "solution": ["voice"]
+      },
+      {
+        "id": "3",
+        "base_word": "BUSINESS",
+        "solution": ["busily"]
+      },
+      {
+        "id": "4",
+        "base_word": "ACHIEVE",
+        "solution": ["achievement"]
+      },
+      {
+        "id": "5",
+        "base_word": "REALISE",
+        "solution": ["reality"]
+      }
+    ]
+  },
+  {
+    "block_id": 25,
+    "text": "Artificial Intelligence (AI) is transforming the healthcare industry in different ways. The capabilities of AI are also applied in sports, where health and fitness are of {1} importance. Players undergo physical tests that use AI to {2} various health parameters. It can even detect early if players are {3}. AI systems process the stream of data through long competitive seasons to {4} the signs which indicate possible physical problems. This enables sports teams to keep their most {5} assets, their athletes, in first-class condition.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ESSENCE",
+        "solution": ["essential"]
+      },
+      {
+        "id": "2",
+        "base_word": "EXAMINATION",
+        "solution": ["examine"]
+      },
+      {
+        "id": "3",
+        "base_word": "EXHAUSTION",
+        "solution": ["exhausted"]
+      },
+      {
+        "id": "4",
+        "base_word": "IDENTIFICATION",
+        "solution": ["identify"]
+      },
+      {
+        "id": "5",
+        "base_word": "VALUE",
+        "solution": ["valuable"]
+      }
+    ]
+  },
+  {
+    "block_id": 26,
+    "text": "Key to the plan is Source London, a network of recharging stations. By 2013, London will probably have more electric charging points than petrol stations. More than 1,300 {1} accessible points will be spread across the capital – in residential streets, supermarkets, car parks and leisure {2}. For consumers, 2012 also will see the widespread {3} of electric cars that are {4} for the family. In addition, hybrid buses are going to be {5} in the near future.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "PUBLIC",
+        "solution": ["publicly"]
+      },
+      {
+        "id": "2",
+        "base_word": "CENTRAL",
+        "solution": ["centres", "centers"]
+      },
+      {
+        "id": "3",
+        "base_word": "AVAILABLE",
+        "solution": ["availability"]
+      },
+      {
+        "id": "4",
+        "base_word": "SUIT",
+        "solution": ["suitable"]
+      },
+      {
+        "id": "5",
+        "base_word": "INTRODUCTION",
+        "solution": ["introduced"]
+      }
+    ]
+  },
+  {
+    "block_id": 27,
+    "text": "Animated films need good dialogues – but they are even more entertaining when spoken by a professional voice artist. Many famous actors have {1} started a second career as voice artists, for example Eddie Murphy as the donkey in “Shrek”. So, if you want to become a voice artist, you must have many different {2}. First of all you should have a {3} voice and clear pronunciation. Secondly, an audience – be it visible or not – shouldn’t make you feel {4}. Your age doesn’t really matter though, because firms often look for voice artists even {5} than five years old.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "SUCCESS",
+        "solution": ["successfully"]
+      },
+      {
+        "id": "2",
+        "base_word": "QUALIFY",
+        "solution": ["qualifications"]
+      },
+      {
+        "id": "3",
+        "base_word": "NATURE",
+        "solution": ["natural"]
+      },
+      {
+        "id": "4",
+        "base_word": "COMFORT",
+        "solution": ["uncomfortable"]
+      },
+      {
+        "id": "5",
+        "base_word": "YOUTH",
+        "solution": ["younger"]
+      }
+    ]
+  },
+  {
+    "block_id": 28,
+    "text": "Holiday parks are gaining in popularity. Architects have decided {1} theme parks all over the world. Depending on how much money you want to spend, you can go to {2} places. All of them offer all sorts of family entertainment. Ferrari World Abu Dhabi, for example, features Formula Rossa, the world’s fastest roller coaster. It has been {3} to reach speeds of up to 149 mph (240 km/h). Compared to {4} roller coasters, the height of this one really makes you feel {5}.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "BUILD",
+        "solution": ["to build"]
+      },
+      {
+        "id": "2",
+        "base_word": "VARIETY",
+        "solution": ["various"]
+      },
+      {
+        "id": "3",
+        "base_word": "DESIGN",
+        "solution": ["designed"]
+      },
+      {
+        "id": "4",
+        "base_word": "TRADITION",
+        "solution": ["traditional"]
+      },
+      {
+        "id": "5",
+        "base_word": "SCARY",
+        "solution": ["scared"]
+      }
+    ]
+  },
+  {
+    "block_id": 29,
+    "text": "Did you know that your free-time activities can help you {1} the future you want? No matter what you’re interested in, there’s a place for you to learn more about the things that you find {2} and make new friends. After-school activities can be a great way to beef up your {3}, too. Companies like to see the {4} you. They want to see that you’re {5} in activities beyond the classroom.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "CREATION",
+        "solution": ["create"]
+      },
+      {
+        "id": "2",
+        "base_word": "EXCITEMENT",
+        "solution": ["exciting"]
+      },
+      {
+        "id": "3",
+        "base_word": "APPLY",
+        "solution": ["application"]
+      },
+      {
+        "id": "4",
+        "base_word": "REALITY",
+        "solution": ["real"]
+      },
+      {
+        "id": "5",
+        "base_word": "INVOLVEMENT",
+        "solution": ["involved"]
+      }
+    ]
+  },
+  {
+    "block_id": 30,
+    "text": "On November 16th 2009, under the {1} skies on Launch Pad 39A at NASA's Kennedy Space Center, the crew in orange jumpsuits {2} the Shuttle, where close-out crew members strapped them into their seats. Then, after months of careful {3}, the craft lifted off into space, carrying a high-{4} laboratory for the ISS. There was a {5} discussion in the press about the cost, which totaled 12 billion dollars.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "SUNRISE",
+        "solution": ["sunny"]
+      },
+      {
+        "id": "2",
+        "base_word": "ENTRANCE",
+        "solution": ["entered"]
+      },
+      {
+        "id": "3",
+        "base_word": "PREPARE",
+        "solution": ["preparation"]
+      },
+      {
+        "id": "4",
+        "base_word": "PERFORM",
+        "solution": ["performance"]
+      },
+      {
+        "id": "5",
+        "base_word": "LIFE",
+        "solution": ["lively"]
+      }
+    ]
+  },
+  {
+    "block_id": 31,
+    "text": "Bears are shy animals. Conflicts arise when they are {1} to human food. Here are a few things you can do to get the bear to leave: First make sure that you and your family are in a {2} spot (inside a house or vehicle, or standing close together with other people). If the bear is not {3}, try to figure out why it is visiting your home. You can call your local Fish and Game office for {4}. If the bear is threatening your life you may either call the Police (911), or shoot the bear yourself. Remember, if the bear has come to your home or camp because food or garbage has been stored badly, it can NOT be {5} killed.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "ATTRACTION",
+        "solution": ["attracted"]
+      },
+      {
+        "id": "2",
+        "base_word": "SAFETY",
+        "solution": ["safe"]
+      },
+      {
+        "id": "3",
+        "base_word": "AGGRESSION",
+        "solution": ["aggressive"]
+      },
+      {
+        "id": "4",
+        "base_word": "SUGGEST",
+        "solution": ["suggestions", "suggestion"]
+      },
+      {
+        "id": "5",
+        "base_word": "LEGAL",
+        "solution": ["legally"]
+      }
+    ]
+  },
+  {
+    "block_id": 32,
+    "text": "Martin Luther King is famous for supporting the civil rights {1}. He was the first African-American who was {2} enough to march to Washington and make a {3} in front of Abraham Lincoln’s statue. His famous words “I have a dream” can be found in nearly every {4} book. He received {5} prizes, including the Nobel Peace Prize in 1964.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "MOVED",
+        "solution": ["movement"]
+      },
+      {
+        "id": "2",
+        "base_word": "CONFIDENCE",
+        "solution": ["confident"]
+      },
+      {
+        "id": "3",
+        "base_word": "SPEAK",
+        "solution": ["speech"]
+      },
+      {
+        "id": "4",
+        "base_word": "HISTORIAN",
+        "solution": ["history"]
+      },
+      {
+        "id": "5",
+        "base_word": "NUMBER",
+        "solution": ["numerous"]
+      }
+    ]
+  },
+  {
+    "block_id": 33,
+    "text": "“My classmates and I think the ban on MP3 Players at schools is unfair and totally {1} as well. We are convinced that it just {2} a bad atmosphere at school, because without music, we are {3} to relax after lessons or exams. We have already {4} to the local newspaper about the ban, but they haven’t reacted to our {5}. We are thinking about going to see the principal, but we still haven’t {6} whether we should or not.” (Tim Gordon, pupil at IGS in Sydney)",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "USING",
+        "solution": ["useless"]
+      },
+      {
+        "id": "2",
+        "base_word": "CREATIVE",
+        "solution": ["creates"]
+      },
+      {
+        "id": "3",
+        "base_word": "ABILITY",
+        "solution": ["unable"]
+      },
+      {
+        "id": "4",
+        "base_word": "WRITER",
+        "solution": ["written"]
+      },
+      {
+        "id": "5",
+        "base_word": "COMPLAINED",
+        "solution": ["complaints", "complaint"]
+      },
+      {
+        "id": "6",
+        "base_word": "DECISION",
+        "solution": ["decided"]
+      }
+    ]
+  },
+  {
+    "block_id": 34,
+    "text": "The Irish were among the first {1} Down Under and figures show that Australia still {2} many skilled Irish workers and their families. The rate of emigration from Ireland to Australia has jumped by 30 percent in the past year. Many Irish people {3} to leave their home country, because they hope to escape the crime of modern living and the slowing construction industry. A few young Irish emigrants are looking for {4} and only remain Down Under for 12 months. However, they are the {5}. Most Irish emigrants demand for permanent residency.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "SETTLEMENT",
+        "solution": ["settlers"]
+      },
+      {
+        "id": "2",
+        "base_word": "ATTRACTIVE",
+        "solution": ["attracts"]
+      },
+      {
+        "id": "3",
+        "base_word": "DECISIONS",
+        "solution": ["decide"]
+      },
+      {
+        "id": "4",
+        "base_word": "ADVENTUROUS",
+        "solution": ["adventure"]
+      },
+      {
+        "id": "5",
+        "base_word": "EXCEPT",
+        "solution": ["exception", "exceptions"]
+      }
+    ]
+  },
+  {
+    "block_id": 35,
+    "text": "Twenty years ago more than 400 million people spent their holiday abroad, last year the {1} was up to 700 million. The {2} interest in travelling to foreign countries has created serious problems, especially overcrowding and pollution. Tourism officials are starting to recognize that if more and more parts of our national environment are {3}, business will not survive. Economic advantages can no longer be the only criteria for {4} the development of tourism. {5} planning will have to include environmental factors, too. ‘Eco-tourism’, ‘green tourism’ and ‘{6} tourism’ are some of the new concepts.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "NUMEROUS",
+        "solution": ["number"]
+      },
+      {
+        "id": "2",
+        "base_word": "GROWS",
+        "solution": ["growing"]
+      },
+      {
+        "id": "3",
+        "base_word": "DESTRUCTIVE",
+        "solution": ["destroyed"]
+      },
+      {
+        "id": "4",
+        "base_word": "SUPPORT",
+        "solution": ["supporting"]
+      },
+      {
+        "id": "5",
+        "base_word": "CARE",
+        "solution": ["Careful", "careful"]
+      },
+      {
+        "id": "6",
+        "base_word": "RESPONSIBILITY",
+        "solution": ["responsible"]
+      }
+    ]
+  },
+  {
+    "block_id": 36,
+    "text": "Surprisingly enough, modern piracy isn’t especially risky. Only few crews are able to defend themselves, because, as a rule, {1} are not trained to use arms. And the captains of warships – who might help – are not interested in the {2} of trading ships and usually try to avoid {3} with pirates. So few pirates are ever caught. And the public is not informed about pirate attacks, as even journalists who think that the hijacking of a plane is {4} news don’t write about it when a ship is taken by pirates.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "SAILED",
+        "solution": ["sailors"]
+      },
+      {
+        "id": "2",
+        "base_word": "SAFELY",
+        "solution": ["safety"]
+      },
+      {
+        "id": "3",
+        "base_word": "FOUGHT",
+        "solution": ["fights", "fighting"]
+      },
+      {
+        "id": "4",
+        "base_word": "FANTASY",
+        "solution": ["fantastic"]
+      }
+    ]
+  },
+  {
+    "block_id": 37,
+    "text": "Some tourists are disappointed about their holiday in India and consider it as a complete failure. They expect to see fascinating cities and aren’t prepared to face the {1} quarters where people live in poverty and {2}. Life in India is not {3} as in Europe or America. Conditions are definitely much {4}. Even if we {5} to see the problems they are obvious. India still is a developing country – in spite of the flourishing economy in some places like Bangalore. But nobody {6} that the situation is improving.",
+    "gaps": [
+      {
+        "id": "1",
+        "base_word": "BEAUTIFUL",
+        "solution": ["unbeautiful", "ugly"]
+      },
+      {
+        "id": "2",
+        "base_word": "LIGHT",
+        "solution": ["darkness"]
+      },
+      {
+        "id": "3",
+        "base_word": "DIFFERENT",
+        "solution": ["the same"]
+      },
+      {
+        "id": "4",
+        "base_word": "BETTER",
+        "solution": ["worse"]
+      },
+      {
+        "id": "5",
+        "base_word": "ACCEPT",
+        "solution": ["refuse", "decline"]
+      },
+      {
+        "id": "6",
+        "base_word": "BELIEVES",
+        "solution": ["doubts", "denies"]
+      }
+    ]
+  }
+]
