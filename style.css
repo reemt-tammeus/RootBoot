@@ -4,40 +4,57 @@
     --danger: #FF5252; --success: #4CAF50; --keyboard-btn: #333;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; height: 100vh; overflow: hidden; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; user-select: none; }
+input { user-select: text; }
 
-#app-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; padding: 20px; position: relative; }
+body { 
+    background-color: var(--bg-color); color: var(--text-main); 
+    display: flex; justify-content: center; height: 100dvh; width: 100vw; 
+    overflow: hidden; position: fixed; touch-action: manipulation;
+}
 
-.screen { display: none; flex-direction: column; flex: 1; }
+#app-container { 
+    width: 100%; max-width: 480px; display: flex; flex-direction: column; 
+    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
+}
+
+.screen { display: none; flex-direction: column; flex: 1; height: 100%; }
 .screen.active { display: flex; }
 
-/* LOGO & FOOTER */
-.rootboot-logo { width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary), #2c3e50); color: white; font-size: 3rem; font-weight: 900; display: flex; justify-content: center; align-items: center; border-radius: 20px; margin: 0 auto 20px; transform: rotate(-5deg); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-h1 span { color: var(--secondary); }
+/* START SCREEN */
+#start-screen {
+    background: url('logo.png') center/cover no-repeat;
+    justify-content: flex-end; padding-bottom: 80px;
+}
+.menu-buttons-overlay {
+    background: rgba(18, 18, 18, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+}
 
-#branding-footer { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 0.75rem; color: var(--text-muted); opacity: 0.6; pointer-events: none; }
-
-/* GAME UI */
-#top-bar { display: flex; justify-content: space-between; margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #333; }
+/* UI ELEMENTS */
+#top-bar { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; margin-bottom: 15px; }
 #top-bar.hidden { display: none; }
 
-.drop-zone { background: var(--card-bg); border: 1px solid #333; border-radius: 12px; padding: 10px; min-height: 70px; text-align: center; margin-bottom: 5px; }
-.ghost-slot-container { display: flex; gap: 4px; justify-content: center; margin-top: 5px; }
-.ghost-slot { width: 10px; height: 10px; background: #333; border-radius: 50%; }
-.ghost-slot.filled { background: var(--secondary); box-shadow: 0 0 5px var(--secondary); }
+#drill-sorting-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.drop-zone { background: var(--card-bg); border: 2px solid #333; border-radius: 12px; padding: 15px; min-height: 90px; text-align: center; }
+.ghost-slot-container { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
+.ghost-slot { width: 12px; height: 12px; background: #333; border-radius: 50%; }
+.ghost-slot.filled { background: var(--secondary); box-shadow: 0 0 8px var(--secondary); }
 
-.text-box { background: var(--card-bg); padding: 15px; border-radius: 12px; margin-bottom: 20px; line-height: 1.5; font-size: 1.1rem; }
-.app-input { width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--primary); color: white; font-size: 1.8rem; text-align: center; padding: 10px; outline: none; margin-bottom: 10px; }
+.text-box { background: var(--card-bg); padding: 20px; border-radius: 15px; margin-bottom: 15px; font-size: 1.1rem; line-height: 1.6; }
+.app-input { width: 100%; background: transparent; border: none; border-bottom: 3px solid var(--primary); color: white; font-size: 2rem; text-align: center; padding: 10px; outline: none; }
 
 /* KEYBOARD */
-.keyboard { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-top: auto; padding-bottom: 60px; }
-.key { background: var(--keyboard-btn); color: white; border: none; padding: 12px 2px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.keyboard { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: auto; padding: 10px 0; }
+.key { background: var(--keyboard-btn); color: white; border: none; padding: 18px 0; border-radius: 10px; font-weight: bold; font-size: 1.3rem; }
+.key:active { background: var(--primary); }
 .key.action { grid-column: span 2; background: #444; }
-.key.primary { grid-column: span 3; background: var(--primary); }
 
-.btn { width: 100%; padding: 15px; border-radius: 12px; border: none; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-bottom: 10px; }
+/* FOOTER */
+#branding-footer { position: fixed; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 0.8rem; color: #fff; text-shadow: 1px 1px 3px #000; opacity: 0.8; }
+
+.btn { width: 100%; padding: 18px; border-radius: 15px; border: none; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; }
 .primary-btn { background: var(--primary); color: white; }
 .secondary-btn { background: transparent; border: 2px solid var(--secondary); color: var(--secondary); }
-.action-btn { background: var(--success); color: white; }
+.action-btn { background: var(--success); color: white; margin-top: 10px; }
 .hidden { display: none; }
