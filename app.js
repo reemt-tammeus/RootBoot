@@ -1,39 +1,42 @@
-let drillPool = [], apPool = [];
-let activeBlock = [], wordsInRound = [], apTasks = [];
-let currentWordIdx = 0, currentTaskIdx = 0;
-let lives = 3, score = 0, currentMode = ""; 
+let drillPool = [], apPool = [], activeBlock = [], wordsInRound = [], tasks = [];
+let wordIdx = 0, taskIdx = 0, lives = 3, score = 0, mode = "";
 
-// --- INIT ---
+// MOBILE FIXES
+document.addEventListener('touchmove', (e) => {
+    if (!e.target.closest('.text-box')) e.preventDefault();
+}, { passive: false });
+
 async function init() {
     try {
         const [dRes, aRes] = await Promise.all([fetch('data_drill.json'), fetch('data_ap_mode.json')]);
         drillPool = shuffle([...await dRes.json()]);
         apPool = await aRes.json();
-    } catch(e) { console.error("Load Error"); }
+    } catch(e) { console.error("Data Load Error"); }
 
     document.getElementById('btn-start-drill').onclick = startDrill;
     document.getElementById('btn-start-ap').onclick = startAP;
     document.getElementById('btn-check').onclick = checkAnswer;
 }
 
-function shuffle(a) { return a.sort(() => Math.random() - 0.5); }
+const shuffle = (a) => a.sort(() => Math.random() - 0.5);
 
 function updateHUD() {
-    document.getElementById('lives-container').innerText = "❤️".repeat(lives);
+    document.getElementById('lives-container').innerText = "❤️".repeat(Math.max(0, lives));
     document.getElementById('score').innerText = score;
-    if (lives <= 0) showScreen('result');
+    if (lives <= 0) endGame("Game Over");
 }
 
 // --- DRILL MODE ---
 function startDrill() {
-    currentMode = "drill"; lives = 3; score = 0;
+    mode = "drill"; lives = 3; score = 0;
     activeBlock = drillPool.splice(0, 3);
+    document.querySelectorAll('.ghost-slot-container').forEach(c => c.innerHTML = "");
     prepareSorting();
     showScreen('drill');
 }
 
 function prepareSorting() {
-    wordsInRound = []; currentWordIdx = 0;
+    wordsInRound = []; wordIdx = 0;
     const types = ['noun', 'verb', 'adjective', 'adverb'];
     
     activeBlock.forEach(fam => {
@@ -41,71 +44,72 @@ function prepareSorting() {
         types.forEach(t => {
             if(fam[t] && fam[t][0]) {
                 famWords.push({ text: fam[t][0], type: t, root: fam.noun[0] });
-                const slotCont = document.getElementById(`slots-${t}`);
                 const dot = document.createElement('div'); dot.className = 'ghost-slot';
-                slotCont.appendChild(dot);
+                document.getElementById(`slots-${t}`).appendChild(dot);
             }
         });
-        wordsInRound.push(...shuffle(famWords)); // Innerhalb der Familie mischen
+        wordsInRound.push(...shuffle(famWords)); // Familie für Familie
     });
     renderSorting();
 }
 
 function renderSorting() {
-    const word = wordsInRound[currentWordIdx];
-    document.getElementById('current-tap-word').innerText = word.text.toUpperCase();
-    document.getElementById('sorting-label').innerText = `Gehört zu "${word.root.toUpperCase()}":`;
+    const w = wordsInRound[wordIdx];
+    document.getElementById('current-tap-word').innerText = w.text.toUpperCase();
+    document.getElementById('sorting-label').innerText = `Gehört zu "${w.root.toUpperCase()}":`;
 }
 
 document.querySelectorAll('.drop-zone').forEach(zone => {
     zone.onclick = () => {
-        if(currentMode !== "drill" || currentWordIdx >= wordsInRound.length) return;
-        const type = zone.dataset.type;
-        if(type === wordsInRound[currentWordIdx].type) {
+        if(mode !== "drill" || wordIdx >= wordsInRound.length) return;
+        if(zone.dataset.type === wordsInRound[wordIdx].type) {
             zone.querySelector('.ghost-slot:not(.filled)').classList.add('filled');
-            currentWordIdx++;
-            if(currentWordIdx < wordsInRound.length) renderSorting();
+            wordIdx++;
+            if(wordIdx < wordsInRound.length) renderSorting();
             else startDrillSentences();
-        } else { lives--; updateHUD(); }
+        } else { lives--; updateHUD(); if(navigator.vibrate) navigator.vibrate(100); }
     };
 });
 
 function startDrillSentences() {
-    currentTaskIdx = 0;
-    apTasks = activeBlock.map(fam => ({
-        context: fam.sentence.replace(/\[.*?\]/g, "_______"),
-        solution: [fam.noun[0]], // Vereinfacht für Drill
-        base_word: fam.noun[0],
-        correct: fam.sentence.match(/\[(.*?)\]/)[1] 
-    }));
+    tasks = activeBlock.map(fam => {
+        const match = fam.sentence.match(/\[(.*?)\]/);
+        return {
+            context: fam.sentence.replace(/\[.*?\]/g, "_______"),
+            solution: [match ? match[1] : ""],
+            base_word: fam.noun[0]
+        };
+    });
+    taskIdx = 0;
     showScreen('task');
     showTask();
 }
 
 // --- AP MODE ---
 function startAP() {
-    currentMode = "ap"; lives = 3; score = 0;
+    mode = "ap"; lives = 3; score = 0;
     let all = [];
     apPool.forEach(b => b.gaps.forEach(g => all.push({...g, context: b.text})));
-    apTasks = shuffle(all).slice(0, 10);
-    currentTaskIdx = 0;
+    tasks = shuffle(all).slice(0, 10);
+    taskIdx = 0;
     showScreen('task');
     showTask();
 }
 
 function showTask() {
-    const t = apTasks[currentTaskIdx];
-    document.getElementById('task-display').innerHTML = t.context.replace(/{(\d+)}/g, "___");
+    if(taskIdx >= tasks.length) return endGame("Bestanden!");
+    const t = tasks[taskIdx];
+    document.getElementById('task-display').innerHTML = t.context.replace(/{(\d+)}/g, "___")
+                                                                 .replace(`{${t.id}}`, `<b style="color:var(--primary)">_______</b>`);
     document.getElementById('task-hint').innerHTML = `Stammwort: <strong>${t.base_word.toUpperCase()}</strong>`;
     document.getElementById('task-input').value = "";
-    renderKeyboard(currentMode === "drill" ? t.correct : "");
+    renderKeyboard(mode === "drill" ? t.solution[0] : "");
 }
 
-function renderKeyboard(filterWord) {
-    const cont = document.getElementById('app-keyboard');
-    cont.innerHTML = "";
-    let keys = filterWord ? [...new Set(filterWord.toUpperCase())] : "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
-    if(filterWord) while(keys.length < 15) { 
+function renderKeyboard(filter) {
+    const cont = document.getElementById('app-keyboard'); cont.innerHTML = "";
+    let keys = filter ? [...new Set(filter.toUpperCase())] : "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
+    if(filter) while(keys.length < 14) {
         let r = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)];
         if(!keys.includes(r)) keys.push(r);
     }
@@ -120,18 +124,17 @@ function renderKeyboard(filterWord) {
 }
 
 function checkAnswer() {
-    const t = apTasks[currentTaskIdx];
+    const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
-    const sol = currentMode === "drill" ? t.correct.toLowerCase() : t.solution.map(s => s.toLowerCase());
-    
-    if ( (currentMode === "drill" && val === sol) || (currentMode === "ap" && sol.includes(val)) ) {
-        score += 20; currentTaskIdx++;
-        if(currentTaskIdx < apTasks.length) showTask();
-        else showScreen('result');
+    const isCorrect = t.solution.some(s => s.toLowerCase() === val);
+
+    if (isCorrect) {
+        score += 20; taskIdx++;
+        showTask();
     } else {
         lives--; updateHUD();
-        apTasks.push(apTasks[currentTaskIdx]); // Wiederholungsschleife
-        currentTaskIdx++;
+        tasks.push(tasks[taskIdx]); // Wiederholungsschleife
+        taskIdx++;
         showTask();
     }
 }
@@ -141,6 +144,12 @@ function showScreen(id) {
     document.getElementById(id + '-screen').classList.add('active');
     document.getElementById('top-bar').className = id === 'start' ? 'hidden' : '';
     updateHUD();
+}
+
+function endGame(msg) {
+    document.getElementById('result-title').innerText = msg;
+    document.getElementById('final-score').innerText = score;
+    showScreen('result');
 }
 
 init();
