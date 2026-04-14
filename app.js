@@ -1,62 +1,161 @@
-let drillPool = [], apPool = [], activeBlock = [], wordsInRound = [], tasks = [];
-let wordIdx = 0, taskIdx = 0, lives = 3, score = 0, mode = "";
+let drillPool = [], apPool = [], tasks = [];
+let taskIdx = 0, lives = 3, score = 0, mode = "";
 
-// Der touchmove-Fix wurde entfernt, da CSS "overscroll-behavior: none" das jetzt besser und sicherer regelt.
-
+// 1. Initialisierung & Daten laden
 async function init() {
     try {
-        const [dRes, aRes] = await Promise.all([fetch('data_drill.json'), fetch('data_ap_mode.json')]);
-        drillPool = shuffle([...await dRes.json()]);
+        const [dRes, aRes] = await Promise.all([
+            fetch('data_drill.json'), 
+            fetch('data_ap_mode.json')
+        ]);
+        drillPool = await dRes.json();
         apPool = await aRes.json();
     } catch(e) { 
-        console.error("Data Load Error: ", e); 
+        console.error("Fehler beim Laden der Daten:", e); 
     }
 
     document.getElementById('btn-start-drill').onclick = startDrill;
     document.getElementById('btn-start-ap').onclick = startAP;
-    document.getElementById('btn-check').onclick = checkAnswer;
 }
 
-const shuffle = (a) => a.sort(() => Math.random() - 0.5);
+const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
+
+// 2. Spiel-Modi starten
+function startDrill() {
+    mode = "drill"; 
+    lives = 3; score = 0; taskIdx = 0;
+    // Wir nehmen zufällige Wörter aus dem DrillPool für den Typing-Modus
+    tasks = shuffle(drillPool).map(item => ({
+        base_word: item.id, // ID als Orientierung oder Stammwort
+        sentence: item.sentence,
+        solution: [...(item.noun || []), ...(item.verb || []), ...(item.adjective || []), ...(item.adverb || [])]
+    }));
+    updateHUD();
+    showScreen('task');
+    showTask();
+}
+
+function startAP() {
+    mode = "ap"; 
+    lives = 3; score = 0; taskIdx = 0;
+    // AP-Blöcke in einzelne Tasks umwandeln
+    tasks = [];
+    apPool.forEach(block => {
+        block.gaps.forEach(gap => {
+            tasks.push({
+                text: block.text,
+                base_word: gap.base_word,
+                solution: gap.solution,
+                gapId: gap.id
+            });
+        });
+    });
+    tasks = shuffle(tasks);
+    updateHUD();
+    showScreen('task');
+    showTask();
+}
+
+// 3. Task Anzeige (mit ZENSUER)
+function showTask() {
+    if(taskIdx >= tasks.length || lives <= 0) {
+        endGame(lives > 0 ? "Gewonnen!" : "Game Over");
+        return;
+    }
+
+    const t = tasks[taskIdx];
+    document.getElementById('task-input').value = "";
+    document.getElementById('task-hint').innerHTML = `Stammwort: <strong>${t.base_word || "?"}</strong>`;
+
+    let textToDisplay = t.sentence || t.text || "";
+
+    // ZENSUER-LOGIK
+    if (textToDisplay.includes("{")) {
+        // AP Mode: Ersetze {1}, {2} etc.
+        // Wir markieren nur den aktuellen Gap speziell oder alle gleich
+        textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
+    } else if (t.solution) {
+        // Drill Mode: Suche die Lösungswörter im Satz und zensiere sie
+        t.solution.forEach(sol => {
+            const regex = new RegExp(`\\b${sol}\\b`, 'gi');
+            textToDisplay = textToDisplay.replace(regex, "________");
+        });
+    }
+
+    document.getElementById('task-display').innerText = textToDisplay;
+    renderKeyboard();
+}
+
+// 4. QWERTZ Tastatur
+function renderKeyboard() {
+    const cont = document.getElementById('app-keyboard');
+    cont.innerHTML = "";
+    
+    const rows = [
+        ['Q','W','E','R','T','Z','U','I','O','P'],
+        ['A','S','D','F','G','H','J','K','L'],
+        ['⌫','Y','X','C','V','B','N','M','ENTER']
+    ];
+
+    rows.forEach(rowKeys => {
+        const rowDiv = document.createElement('div');
+        rowDiv.className = "keyboard-row";
+        rowKeys.forEach(k => {
+            const b = document.createElement('button');
+            b.className = "key";
+            if(k === '⌫') b.classList.add('action');
+            if(k === 'ENTER') b.classList.add('action', 'enter');
+            
+            b.innerText = k === 'ENTER' ? '⏎' : k;
+
+            b.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+                const input = document.getElementById('task-input');
+                if(k === 'ENTER') {
+                    checkAnswer();
+                } else if(k === '⌫') {
+                    input.value = input.value.slice(0, -1);
+                } else {
+                    input.value += k.toLowerCase();
+                }
+            });
+            rowDiv.appendChild(b);
+        });
+        cont.appendChild(rowDiv);
+    });
+}
+
+// 5. Logik & HUD
+function checkAnswer() {
+    const t = tasks[taskIdx];
+    const val = document.getElementById('task-input').value.trim().toLowerCase();
+    const isCorrect = t.solution.some(s => s.toLowerCase() === val);
+
+    if (isCorrect) {
+        score += 20;
+        taskIdx++;
+        showTask();
+    } else {
+        lives--;
+        updateHUD();
+        if(lives > 0) {
+            // Bei Fehler: Task ans Ende schieben zum Wiederholen
+            tasks.push(tasks[taskIdx]);
+            taskIdx++;
+            showTask();
+        }
+    }
+}
 
 function updateHUD() {
     document.getElementById('lives-container').innerText = "❤️".repeat(Math.max(0, lives));
     document.getElementById('score').innerText = score;
-    if (lives <= 0) endGame("Game Over");
 }
 
 function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => {
-        s.classList.remove('active');
-        s.classList.add('hidden');
-    });
-    
-    let target = document.getElementById(id + '-screen');
-    if(target) {
-        target.classList.remove('hidden');
-        target.classList.add('active');
-    }
-    
-    let topBar = document.getElementById('top-bar');
-    if(id === 'start' || id === 'result') {
-        topBar.classList.add('hidden');
-    } else {
-        topBar.classList.remove('hidden');
-    }
-}
-
-// Dummy-Funktionen für Start & End (passe diese mit deiner genauen Logik an)
-function startDrill() {
-    mode = "drill"; lives = 3; score = 0;
-    updateHUD();
-    showScreen('task'); // Nur als Beispiel, du hattest hier noch eigene Logik
-    // showTask();
-}
-
-function startAP() {
-    mode = "ap"; lives = 3; score = 0;
-    updateHUD();
-    showScreen('task');
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active', 'hidden'));
+    document.querySelectorAll('.screen').forEach(s => s.id !== id + '-screen' ? s.classList.add('hidden') : s.classList.add('active'));
+    document.getElementById('top-bar').classList.toggle('hidden', id === 'start' || id === 'result');
 }
 
 function endGame(msg) {
@@ -65,59 +164,4 @@ function endGame(msg) {
     showScreen('result');
 }
 
-// --- TASTATUR LOGIK (iOS FIX) ---
-// Ich rufe diese in showTask() oder wo immer du das Keyboard generierst auf
-function renderKeyboard(keysArray) {
-    const cont = document.getElementById('app-keyboard');
-    cont.innerHTML = ""; // Reset
-    
-    // keysArray könnte z.B. deine gemischten Buchstaben sein
-    shuffle(keysArray).forEach(k => {
-        const b = document.createElement('button'); 
-        b.className = "key"; 
-        b.innerText = k;
-        
-        // iOS FIX: pointerdown ist extrem schnell. e.preventDefault() stoppt Ghost-Clicks und Fokus.
-        b.addEventListener('pointerdown', (e) => {
-            e.preventDefault(); 
-            document.getElementById('task-input').value += k.toLowerCase();
-        });
-        cont.appendChild(b);
-    });
-
-    const del = document.createElement('button'); 
-    del.className = "key action"; 
-    del.innerText = "⌫";
-    del.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
-        let i = document.getElementById('task-input'); 
-        i.value = i.value.slice(0, -1); 
-    });
-    cont.appendChild(del);
-}
-
-function checkAnswer() {
-    // Da tasks & taskIdx hier als Dummy stehen, musst du sicherstellen, dass tasks befüllt ist
-    if(tasks.length === 0) return; 
-    
-    const t = tasks[taskIdx];
-    const val = document.getElementById('task-input').value.trim().toLowerCase();
-    
-    // Check, ob eine der Lösungen passt
-    const isCorrect = t.solution && t.solution.some(s => s.toLowerCase() === val);
-
-    if (isCorrect) {
-        score += 20; 
-        taskIdx++;
-        // showTask(); // Deine Methode um den nächsten Task zu laden
-    } else {
-        lives--; 
-        updateHUD();
-        tasks.push(tasks[taskIdx]); // Wiederholungsschleife
-        taskIdx++;
-        // showTask();
-    }
-}
-
-// Boot
 window.onload = init;
