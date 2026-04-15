@@ -1,11 +1,8 @@
-// --- GLOBALE VARIABLEN ---
 let drillPool = [], apPool = [], tasks = [], currentDrillItem = null;
 let taskIdx = 0, lives = 3, score = 0, mode = "";
 
-// --- 1. INITIALISIERUNG ---
 async function init() {
     try {
-        // Daten von GitHub/Server laden
         const [dRes, aRes] = await Promise.all([
             fetch('data_drill.json'), 
             fetch('data_ap_mode.json')
@@ -13,24 +10,22 @@ async function init() {
         drillPool = await dRes.json();
         apPool = await aRes.json();
     } catch(e) { 
-        console.error("Fehler beim Laden der JSON-Daten. Stelle sicher, dass die Dateien im selben Ordner liegen.", e); 
+        console.error("Daten konnten nicht geladen werden.", e); 
     }
 
-    // Event-Listener für die Start-Buttons
     document.getElementById('btn-start-drill').onclick = startDrill;
     document.getElementById('btn-start-ap').onclick = startAP;
 }
 
-// Hilfsfunktion zum Mischen von Arrays
 const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 
-// --- 2. DRILL MODE (SORTIEREN) ---
+// --- DRILL MODE (SORTIEREN) ---
 function startDrill() {
     mode = "drill"; 
     lives = 3; 
     score = 0; 
     taskIdx = 0;
-    drillPool = shuffle(drillPool); // Zufällige Reihenfolge
+    drillPool = shuffle(drillPool); 
     updateHUD();
     showScreen('drill');
     nextDrillWord();
@@ -38,12 +33,11 @@ function startDrill() {
 
 function nextDrillWord() {
     if(taskIdx >= drillPool.length || lives <= 0) {
-        return endGame(lives > 0 ? "Alle Wörter sortiert!" : "Game Over");
+        return endGame(lives > 0 ? "Gewonnen!" : "Game Over");
     }
 
     currentDrillItem = drillPool[taskIdx];
 
-    // FIX für "undefined": Wir suchen das erste Wort, das in irgendeiner Kategorie existiert
     const wordToDisplay = 
         (currentDrillItem.noun && currentDrillItem.noun[0]) || 
         (currentDrillItem.verb && currentDrillItem.verb[0]) || 
@@ -51,18 +45,16 @@ function nextDrillWord() {
         (currentDrillItem.adverb && currentDrillItem.adverb[0]);
 
     if (!wordToDisplay) {
-        taskIdx++; // Falls das Datenobjekt leer ist, zum nächsten springen
+        taskIdx++;
         return nextDrillWord();
     }
 
     document.getElementById('current-tap-word').innerText = wordToDisplay;
 }
 
-// Wird von den Buttons im Drill-Screen aufgerufen
 function checkSort(category) {
     const word = document.getElementById('current-tap-word').innerText;
     
-    // Prüfen, ob das Wort in der gewählten Liste (noun, verb, etc.) enthalten ist
     if (currentDrillItem[category] && currentDrillItem[category].includes(word)) {
         score += 10;
         taskIdx++;
@@ -74,7 +66,7 @@ function checkSort(category) {
     }
 }
 
-// --- 3. AP MODE (TIPPEN) ---
+// --- AP MODE (TIPPEN) ---
 function startAP() {
     mode = "ap"; 
     lives = 3; 
@@ -82,13 +74,13 @@ function startAP() {
     taskIdx = 0;
     tasks = [];
 
-    // Alle Lücken aus allen Textblöcken in eine flache Liste umwandeln
     apPool.forEach(block => {
         block.gaps.forEach(gap => {
             tasks.push({
                 text: block.text,
                 base_word: gap.base_word,
-                solution: gap.solution
+                solution: gap.solution,
+                gapId: gap.id 
             });
         });
     });
@@ -105,31 +97,36 @@ function showTask() {
     }
 
     const t = tasks[taskIdx];
-    document.getElementById('task-input').value = ""; // Input leeren
-    document.getElementById('task-hint').innerHTML = `Stammwort: <strong>${t.base_word}</strong>`;
+    document.getElementById('task-input').value = ""; 
+    document.getElementById('task-hint').innerHTML = `Stammwort: <strong>${t.base_word || "?"}</strong>`;
 
-    // --- ZENSUER-LOGIK (Verhindert, dass die Lösung im Satz steht) ---
     let textToDisplay = t.text || "";
     
-    // Ersetzt Platzhalter wie {1}, {2} durch Unterstriche
+    // Aktuelle Lücke auffällig markieren
+    if (t.gapId) {
+        const activeRegex = new RegExp(`\\{${t.gapId}\\}`, 'g');
+        textToDisplay = textToDisplay.replace(activeRegex, `<span style="color: var(--secondary); border-bottom: 3px solid var(--secondary); padding: 0 5px; font-weight: bold;">[ HIER ]</span>`);
+    }
+
+    // Alle anderen {x} durch Striche ersetzen
     textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
 
-    // Ersetzt die tatsächlichen Lösungswörter im Satz (falls sie dort vorkommen)
-    if (t.solution) {
+    // Drill Mode Wörter im Satz zensieren (falls nötig)
+    if (t.solution && !t.gapId) {
         t.solution.forEach(sol => {
             const regex = new RegExp(`\\b${sol}\\b`, 'gi');
             textToDisplay = textToDisplay.replace(regex, "________");
         });
     }
 
-    document.getElementById('task-display').innerText = textToDisplay;
+    document.getElementById('task-display').innerHTML = textToDisplay;
     renderKeyboard();
 }
 
-// --- 4. TASTATUR-LOGIK (QWERTZ) ---
+// --- TASTATUR (QWERTZ) ---
 function renderKeyboard() {
     const cont = document.getElementById('app-keyboard');
-    cont.innerHTML = ""; // Reset
+    cont.innerHTML = ""; 
     
     const layout = [
         ['Q','W','E','R','T','Z','U','I','O','P'],
@@ -148,7 +145,6 @@ function renderKeyboard() {
             if (k === 'ENTER') {
                 b.innerText = "⏎";
                 b.classList.add('action', 'enter');
-                // pointerdown ist auf dem iPhone deutlich schneller als click
                 b.addEventListener('pointerdown', (e) => { 
                     e.preventDefault(); 
                     checkAnswer(); 
@@ -178,7 +174,6 @@ function checkAnswer() {
     const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
     
-    // Prüfen, ob die Eingabe in der Lösungsliste ist
     const isCorrect = t.solution.some(s => s.toLowerCase() === val);
 
     if (isCorrect) {
@@ -189,7 +184,6 @@ function checkAnswer() {
         lives--; 
         updateHUD();
         if (lives > 0) {
-            // Bei Fehler: Den Task ans Ende schieben zum erneuten Versuchen
             tasks.push(tasks[taskIdx]);
             taskIdx++;
             showTask();
@@ -197,27 +191,24 @@ function checkAnswer() {
     }
 }
 
-// --- 5. UI & HILFSFUNKTIONEN ---
+// --- UI ---
 function updateHUD() {
     document.getElementById('lives-container').innerText = "❤️".repeat(Math.max(0, lives));
     document.getElementById('score').innerText = score;
 }
 
 function showScreen(id) {
-    // Alle Screens verstecken
     document.querySelectorAll('.screen').forEach(s => {
         s.classList.remove('active');
         s.classList.add('hidden');
     });
     
-    // Gewünschten Screen zeigen
     const target = document.getElementById(id + '-screen');
     if(target) {
         target.classList.remove('hidden');
         target.classList.add('active');
     }
     
-    // Top-Bar nur im Spiel zeigen
     const topBar = document.getElementById('top-bar');
     if(id === 'start' || id === 'result') {
         topBar.classList.add('hidden');
@@ -232,5 +223,4 @@ function endGame(msg) {
     showScreen('result');
 }
 
-// App starten, wenn die Seite geladen ist
 window.onload = init;
