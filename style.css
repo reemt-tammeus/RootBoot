@@ -1,4 +1,4 @@
-/* 1. VARIABLEN & GRUNDSTEUERUNG */
+/* 1. VARIABLEN & DESIGN-SYSTEM */
 :root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
@@ -11,46 +11,51 @@
     --keyboard-btn: #333;
 }
 
-/* 2. RESET & iOS OPTIMIERUNG */
+/* 2. GRUNDLEGENDE OPTIMIERUNGEN (Fokus auf iOS Safari) */
 * { 
     box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-    -webkit-tap-highlight-color: transparent; /* Verhindert blauen Kasten beim Tippen auf iOS */
+    /* Verhindert den grauen Kasten beim Tippen auf Buttons in iOS */
+    -webkit-tap-highlight-color: transparent; 
+    /* Verhindert, dass das System-Menü (Kopieren/Nachschlagen) beim langen Drücken erscheint */
     user-select: none; 
-    -webkit-user-select: none; /* Verhindert Textmarkierung/Kopieren-Menü */
+    -webkit-user-select: none;
 }
 
 body { 
     background-color: var(--bg-color); 
     color: var(--text-main); 
+    /* Nutzt die volle Höhe inklusive der dynamischen Adressleiste in Safari */
     height: 100vh; 
-    height: 100dvh; /* Dynamischer Viewport für Safari */
+    height: 100dvh; 
     width: 100vw; 
     overflow: hidden; 
     position: fixed; 
     touch-action: manipulation; 
-    overscroll-behavior: none; /* Verhindert das Gummi-Band-Scrollen am Rand */
+    /* Stoppt das "Gummi-Band-Scrollen" am Rand nativ */
+    overscroll-behavior: none; 
     display: flex; 
     justify-content: center; 
 }
 
-/* 3. LOGO HINTERGRUND (WASSERZEICHEN) */
+/* 3. LOGO ALS HINTERGRUND-WASSERZEICHEN */
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    /* Falls die Datei auf GitHub anders geschrieben ist, hier anpassen (z.B. Logo.jpg) */
-    background-image: url('logo.jpg'); 
-    background-size: cover;
+    right: 0;
+    bottom: 0;
+    /* FIX: Korrekter Dateiname für GitHub */
+    background-image: url('logo.png'); 
+    background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.12; /* Dezent im Hintergrund */
+    opacity: 0.15; /* Dezent im Hintergrund */
     z-index: -1;
+    pointer-events: none;
 }
 
 #app-container { 
@@ -58,7 +63,7 @@ body::before {
     max-width: 480px; 
     display: flex; 
     flex-direction: column; 
-    /* safe-area-inset sorgt dafür, dass Notch und Home-Indicator nichts verdecken */
+    /* Berücksichtigt die Notch und den Home-Indicator am iPhone */
     padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
     position: relative;
     z-index: 1;
@@ -89,7 +94,7 @@ header {
     font-weight: bold; 
 }
 
-/* 5. BUTTONS */
+/* 5. BUTTON-STYLING */
 .btn { 
     width: 100%; 
     padding: 16px; 
@@ -110,7 +115,7 @@ header {
 .primary-btn { background: var(--primary); color: white; }
 .secondary-btn { background: var(--secondary); color: black; }
 
-/* 6. TASK & INPUT STYLING */
+/* 6. SPIEL-ELEMENTE & TEXT-BOXEN */
 .text-box { 
     background: var(--card-bg); 
     padding: 20px; 
@@ -143,11 +148,12 @@ header {
     text-align: center; 
     padding: 10px; 
     outline: none; 
-    pointer-events: none; /* Blockiert iOS Lupe/Menü auf dem Feld */
+    /* Verhindert jegliche Interaktion mit dem Feld, um iOS-Menüs zu blockieren */
+    pointer-events: none; 
     margin-bottom: 20px;
 }
 
-/* 7. QWERTZ KEYBOARD */
+/* 7. QWERTZ-TASTATUR (iOS STYLE) */
 .keyboard { 
     display: flex; 
     flex-direction: column; 
@@ -194,7 +200,7 @@ header {
     background: var(--success); 
 }
 
-/* 8. DRILL MODE (SORTING) */
+/* 8. SORTIER-MODUS (DRILL) */
 #drill-sorting-container { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
@@ -212,12 +218,10 @@ header {
     font-weight: bold; 
     cursor: pointer;
     text-align: center;
-    transition: border-color 0.2s;
 }
 
 .drop-zone:active { 
     background: var(--primary); 
-    border-color: var(--secondary);
 }
 
 #active-word-area {
