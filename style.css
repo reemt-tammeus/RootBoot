@@ -11,7 +11,7 @@
     --keyboard-btn: #333;
 }
 
-/* 2. GRUNDLEGENDE OPTIMIERUNGEN (Fokus auf iOS Safari) */
+/* 2. GRUNDLEGENDE OPTIMIERUNGEN */
 * { 
     box-sizing: border-box; 
     margin: 0; 
@@ -36,7 +36,7 @@ body {
     justify-content: center; 
 }
 
-/* 3. LOGO HINTERGRUND - 100% ORIGINALFARBEN */
+/* 3. LOGO HINTERGRUND */
 body::before {
     content: "";
     position: fixed;
@@ -48,336 +48,108 @@ body::before {
     background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
-    
-    /* Keine Filter, damit die Originalfarben erhalten bleiben */
-    /* Opacity steuert, wie stark das Logo durchscheint (0.4 = 40%) */
-    opacity: 0.4; 
-    
+    filter: brightness(2.8) contrast(1.1); 
+    opacity: 0.55; 
+    transition: all 0.5s ease; 
     z-index: -1;
     pointer-events: none;
 }
 
-#app-container { 
-    width: 100%; 
-    max-width: 480px; 
-    display: flex; 
-    flex-direction: column; 
-    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
-    position: relative;
-    z-index: 1;
+body.game-active::before {
+    filter: brightness(1); 
+    opacity: 0.15; 
 }
 
-/* 4. SCREENS & NAVIGATION */
-.screen { 
-    display: none; 
-    flex-direction: column; 
-    flex: 1; 
-    height: 100%; 
-    padding-top: 20px; 
-}
-
-.screen.active { 
-    display: flex; 
-}
-
-.hidden { 
-    display: none !important; 
-}
-
-/* START-SCREEN: Buttons weit nach oben schieben, damit der Slogan frei bleibt */
-#start-screen {
-    justify-content: flex-end;
-    /* Dieser Wert drückt die Buttons hoch. 240px hat im Screenshot gut funktioniert. */
-    padding-bottom: 240px; 
-}
-
-.menu-buttons-overlay {
-    width: 100%;
-}
-
-header { 
-    display: flex; 
-    justify-content: space-between; 
-    padding: 10px 0; 
-    font-size: 1.1rem; 
-    font-weight: bold; 
-}
-
-/* 5. BUTTON-STYLING */
-.btn { 
-    width: 100%; 
-    padding: 16px; 
-    border-radius: 12px; 
-    border: none; 
-    font-size: 1.1rem; 
-    font-weight: bold; 
-    margin-top: 15px; 
-    cursor: pointer; 
-    transition: transform 0.1s, opacity 0.2s; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-
-.btn:active { 
-    transform: scale(0.98);
-    opacity: 0.8;
-}
-
-.primary-btn { background: var(--primary); color: white; }
-.secondary-btn { background: var(--secondary); color: black; }
-
-/* 6. SPIEL-ELEMENTE & TEXT-BOXEN (Scroll-Fix für lange Texte) */
-.text-box { 
-    background: var(--card-bg); 
-    padding: 15px; 
-    border-radius: 12px; 
-    margin-bottom: 15 :root {
-    --bg-color: #121212;
-    --card-bg: #1e1e1e;
-    --text-main: #ffffff;
-    --text-muted: #888;
-    --primary: #4A90E2;
-    --secondary: #50E3C2;
-    --danger: #FF5252;
-    --success: #4CAF50;
-    --keyboard-btn: #333;
-}
-
-/* 2. GRUNDLEGENDE OPTIMIERUNGEN (Fokus auf iOS Safari) */
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-    -webkit-tap-highlight-color: transparent; 
-    user-select: none; 
-    -webkit-user-select: none;
-}
-
-body { 
-    background-color: var(--bg-color); 
-    color: var(--text-main); 
-    height: 100vh; 
-    height: 100dvh; 
-    width: 100vw; 
-    overflow: hidden; 
-    position: fixed; 
-    touch-action: manipulation; 
-    overscroll-behavior: none; 
-    display: flex; 
-    justify-content: center; 
-}
-
-/* 3. LOGO HINTERGRUND - 100% ORIGINALFARBEN */
-body::before {
-    content: "";
+/* 4. FEUERWERK & OVERLAYS */
+#fireworks-canvas {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('logo.png'); 
-    background-size: contain; 
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    /* Keine Filter, damit die Originalfarben erhalten bleiben */
-    /* Opacity steuert, wie stark das Logo durchscheint (0.4 = 40%) */
-    opacity: 0.4; 
-    
-    z-index: -1;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
+    z-index: 10000;
+    display: none;
 }
 
+#flash-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+.flash-success #flash-overlay { background-color: var(--success); opacity: 0.5; transition: none; }
+.flash-error #flash-overlay { background-color: var(--danger); opacity: 0.5; transition: none; }
+
+/* 5. SCREENS & NAVIGATION */
 #app-container { 
-    width: 100%; 
-    max-width: 480px; 
-    display: flex; 
-    flex-direction: column; 
+    width: 100%; max-width: 480px; display: flex; flex-direction: column; 
     padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
-    position: relative;
-    z-index: 1;
+    position: relative; z-index: 1;
 }
 
-/* 4. SCREENS & NAVIGATION */
-.screen { 
-    display: none; 
-    flex-direction: column; 
-    flex: 1; 
-    height: 100%; 
-    padding-top: 20px; 
+.screen { display: none; flex-direction: column; flex: 1; height: 100%; padding-top: 20px; }
+.screen.active { display: flex; }
+.hidden { display: none !important; }
+
+#start-screen { justify-content: flex-end; padding-bottom: 240px; }
+.menu-buttons-overlay { width: 100%; }
+
+header { display: flex; justify-content: space-between; padding: 10px 0; font-size: 1.1rem; font-weight: bold; }
+
+#branding-footer {
+    position: fixed; bottom: 10px; right: 15px; font-size: 0.75rem;
+    color: #fff; opacity: 0.3; z-index: 1000; pointer-events: none; font-style: italic;
 }
 
-.screen.active { 
-    display: flex; 
-}
-
-.hidden { 
-    display: none !important; 
-}
-
-/* START-SCREEN: Buttons weit nach oben schieben, damit der Slogan frei bleibt */
-#start-screen {
-    justify-content: flex-end;
-    /* Dieser Wert drückt die Buttons hoch. 240px hat im Screenshot gut funktioniert. */
-    padding-bottom: 240px; 
-}
-
-.menu-buttons-overlay {
-    width: 100%;
-}
-
-header { 
-    display: flex; 
-    justify-content: space-between; 
-    padding: 10px 0; 
-    font-size: 1.1rem; 
-    font-weight: bold; 
-}
-
-/* 5. BUTTON-STYLING */
+/* 6. BUTTON-STYLING */
 .btn { 
-    width: 100%; 
-    padding: 16px; 
-    border-radius: 12px; 
-    border: none; 
-    font-size: 1.1rem; 
-    font-weight: bold; 
-    margin-top: 15px; 
-    cursor: pointer; 
-    transition: transform 0.1s, opacity 0.2s; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    width: 100%; padding: 16px; border-radius: 12px; border: none; 
+    font-size: 1.1rem; font-weight: bold; margin-top: 15px; cursor: pointer; 
+    transition: transform 0.1s, opacity 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
-
-.btn:active { 
-    transform: scale(0.98);
-    opacity: 0.8;
-}
-
+.btn:active { transform: scale(0.98); opacity: 0.8; }
 .primary-btn { background: var(--primary); color: white; }
 .secondary-btn { background: var(--secondary); color: black; }
 
-/* 6. SPIEL-ELEMENTE & TEXT-BOXEN (Scroll-Fix für lange Texte) */
+/* 7. SPIEL-ELEMENTE & TEXT-BOXEN */
 .text-box { 
-    background: var(--card-bg); 
-    padding: 15px; 
-    border-radius: 12px; 
-    margin-bottom: 15px; 
-    font-size: 1.05rem; 
-    line-height: 1.5; 
-    
-    /* Sorgt dafür, dass die Box den Platz nutzt und scrollbar wird */
-    flex: 1; 
-    overflow-y: auto; 
-    -webkit-overflow-scrolling: touch; 
-    
-    display: block; 
-    text-align: left; 
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.3); 
+    background: var(--card-bg); padding: 15px; border-radius: 12px; 
+    margin-bottom: 15px; font-size: 1.05rem; line-height: 1.5; flex: 1; 
+    overflow-y: auto; -webkit-overflow-scrolling: touch; display: block; 
+    text-align: left; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3); 
 }
-
-.input-section, .keyboard {
-    flex-shrink: 0; 
-}
-
-.label { 
-    color: var(--text-muted); 
-    font-size: 0.9rem; 
-    margin-bottom: 5px; 
-    text-align: center; 
-}
-
+.input-section, .keyboard { flex-shrink: 0; }
+.label { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; text-align: center; }
 .app-input { 
-    width: 100%; 
-    background: transparent; 
-    border: none; 
-    border-bottom: 3px solid var(--primary); 
-    color: white; 
-    font-size: 1.8rem; 
-    text-align: center; 
-    padding: 10px; 
-    outline: none; 
-    pointer-events: none; 
-    margin-bottom: 10px; 
+    width: 100%; background: transparent; border: none; border-bottom: 3px solid var(--primary); 
+    color: white; font-size: 1.8rem; text-align: center; padding: 10px; outline: none; 
+    pointer-events: none; margin-bottom: 10px; 
 }
 
-/* 7. QWERTZ-TASTATUR */
-.keyboard { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 7px; 
-    margin-top: auto; 
-    padding: 15px 0; 
-}
-
-.keyboard-row { 
-    display: flex; 
-    justify-content: center; 
-    gap: 5px; 
-}
-
+/* 8. QWERTZ-TASTATUR */
+.keyboard { display: flex; flex-direction: column; gap: 7px; margin-top: auto; padding: 15px 0; }
+.keyboard-row { display: flex; justify-content: center; gap: 5px; }
 .key { 
-    flex: 1; 
-    max-width: 42px; 
-    height: 50px; 
-    background: var(--keyboard-btn); 
-    color: white; 
-    border: none; 
-    border-radius: 8px; 
-    font-weight: 600; 
-    font-size: 1.2rem; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    box-shadow: 0 2px 0 #000;
+    flex: 1; max-width: 42px; height: 50px; background: var(--keyboard-btn); 
+    color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1.2rem; 
+    display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 0 #000;
 }
+.key:active { background: var(--primary); transform: translateY(2px); box-shadow: none; }
+.key.action { max-width: 65px; background: #444; font-size: 1rem; }
+.key.enter { background: var(--success); }
 
-.key:active { 
-    background: var(--primary); 
-    transform: translateY(2px); 
-    box-shadow: none;
-}
-
-.key.action { 
-    max-width: 65px; 
-    background: #444; 
-    font-size: 1rem; 
-}
-
-.key.enter { 
-    background: var(--success); 
-}
-
-/* 8. SORTIER-MODUS (DRILL) */
-#drill-sorting-container { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 12px; 
-    margin-bottom: 30px; 
-}
-
+/* 9. SORTIER-MODUS (DRILL) */
+#round-indicator, #task-round-indicator { text-align: center; color: var(--secondary); font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; }
+#drill-sorting-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
 .drop-zone { 
-    background: var(--card-bg); 
-    border: 2px solid #333; 
-    color: white; 
-    padding: 25px 10px; 
-    border-radius: 12px; 
-    font-size: 1rem; 
-    font-weight: bold; 
-    cursor: pointer;
-    text-align: center;
+    background: var(--card-bg); border: 2px solid #333; color: white; 
+    padding: 35px 10px; border-radius: 15px; font-size: 1.2rem; 
+    font-weight: bold; cursor: pointer; text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: border-color 0.2s;
 }
-
-.drop-zone:active { 
-    background: var(--primary); 
-}
-
-#active-word-area {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#current-tap-word {
-    font-size: 2.2rem;
-    color: var(--secondary);
-    text-shadow: 0 0 10px rgba(80, 227, 194, 0.3);
-}
+.drop-zone:active { background: var(--primary); border-color: var(--secondary); }
+#active-word-area { text-align: center; margin-top: 10px; }
+#current-tap-word { font-size: 2.4rem; color: var(--secondary); text-shadow: 0 0 10px rgba(80, 227, 194, 0.3); }
