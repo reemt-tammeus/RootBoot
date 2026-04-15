@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="fireworks-canvas"></canvas>
+
+    <div id="flash-overlay"></div>
+
     <div id="app-container">
         
         <header id="top-bar" class="hidden">
@@ -18,18 +22,21 @@
 
         <main id="start-screen" class="screen active">
             <div class="menu-buttons-overlay">
-                <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Sorting)</button>
-                <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Typing)</button>
+                <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Training)</button>
+                <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Exam)</button>
             </div>
         </main>
 
         <main id="drill-screen" class="screen hidden">
+            <div id="round-indicator">Runde: <span id="current-round">1</span>/5</div>
+            
             <div id="drill-sorting-container">
                 <button class="drop-zone" onclick="checkSort('noun')">Nouns</button>
                 <button class="drop-zone" onclick="checkSort('verb')">Verbs</button>
                 <button class="drop-zone" onclick="checkSort('adjective')">Adjectives</button>
                 <button class="drop-zone" onclick="checkSort('adverb')">Adverbs</button>
             </div>
+            
             <div id="active-word-area">
                 <p class="label">Kategorie wählen für:</p>
                 <h2 id="current-tap-word">---</h2>
@@ -37,6 +44,7 @@
         </main>
 
         <main id="task-screen" class="screen hidden">
+            <div id="task-round-indicator" class="hidden">Runde: <span id="task-current-round">1</span>/5</div>
             <div class="text-box" id="task-display">...</div>
             
             <div class="input-section">
@@ -54,6 +62,8 @@
         </main>
 
     </div>
+
+    <div id="branding-footer">created by Mr. T.</div>
 
     <script src="app.js"></script>
 </body>
