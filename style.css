@@ -1,65 +1,25 @@
 :root {
     --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #ffffff;
-    --text-muted: #888; --primary: #4A90E2; --secondary: #50E3C2;
-    --danger: #FF5252; --success: #4CAF50; --keyboard-btn: #333;
+    --primary: #4A90E2; --secondary: #50E3C2; --success: #4CAF50; --keyboard-btn: #333;
 }
-
-* { 
-    box-sizing: border-box; margin: 0; padding: 0; 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-    -webkit-tap-highlight-color: transparent; 
-    user-select: none; -webkit-user-select: none;
-}
-
-body { 
-    background-color: var(--bg-color); color: var(--text-main); 
-    display: flex; justify-content: center; 
-    height: 100vh; height: 100dvh; 
-    width: 100vw; overflow: hidden; position: fixed; 
-    touch-action: manipulation; overscroll-behavior: none;
-}
-
-#app-container { 
-    width: 100%; max-width: 480px; display: flex; flex-direction: column; 
-    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
-}
-
-/* Screens */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+body { background-color: var(--bg-color); color: var(--text-main); height: 100dvh; width: 100vw; overflow: hidden; position: fixed; touch-action: manipulation; overscroll-behavior: none; display: flex; justify-content: center; }
+#app-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; }
 .screen { display: none; flex-direction: column; flex: 1; height: 100%; padding-top: 20px; }
 .screen.active { display: flex; }
 .hidden { display: none !important; }
-
-header { display: flex; justify-content: space-between; padding: 10px 0; font-size: 1.1rem; font-weight: bold; }
-
-.btn { width: 100%; padding: 16px; border-radius: 12px; border: none; font-size: 1.1rem; font-weight: bold; margin-top: 10px; cursor: pointer; transition: opacity 0.2s; }
-.btn:active { opacity: 0.7; }
+header { display: flex; justify-content: space-between; padding: 10px 0; font-weight: bold; }
+.btn { width: 100%; padding: 16px; border-radius: 12px; border: none; font-size: 1.1rem; font-weight: bold; cursor: pointer; }
 .primary-btn { background: var(--primary); color: white; }
 .secondary-btn { background: var(--secondary); color: black; }
-
-/* Display & Input */
-.text-box { background: var(--card-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px; font-size: 1.15rem; line-height: 1.5; min-height: 100px; display: flex; align-items: center; justify-content: center; text-align: center;}
-.label { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; text-align: center; }
-.app-input { 
-    width: 100%; background: transparent; border: none; border-bottom: 3px solid var(--primary); 
-    color: white; font-size: 1.8rem; text-align: center; padding: 10px; outline: none; 
-    pointer-events: none; margin-bottom: 20px;
-}
-
-/* QWERTZ KEYBOARD */
+.text-box { background: var(--card-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.app-input { width: 100%; background: transparent; border: none; border-bottom: 3px solid var(--primary); color: white; font-size: 1.8rem; text-align: center; padding: 10px; pointer-events: none; margin-bottom: 20px; }
 .keyboard { display: flex; flex-direction: column; gap: 7px; margin-top: auto; padding: 15px 0; }
 .keyboard-row { display: flex; justify-content: center; gap: 5px; }
-.key { 
-    flex: 1; max-width: 42px; height: 48px; background: var(--keyboard-btn); 
-    color: white; border: none; border-radius: 6px; font-weight: 600; 
-    font-size: 1.1rem; display: flex; justify-content: center; align-items: center; 
-}
-.key:active { background: var(--primary); transform: scale(0.95); }
-.key.action { max-width: 65px; background: #444; font-size: 0.9rem; }
+.key { flex: 1; max-width: 42px; height: 48px; background: var(--keyboard-btn); color: white; border: none; border-radius: 6px; font-weight: bold; display: flex; justify-content: center; align-items: center; }
+.key:active { background: var(--primary); }
+.key.action { max-width: 65px; background: #444; }
 .key.enter { background: var(--success); }
-
-/* Drill Sorting */
-#drill-sorting-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-.drop-zone { background: var(--card-bg); border: 2px dashed #333; border-radius: 12px; padding: 15px; text-align: center; }
-.ghost-slot-container { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
-.ghost-slot { width: 10px; height: 10px; background: #333; border-radius: 50%; }
-.ghost-slot.filled { background: var(--secondary); box-shadow: 0 0 5px var(--secondary); }
+#drill-sorting-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
+.drop-zone { background: var(--card-bg); border: 2px solid #333; color: white; padding: 20px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+.drop-zone:active { background: var(--primary); }
