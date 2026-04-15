@@ -3,6 +3,7 @@ let taskIdx = 0, lives = 3, score = 0, mode = "";
 
 // DRILL-HYBRID LOGIK
 let roundsPlayed = 0;
+let roundStartScore = 0; // Merkt sich die Punkte am Rundenanfang (verhindert Farming)
 const MAX_ROUNDS = 5;
 const FAMILIES_PER_ROUND = 3;
 let currentFamilies = []; 
@@ -32,11 +33,25 @@ const shuffle = (array) => {
     return a;
 };
 
+// Maskiert Sonderzeichen, falls jemand "to beauty" in die JSON schreibt
+const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 function triggerFlash(isSuccess) {
     const body = document.body;
     const flashClass = isSuccess ? 'flash-success' : 'flash-error';
     body.classList.add(flashClass);
     setTimeout(() => body.classList.remove(flashClass), 300);
+}
+
+function showModal(title, text, callback) {
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-text').innerText = text;
+    const m = document.getElementById('custom-modal');
+    m.classList.remove('hidden');
+    m.onclick = () => {
+        m.classList.add('hidden');
+        if(callback) callback();
+    };
 }
 
 // --- HYBRID DRILL MODE ---
@@ -46,7 +61,7 @@ function startDrill() {
     roundsPlayed = 0;
     document.body.classList.add('game-active');
     
-    // Pool mischen für ein frisches Spiel
+    // Kompletten Pool einmal durchmischen
     drillPool = shuffle(drillPool); 
     startNextDrillRound();
 }
@@ -54,23 +69,25 @@ function startDrill() {
 function startNextDrillRound() {
     if (roundsPlayed >= MAX_ROUNDS) {
         launchFireworks(true); // GROSSES Feuerwerk!
-        return setTimeout(() => endGame("Boot Camp exzellent bestanden!"), 2000);
+        return setTimeout(() => endGame("Boot Camp exzellent bestanden!"), 2500);
     }
 
     roundsPlayed++;
+    roundStartScore = score; // Sichert den Score für evtl. Neustarts
     document.getElementById('current-round').innerText = roundsPlayed;
     document.getElementById('task-current-round').innerText = roundsPlayed;
 
     // 3 neue Familien ziehen
-    currentFamilies = drillPool.slice((roundsPlayed - 1) * FAMILIES_PER_ROUND, roundsPlayed * FAMILIES_PER_ROUND);
+    const startIndex = (roundsPlayed - 1) * FAMILIES_PER_ROUND;
+    currentFamilies = drillPool.slice(startIndex, startIndex + FAMILIES_PER_ROUND);
     
-    // Starte Runde
     restartCurrentRound();
 }
 
 // Wird auch aufgerufen, wenn Leben = 0 sind
 function restartCurrentRound() {
     lives = 3;
+    score = roundStartScore; // Punkte-Reset auf Rundenanfang
     currentDrillPhase = 1;
     updateHUD();
 
@@ -85,31 +102,33 @@ function restartCurrentRound() {
     });
     currentSortWords = shuffle(currentSortWords);
 
-    // 2. Tipp-Sätze (Phase 2) generieren
+    // 2. ROBUSTE Tipp-Sätze (Phase 2) generieren
     tasks = [];
     currentFamilies.forEach(family => {
         if(family.sentence) {
             let allWords = [...(family.noun||[]), ...(family.verb||[]), ...(family.adjective||[]), ...(family.adverb||[])];
             let sentence = family.sentence;
             
-            // Finde heraus, welche Wörter der Familie WIRKLICH im Satz stehen
-            let wordsInSentence = allWords.filter(w => new RegExp(`\\b${w}\\b`, 'i').test(sentence));
+            // Finde das ERSTE Wort der Familie, das exakt im Satz vorkommt
+            let match = allWords.find(w => new RegExp(`\\b${escapeRegExp(w)}\\b`, 'i').test(sentence));
             
-            // Finde ein "Grundwort", das NICHT im Satz steht
-            let wordsNotInSentence = allWords.filter(w => !wordsInSentence.includes(w));
-            let baseWord = wordsNotInSentence.length > 0 ? wordsNotInSentence[0] : "Wortfamilie";
+            if (match) {
+                let wordsNotInSentence = allWords.filter(w => w !== match);
+                let baseWord = wordsNotInSentence.length > 0 ? wordsNotInSentence[0] : "Wortfamilie";
 
-            tasks.push({
-                text: sentence,
-                base_word: baseWord,
-                solution: wordsInSentence // Akzeptiert jedes Familien-Wort, das im Satz fehlt
-            });
+                tasks.push({
+                    text: sentence,
+                    base_word: baseWord,
+                    solution: [match] // Strikt: Nur dieses eine gefundene Wort ist die Lösung!
+                });
+            } else {
+                console.warn("JSON FEHLER: Satz enthält kein Wort aus der Familie!", family);
+            }
         }
     });
     tasks = shuffle(tasks);
     taskIdx = 0;
 
-    // Zeige Sortier-Bildschirm
     document.getElementById('task-round-indicator').classList.add('hidden');
     showScreen('drill');
     showNextDrillWord();
@@ -121,12 +140,12 @@ function handleLifeLoss() {
     updateHUD();
     
     if (lives <= 0) {
-        // Gnädiger Neustart der aktuellen Runde!
         setTimeout(() => {
-            alert("Oh nein! Leben aufgebraucht. Die Runde wird neu gestartet!");
-            restartCurrentRound();
+            showModal("Leben aufgebraucht!", "Du hast leider alle Herzen verloren. Diese Runde wird zurückgesetzt.", () => {
+                restartCurrentRound();
+            });
         }, 400);
-        return true; // Zeigt an, dass neugestartet wurde
+        return true; 
     }
     return false;
 }
@@ -134,7 +153,6 @@ function handleLifeLoss() {
 // --- DRILL PHASE 1: SORTIEREN ---
 function showNextDrillWord() {
     if (currentSortWords.length === 0) {
-        // Sortieren fertig! Gehe zu Phase 2 (Sätze tippen)
         currentDrillPhase = 2;
         document.getElementById('task-round-indicator').classList.remove('hidden');
         showScreen('task');
@@ -154,7 +172,6 @@ function checkSort(categoryClicked) {
         showNextDrillWord();
     } else {
         if (!handleLifeLoss()) {
-            // Wenn nicht gestorben: Wort ans Ende packen
             currentSortWords.push(currentSortWords.shift());
             showNextDrillWord();
         }
@@ -180,11 +197,17 @@ function startAP() {
 }
 
 function showTask() {
+    // Sicherheitsnetz: Wenn keine Sätze in der JSON definiert waren!
+    if (tasks.length === 0 && mode === "drill") {
+        console.warn("Runde übersprungen: Keine gültigen Sätze in data_drill.json gefunden.");
+        launchFireworks(false);
+        return setTimeout(startNextDrillRound, 1500);
+    }
+
     if(taskIdx >= tasks.length) {
         if (mode === "drill") {
-            // Runde erfolgreich beendet!
-            launchFireworks(false); // Kleines Feuerwerk
-            return setTimeout(startNextDrillRound, 1500); // Kurz warten, dann nächste Runde
+            launchFireworks(false); // Kleines Feuerwerk pro Runde
+            return setTimeout(startNextDrillRound, 1500); 
         } else {
             return endGame("AP-Bootcamp bestanden!");
         }
@@ -205,7 +228,7 @@ function showTask() {
 
     if (t.solution && !t.gapId) {
         t.solution.forEach(sol => {
-            const regex = new RegExp(`\\b${sol}\\b`, 'gi');
+            const regex = new RegExp(`\\b${escapeRegExp(sol)}\\b`, 'gi');
             textToDisplay = textToDisplay.replace(regex, "________");
         });
     }
@@ -248,6 +271,8 @@ function renderKeyboard() {
 function checkAnswer() {
     const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
+    
+    // Robuster Check
     const isCorrect = t.solution.some(s => s.toLowerCase() === val);
 
     if (isCorrect) {
@@ -257,7 +282,7 @@ function checkAnswer() {
         setTimeout(showTask, 300);
     } else {
         if (!handleLifeLoss()) {
-            tasks.push(tasks[taskIdx]); // Wort ans Ende der Liste
+            tasks.push(tasks[taskIdx]); // Wort hinten anstellen
             taskIdx++;
             setTimeout(showTask, 300);
         }
@@ -283,8 +308,7 @@ function endGame(msg) {
     showScreen('result');
 }
 
-
-// --- 100% DATENSCHUTZKONFORMES FEUERWERK (Vanilla JS) ---
+// --- DATENSCHUTZKONFORMES FEUERWERK (Vanilla JS) ---
 function launchFireworks(isBig) {
     const canvas = document.getElementById('fireworks-canvas');
     const ctx = canvas.getContext('2d');
@@ -315,12 +339,7 @@ function launchFireworks(isBig) {
         particles.forEach(p => {
             if (p.life > 0) {
                 alive = true;
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vy += 0.1; // Gravity
-                p.life--;
-                p.size *= 0.98;
-
+                p.x += p.vx; p.y += p.vy; p.vy += 0.1; p.life--; p.size *= 0.98;
                 ctx.fillStyle = p.color;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -331,7 +350,7 @@ function launchFireworks(isBig) {
         if (alive) {
             requestAnimationFrame(animate);
         } else {
-            canvas.style.display = 'none'; // Verstecken wenn fertig
+            canvas.style.display = 'none'; 
         }
     }
     animate();
