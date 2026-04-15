@@ -18,36 +18,36 @@
 
         <main id="start-screen" class="screen active">
             <div class="menu-buttons-overlay">
-                <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Training)</button>
-                <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Exam)</button>
+                <button class="btn primary-btn" id="btn-start-drill">Drill-Mode (Sorting)</button>
+                <button class="btn secondary-btn" id="btn-start-ap">AP-Mode (Typing)</button>
             </div>
         </main>
 
         <main id="drill-screen" class="screen hidden">
             <div id="drill-sorting-container">
-                <div class="drop-zone" data-type="noun"><span class="zone-label">Nouns</span><div class="ghost-slot-container" id="slots-noun"></div></div>
-                <div class="drop-zone" data-type="verb"><span class="zone-label">Verbs</span><div class="ghost-slot-container" id="slots-verb"></div></div>
-                <div class="drop-zone" data-type="adjective"><span class="zone-label">Adjectives</span><div class="ghost-slot-container" id="slots-adjective"></div></div>
-                <div class="drop-zone" data-type="adverb"><span class="zone-label">Adverbs</span><div class="ghost-slot-container" id="slots-adverb"></div></div>
+                <button class="drop-zone" onclick="checkSort('noun')">Nouns</button>
+                <button class="drop-zone" onclick="checkSort('verb')">Verbs</button>
+                <button class="drop-zone" onclick="checkSort('adjective')">Adjectives</button>
+                <button class="drop-zone" onclick="checkSort('adverb')">Adverbs</button>
             </div>
             <div id="active-word-area">
-                <p class="label" id="sorting-label">Ordne zu:</p>
-                <h2 id="current-tap-word">Wird geladen...</h2>
+                <p class="label">Kategorie wählen:</p>
+                <h2 id="current-tap-word">---</h2>
             </div>
         </main>
 
         <main id="task-screen" class="screen hidden">
-            <div class="text-box" id="task-display">Wird geladen...</div>
+            <div class="text-box" id="task-display">...</div>
             <div class="input-section">
                 <p class="label" id="task-hint">Stammwort: <strong>-</strong></p>
-                <input type="text" id="task-input" class="app-input" readonly tabindex="-1" inputmode="none" placeholder="...">
+                <input type="text" id="task-input" class="app-input" readonly tabindex="-1" inputmode="none">
             </div>
             <div id="app-keyboard" class="keyboard"></div>
-            </main>
+        </main>
 
         <main id="result-screen" class="screen hidden">
-            <h1 id="result-title">Boot Camp beendet!</h1>
-            <p>Dein Score: <span id="final-score">0</span></p>
+            <h1 id="result-title">Beendet!</h1>
+            <p>Score: <span id="final-score">0</span></p>
             <button class="btn primary-btn" onclick="location.reload()">Neustart</button>
         </main>
 
