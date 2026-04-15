@@ -1,5 +1,13 @@
-let drillPool = [], apPool = [], tasks = [], currentDrillItem = null;
+let drillPool = [], apPool = [], tasks = [];
 let taskIdx = 0, lives = 3, score = 0, mode = "";
+
+// DRILL-HYBRID LOGIK
+let roundsPlayed = 0;
+const MAX_ROUNDS = 5;
+const FAMILIES_PER_ROUND = 3;
+let currentFamilies = []; 
+let currentSortWords = []; 
+let currentDrillPhase = 1; // 1 = Sortieren, 2 = Tippen
 
 async function init() {
     try {
@@ -9,91 +17,177 @@ async function init() {
         ]);
         drillPool = await dRes.json();
         apPool = await aRes.json();
-    } catch(e) { 
-        console.error("Daten konnten nicht geladen werden.", e); 
-    }
+    } catch(e) { console.error("Daten konnten nicht geladen werden."); }
 
     document.getElementById('btn-start-drill').onclick = startDrill;
     document.getElementById('btn-start-ap').onclick = startAP;
 }
 
-const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
+const shuffle = (array) => {
+    let a = [...array];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+};
 
-// --- DRILL MODE (SORTIEREN) ---
+function triggerFlash(isSuccess) {
+    const body = document.body;
+    const flashClass = isSuccess ? 'flash-success' : 'flash-error';
+    body.classList.add(flashClass);
+    setTimeout(() => body.classList.remove(flashClass), 300);
+}
+
+// --- HYBRID DRILL MODE ---
 function startDrill() {
     mode = "drill"; 
-    lives = 3; 
     score = 0; 
-    taskIdx = 0;
-    drillPool = shuffle(drillPool); 
-    updateHUD();
-    showScreen('drill');
-    nextDrillWord();
-}
-
-function nextDrillWord() {
-    if(taskIdx >= drillPool.length || lives <= 0) {
-        return endGame(lives > 0 ? "Gewonnen!" : "Game Over");
-    }
-
-    currentDrillItem = drillPool[taskIdx];
-
-    const wordToDisplay = 
-        (currentDrillItem.noun && currentDrillItem.noun[0]) || 
-        (currentDrillItem.verb && currentDrillItem.verb[0]) || 
-        (currentDrillItem.adjective && currentDrillItem.adjective[0]) ||
-        (currentDrillItem.adverb && currentDrillItem.adverb[0]);
-
-    if (!wordToDisplay) {
-        taskIdx++;
-        return nextDrillWord();
-    }
-
-    document.getElementById('current-tap-word').innerText = wordToDisplay;
-}
-
-function checkSort(category) {
-    const word = document.getElementById('current-tap-word').innerText;
+    roundsPlayed = 0;
+    document.body.classList.add('game-active');
     
-    if (currentDrillItem[category] && currentDrillItem[category].includes(word)) {
+    // Pool mischen für ein frisches Spiel
+    drillPool = shuffle(drillPool); 
+    startNextDrillRound();
+}
+
+function startNextDrillRound() {
+    if (roundsPlayed >= MAX_ROUNDS) {
+        launchFireworks(true); // GROSSES Feuerwerk!
+        return setTimeout(() => endGame("Boot Camp exzellent bestanden!"), 2000);
+    }
+
+    roundsPlayed++;
+    document.getElementById('current-round').innerText = roundsPlayed;
+    document.getElementById('task-current-round').innerText = roundsPlayed;
+
+    // 3 neue Familien ziehen
+    currentFamilies = drillPool.slice((roundsPlayed - 1) * FAMILIES_PER_ROUND, roundsPlayed * FAMILIES_PER_ROUND);
+    
+    // Starte Runde
+    restartCurrentRound();
+}
+
+// Wird auch aufgerufen, wenn Leben = 0 sind
+function restartCurrentRound() {
+    lives = 3;
+    currentDrillPhase = 1;
+    updateHUD();
+
+    // 1. Sortier-Wörter generieren
+    currentSortWords = [];
+    currentFamilies.forEach(family => {
+        ['noun', 'verb', 'adjective', 'adverb'].forEach(cat => {
+            if (family[cat]) {
+                family[cat].forEach(word => currentSortWords.push({ word, familyObj: family }));
+            }
+        });
+    });
+    currentSortWords = shuffle(currentSortWords);
+
+    // 2. Tipp-Sätze (Phase 2) generieren
+    tasks = [];
+    currentFamilies.forEach(family => {
+        if(family.sentence) {
+            let allWords = [...(family.noun||[]), ...(family.verb||[]), ...(family.adjective||[]), ...(family.adverb||[])];
+            let sentence = family.sentence;
+            
+            // Finde heraus, welche Wörter der Familie WIRKLICH im Satz stehen
+            let wordsInSentence = allWords.filter(w => new RegExp(`\\b${w}\\b`, 'i').test(sentence));
+            
+            // Finde ein "Grundwort", das NICHT im Satz steht
+            let wordsNotInSentence = allWords.filter(w => !wordsInSentence.includes(w));
+            let baseWord = wordsNotInSentence.length > 0 ? wordsNotInSentence[0] : "Wortfamilie";
+
+            tasks.push({
+                text: sentence,
+                base_word: baseWord,
+                solution: wordsInSentence // Akzeptiert jedes Familien-Wort, das im Satz fehlt
+            });
+        }
+    });
+    tasks = shuffle(tasks);
+    taskIdx = 0;
+
+    // Zeige Sortier-Bildschirm
+    document.getElementById('task-round-indicator').classList.add('hidden');
+    showScreen('drill');
+    showNextDrillWord();
+}
+
+function handleLifeLoss() {
+    lives--; 
+    triggerFlash(false);
+    updateHUD();
+    
+    if (lives <= 0) {
+        // Gnädiger Neustart der aktuellen Runde!
+        setTimeout(() => {
+            alert("Oh nein! Leben aufgebraucht. Die Runde wird neu gestartet!");
+            restartCurrentRound();
+        }, 400);
+        return true; // Zeigt an, dass neugestartet wurde
+    }
+    return false;
+}
+
+// --- DRILL PHASE 1: SORTIEREN ---
+function showNextDrillWord() {
+    if (currentSortWords.length === 0) {
+        // Sortieren fertig! Gehe zu Phase 2 (Sätze tippen)
+        currentDrillPhase = 2;
+        document.getElementById('task-round-indicator').classList.remove('hidden');
+        showScreen('task');
+        return showTask();
+    }
+    document.getElementById('current-tap-word').innerText = currentSortWords[0].word;
+}
+
+function checkSort(categoryClicked) {
+    const item = currentSortWords[0];
+    
+    if (item.familyObj[categoryClicked] && item.familyObj[categoryClicked].includes(item.word)) {
         score += 10;
-        taskIdx++;
-        nextDrillWord();
-    } else {
-        lives--;
+        triggerFlash(true);
+        currentSortWords.shift();
         updateHUD();
-        if(lives <= 0) endGame("Game Over");
+        showNextDrillWord();
+    } else {
+        if (!handleLifeLoss()) {
+            // Wenn nicht gestorben: Wort ans Ende packen
+            currentSortWords.push(currentSortWords.shift());
+            showNextDrillWord();
+        }
     }
 }
 
-// --- AP MODE (TIPPEN) ---
+// --- DRILL PHASE 2 & AP MODE: TIPPEN ---
 function startAP() {
-    mode = "ap"; 
-    lives = 3; 
-    score = 0; 
-    taskIdx = 0;
-    tasks = [];
+    mode = "ap"; lives = 3; score = 0; taskIdx = 0; tasks = [];
+    document.body.classList.add('game-active');
 
     apPool.forEach(block => {
         block.gaps.forEach(gap => {
-            tasks.push({
-                text: block.text,
-                base_word: gap.base_word,
-                solution: gap.solution,
-                gapId: gap.id 
-            });
+            tasks.push({ text: block.text, base_word: gap.base_word, solution: gap.solution, gapId: gap.id });
         });
     });
 
     tasks = shuffle(tasks);
+    document.getElementById('task-round-indicator').classList.add('hidden');
     updateHUD();
     showScreen('task');
     showTask();
 }
 
 function showTask() {
-    if(taskIdx >= tasks.length || lives <= 0) {
-        return endGame("Boot Camp abgeschlossen!");
+    if(taskIdx >= tasks.length) {
+        if (mode === "drill") {
+            // Runde erfolgreich beendet!
+            launchFireworks(false); // Kleines Feuerwerk
+            return setTimeout(startNextDrillRound, 1500); // Kurz warten, dann nächste Runde
+        } else {
+            return endGame("AP-Bootcamp bestanden!");
+        }
     }
 
     const t = tasks[taskIdx];
@@ -102,16 +196,13 @@ function showTask() {
 
     let textToDisplay = t.text || "";
     
-    // Aktuelle Lücke auffällig markieren
     if (t.gapId) {
         const activeRegex = new RegExp(`\\{${t.gapId}\\}`, 'g');
         textToDisplay = textToDisplay.replace(activeRegex, `<span style="color: var(--secondary); border-bottom: 3px solid var(--secondary); padding: 0 5px; font-weight: bold;">[ HIER ]</span>`);
     }
 
-    // Alle anderen {x} durch Striche ersetzen
     textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
 
-    // Drill Mode Wörter im Satz zensieren (falls nötig)
     if (t.solution && !t.gapId) {
         t.solution.forEach(sol => {
             const regex = new RegExp(`\\b${sol}\\b`, 'gi');
@@ -123,7 +214,6 @@ function showTask() {
     renderKeyboard();
 }
 
-// --- TASTATUR (QWERTZ) ---
 function renderKeyboard() {
     const cont = document.getElementById('app-keyboard');
     cont.innerHTML = ""; 
@@ -137,32 +227,17 @@ function renderKeyboard() {
     layout.forEach(row => {
         const rowDiv = document.createElement('div');
         rowDiv.className = "keyboard-row";
-        
         row.forEach(k => {
-            const b = document.createElement('button'); 
-            b.className = "key"; 
-            
+            const b = document.createElement('button'); b.className = "key"; 
             if (k === 'ENTER') {
-                b.innerText = "⏎";
-                b.classList.add('action', 'enter');
-                b.addEventListener('pointerdown', (e) => { 
-                    e.preventDefault(); 
-                    checkAnswer(); 
-                });
+                b.innerText = "⏎"; b.classList.add('action', 'enter');
+                b.addEventListener('pointerdown', (e) => { e.preventDefault(); checkAnswer(); });
             } else if (k === '⌫') {
-                b.innerText = "⌫";
-                b.classList.add('action');
-                b.addEventListener('pointerdown', (e) => { 
-                    e.preventDefault(); 
-                    let i = document.getElementById('task-input'); 
-                    i.value = i.value.slice(0, -1); 
-                });
+                b.innerText = "⌫"; b.classList.add('action');
+                b.addEventListener('pointerdown', (e) => { e.preventDefault(); let i = document.getElementById('task-input'); i.value = i.value.slice(0, -1); });
             } else {
                 b.innerText = k;
-                b.addEventListener('pointerdown', (e) => {
-                    e.preventDefault(); 
-                    document.getElementById('task-input').value += k.toLowerCase();
-                });
+                b.addEventListener('pointerdown', (e) => { e.preventDefault(); document.getElementById('task-input').value += k.toLowerCase(); });
             }
             rowDiv.appendChild(b);
         });
@@ -173,54 +248,93 @@ function renderKeyboard() {
 function checkAnswer() {
     const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
-    
     const isCorrect = t.solution.some(s => s.toLowerCase() === val);
 
     if (isCorrect) {
         score += 20; 
+        triggerFlash(true);
         taskIdx++;
-        showTask();
+        setTimeout(showTask, 300);
     } else {
-        lives--; 
-        updateHUD();
-        if (lives > 0) {
-            tasks.push(tasks[taskIdx]);
+        if (!handleLifeLoss()) {
+            tasks.push(tasks[taskIdx]); // Wort ans Ende der Liste
             taskIdx++;
-            showTask();
+            setTimeout(showTask, 300);
         }
     }
 }
 
-// --- UI ---
+// --- UI & ENDGAME ---
 function updateHUD() {
     document.getElementById('lives-container').innerText = "❤️".repeat(Math.max(0, lives));
     document.getElementById('score').innerText = score;
 }
 
 function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => {
-        s.classList.remove('active');
-        s.classList.add('hidden');
-    });
-    
-    const target = document.getElementById(id + '-screen');
-    if(target) {
-        target.classList.remove('hidden');
-        target.classList.add('active');
-    }
-    
-    const topBar = document.getElementById('top-bar');
-    if(id === 'start' || id === 'result') {
-        topBar.classList.add('hidden');
-    } else {
-        topBar.classList.remove('hidden');
-    }
+    document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+    document.getElementById(id + '-screen').classList.remove('hidden');
+    document.getElementById('top-bar').classList.toggle('hidden', id === 'start' || id === 'result');
 }
 
 function endGame(msg) {
+    document.body.classList.remove('game-active');
     document.getElementById('result-title').innerText = msg;
     document.getElementById('final-score').innerText = score;
     showScreen('result');
+}
+
+
+// --- 100% DATENSCHUTZKONFORMES FEUERWERK (Vanilla JS) ---
+function launchFireworks(isBig) {
+    const canvas = document.getElementById('fireworks-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.display = 'block';
+
+    let particles = [];
+    const colors = ['#4A90E2', '#50E3C2', '#FF5252', '#FFD700', '#FF69B4'];
+    const particleCount = isBig ? 200 : 50;
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: canvas.width / 2,
+            y: canvas.height / 2 + (isBig ? 0 : 100),
+            vx: (Math.random() - 0.5) * (isBig ? 15 : 8),
+            vy: (Math.random() - 0.5) * (isBig ? 15 : 8) - 2,
+            life: Math.random() * 50 + 50,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            size: Math.random() * 3 + 1
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+
+        particles.forEach(p => {
+            if (p.life > 0) {
+                alive = true;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.1; // Gravity
+                p.life--;
+                p.size *= 0.98;
+
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        });
+
+        if (alive) {
+            requestAnimationFrame(animate);
+        } else {
+            canvas.style.display = 'none'; // Verstecken wenn fertig
+        }
+    }
+    animate();
 }
 
 window.onload = init;
