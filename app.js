@@ -70,6 +70,24 @@ function findSolutionInSentence(sentence, familyWords) {
     return null;
 }
 
+function handleLifeLoss() {
+    lives--; triggerFlash(false); updateHUD();
+    if (lives <= 0) {
+        setTimeout(() => {
+            showModal("Leben aufgebraucht!", "Du hast leider alle Herzen verloren. Die Übung wird zurückgesetzt.", () => {
+                if(mode === "drill") {
+                    restartCurrentRound();
+                } else {
+                    // AP Modus komplett neu starten
+                    startAP();
+                }
+            });
+        }, 400);
+        return true; 
+    }
+    return false;
+}
+
 // --- HYBRID DRILL MODE ---
 function startDrill() {
     mode = "drill"; score = 0; roundsPlayed = 0;
@@ -94,8 +112,7 @@ function startNextDrillRound() {
 }
 
 function restartCurrentRound() {
-    lives = 3; score = roundStartScore; currentDrillPhase = 1;
-    updateHUD();
+    lives = 3; score = roundStartScore; currentDrillPhase = 1; updateHUD();
     currentSortWords = [];
     currentFamilies.forEach(family => {
         ['noun', 'verb', 'adjective', 'adverb'].forEach(cat => {
@@ -116,7 +133,7 @@ function restartCurrentRound() {
                 let wordsNotInSentence = allWords.filter(w => w !== result.word);
                 let baseWord = wordsNotInSentence.length > 0 ? wordsNotInSentence[0] : "Wortfamilie";
                 tasks.push({
-                    blockText: sentence, // Für Drill Mode ist blockText = sentence
+                    blockText: sentence, 
                     base_word: baseWord,
                     solution: [result.matchedText] 
                 });
@@ -128,24 +145,6 @@ function restartCurrentRound() {
     document.getElementById('task-round-indicator').classList.add('hidden');
     showScreen('drill');
     showNextDrillWord();
-}
-
-function handleLifeLoss() {
-    lives--; triggerFlash(false); updateHUD();
-    if (lives <= 0) {
-        setTimeout(() => {
-            showModal("Leben aufgebraucht!", "Du hast leider alle Herzen verloren. Diese Runde wird zurückgesetzt.", () => {
-                if(mode === "drill") {
-                    restartCurrentRound();
-                } else {
-                    // AP Modus komplett neu starten
-                    startAP();
-                }
-            });
-        }, 400);
-        return true; 
-    }
-    return false;
 }
 
 function showNextDrillWord() {
@@ -170,24 +169,32 @@ function checkSort(categoryClicked) {
     }
 }
 
-// --- AP MODE (TIPPEN) ---
+// --- AP MODE (STRENGE BLOCK-LOGIK) ---
 function startAP() {
     mode = "ap"; lives = 3; score = 0; taskIdx = 0; tasks = [];
     document.body.classList.add('game-active');
 
-    // Mische die Blöcke durch...
+    // 1. Blöcke Mischen
     let shuffledBlocks = shuffle(apPool);
 
+    // 2. Lücken aufbauen (Streng chronologisch innerhalb des Blocks!)
     shuffledBlocks.forEach(block => {
-        // ...aber behalte die Lücken in chronologischer Reihenfolge!
+        // Gaps numerisch sortieren (1, 2, 3...)
         let sortedGaps = [...block.gaps].sort((a, b) => a.id - b.id);
         
+        // Der Block-Status speichert die gelösten Wörter
+        let blockState = {
+            text: block.text,
+            solved: {} 
+        };
+
         sortedGaps.forEach(gap => {
-            tasks.push({ 
-                blockText: block.text, 
-                base_word: gap.base_word, 
-                solution: gap.solution, 
-                gapId: gap.id 
+            tasks.push({
+                mode: "ap",
+                blockState: blockState, // Verknüpfung zum Eltern-Block!
+                base_word: gap.base_word,
+                solution: gap.solution,
+                gapId: gap.id
             });
         });
     });
@@ -218,29 +225,44 @@ function showTask() {
     document.getElementById('task-input').value = ""; 
     document.getElementById('task-hint').innerHTML = `Stammwort: <strong>${t.base_word || "?"}</strong>`;
 
-    let textToDisplay = t.blockText || "";
-    
-    // Die aktuelle Lücke markieren, damit wir gleich dorthin scrollen können
-    if (t.gapId) {
+    let textToDisplay = "";
+
+    if (mode === "ap") {
+        textToDisplay = t.blockState.text;
+        
+        // 1. Bereits gelöste Lücken (Grün & Fett) wieder in den Text setzen
+        Object.keys(t.blockState.solved).forEach(gId => {
+            const solvedRegex = new RegExp(`\\{${gId}\\}`, 'g');
+            textToDisplay = textToDisplay.replace(solvedRegex, `<span class="solved-gap">${t.blockState.solved[gId]}</span>`);
+        });
+
+        // 2. Die aktuelle Lücke als [ HIER ] markieren
         const activeRegex = new RegExp(`\\{${t.gapId}\\}`, 'g');
         textToDisplay = textToDisplay.replace(activeRegex, `<span id="active-gap-element" class="active-gap">[ HIER ]</span>`);
-    }
 
-    // Alle anderen {x} in leere Striche verwandeln
-    textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
+        // 3. Alle restlichen {x} aus dem Text löschen und als ___ darstellen
+        textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
 
-    // Drill Mode Logik beibehalten (zensieren der Lösung)
-    if (t.solution && !t.gapId) {
-        t.solution.forEach(sol => {
-            const regex = new RegExp(`\\b${escapeRegExp(sol)}\\b`, 'gi');
-            textToDisplay = textToDisplay.replace(regex, "________");
-        });
+    } else {
+        // Drill Mode Darstellung
+        textToDisplay = t.blockText || "";
+        if (t.gapId) {
+            const activeRegex = new RegExp(`\\{${t.gapId}\\}`, 'g');
+            textToDisplay = textToDisplay.replace(activeRegex, `<span id="active-gap-element" class="active-gap">[ HIER ]</span>`);
+        }
+        textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
+        if (t.solution && !t.gapId) {
+            t.solution.forEach(sol => {
+                const regex = new RegExp(`\\b${escapeRegExp(sol)}\\b`, 'gi');
+                textToDisplay = textToDisplay.replace(regex, "________");
+            });
+        }
     }
 
     document.getElementById('task-display').innerHTML = textToDisplay;
     renderKeyboard();
 
-    // AUTO-SCROLL MAGIC: Springt zur aktuellen Lücke!
+    // AUTO-SCROLL: Springt butterweich zur nächsten Lücke!
     setTimeout(() => {
         const activeGap = document.getElementById('active-gap-element');
         if(activeGap) {
@@ -283,16 +305,28 @@ function renderKeyboard() {
 function checkAnswer() {
     const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
+    
     const isCorrect = t.solution.some(s => s.toLowerCase() === val);
 
     if (isCorrect) {
-        score += 20; triggerFlash(true); taskIdx++; setTimeout(showTask, 300);
+        score += 20; 
+        triggerFlash(true);
+        
+        // Wenn wir im AP Mode sind, merken wir uns das richtige Wort!
+        if (mode === "ap") {
+            let correctMatch = t.solution.find(s => s.toLowerCase() === val) || val;
+            t.blockState.solved[t.gapId] = correctMatch;
+        }
+
+        taskIdx++;
+        setTimeout(showTask, 300);
     } else {
         if (!handleLifeLoss()) {
             if (mode === "ap") {
-                // Im AP Mode versuchen wir die gleiche Lücke einfach nochmal (ohne sie ans Ende zu hängen)
+                // AP Mode: Lücke sofort wiederholen, OHNE sie ans Ende zu schieben
                 setTimeout(showTask, 300);
             } else {
+                // Drill Mode: Ans Ende schieben
                 tasks.push(tasks[taskIdx]);
                 taskIdx++;
                 setTimeout(showTask, 300);
