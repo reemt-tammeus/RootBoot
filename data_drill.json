@@ -1265,10 +1265,10 @@
   },
   {
     "id": 159,
-    "noun": ["takeaway", "takeoff", "beauty"],
-    "verb": ["take", "beautify"],
-    "adjective": ["taken", "beautiful"],
-    "adverb": ["beautifully"],
+    "noun": ["takeaway", "takeoff"],
+    "verb": ["take", "took"],
+    "adjective": ["taken"],
+    "adverb": [],
     "sentence": "Yesterday she took a day off."
   },
   {
@@ -1789,6 +1789,6 @@
     "verb": ["believe"],
     "adjective": ["believable", "unbelievable", "believing", "believed"],
     "adverb": ["believably", "unbelievably"],
-    "sentence": "I want you to tell the truth."
+    "sentence": "I find his story completely unbelievable."
   }
 ]
