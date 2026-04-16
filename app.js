@@ -3,7 +3,7 @@ let taskIdx = 0, lives = 3, score = 0, mode = "";
 
 // DRILL-HYBRID LOGIK
 let roundsPlayed = 0;
-let roundStartScore = 0; // Merkt sich die Punkte am Rundenanfang (verhindert Farming)
+let roundStartScore = 0; 
 const MAX_ROUNDS = 5;
 const FAMILIES_PER_ROUND = 3;
 let currentFamilies = []; 
@@ -33,7 +33,7 @@ const shuffle = (array) => {
     return a;
 };
 
-// Maskiert Sonderzeichen, falls jemand "to beauty" in die JSON schreibt
+// Maskiert Sonderzeichen
 const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 function triggerFlash(isSuccess) {
@@ -54,6 +54,30 @@ function showModal(title, text, callback) {
     };
 }
 
+// --- INTELLIGENTE SATZ-ERKENNUNG (FÜR DEINE DATEN) ---
+function findSolutionInSentence(sentence, familyWords) {
+    // 1. Sortieren nach Länge (längste zuerst, damit "careful" vor "care" gefunden wird)
+    let sortedWords = [...familyWords].sort((a,b) => b.length - a.length);
+
+    // 2. Versuch 1: EXAKTER Treffer (z.B. "shock", "beautiful")
+    for (let w of sortedWords) {
+        let exactRegex = new RegExp(`\\b${escapeRegExp(w)}\\b`, 'i');
+        let match = sentence.match(exactRegex);
+        if (match) return { word: w, matchedText: match[0] };
+    }
+
+    // 3. Versuch 2: UNSCHARFER Treffer (z.B. "clean" findet "cleans", "catch" findet "catches")
+    // Nur bei Wörtern mit mind. 3 Buchstaben anwenden!
+    for (let w of sortedWords) {
+        if (w.length >= 3) {
+            let prefixRegex = new RegExp(`\\b${escapeRegExp(w)}[a-z]*\\b`, 'i');
+            let match = sentence.match(prefixRegex);
+            if (match) return { word: w, matchedText: match[0] };
+        }
+    }
+    return null; // Kein Treffer (z.B. bei "took", wenn nur "take" im Array steht)
+}
+
 // --- HYBRID DRILL MODE ---
 function startDrill() {
     mode = "drill"; 
@@ -61,7 +85,6 @@ function startDrill() {
     roundsPlayed = 0;
     document.body.classList.add('game-active');
     
-    // Kompletten Pool einmal durchmischen
     drillPool = shuffle(drillPool); 
     startNextDrillRound();
 }
@@ -84,10 +107,9 @@ function startNextDrillRound() {
     restartCurrentRound();
 }
 
-// Wird auch aufgerufen, wenn Leben = 0 sind
 function restartCurrentRound() {
     lives = 3;
-    score = roundStartScore; // Punkte-Reset auf Rundenanfang
+    score = roundStartScore; 
     currentDrillPhase = 1;
     updateHUD();
 
@@ -102,27 +124,27 @@ function restartCurrentRound() {
     });
     currentSortWords = shuffle(currentSortWords);
 
-    // 2. ROBUSTE Tipp-Sätze (Phase 2) generieren
+    // 2. Tipp-Sätze generieren (MIT DER NEUEN INTELLIGENTEN ERKENNUNG)
     tasks = [];
     currentFamilies.forEach(family => {
         if(family.sentence) {
             let allWords = [...(family.noun||[]), ...(family.verb||[]), ...(family.adjective||[]), ...(family.adverb||[])];
             let sentence = family.sentence;
             
-            // Finde das ERSTE Wort der Familie, das exakt im Satz vorkommt
-            let match = allWords.find(w => new RegExp(`\\b${escapeRegExp(w)}\\b`, 'i').test(sentence));
+            let result = findSolutionInSentence(sentence, allWords);
             
-            if (match) {
-                let wordsNotInSentence = allWords.filter(w => w !== match);
+            if (result) {
+                // Wir filtern das GEFUNDENE Stammwort aus der Liste heraus, um ein alternatives "Grundwort" anzuzeigen
+                let wordsNotInSentence = allWords.filter(w => w !== result.word);
                 let baseWord = wordsNotInSentence.length > 0 ? wordsNotInSentence[0] : "Wortfamilie";
 
                 tasks.push({
                     text: sentence,
                     base_word: baseWord,
-                    solution: [match] // Strikt: Nur dieses eine gefundene Wort ist die Lösung!
+                    solution: [result.matchedText] // Der User muss exakt das tippen, was im Satz stand (z.B. "catches")
                 });
             } else {
-                console.warn("JSON FEHLER: Satz enthält kein Wort aus der Familie!", family);
+                console.warn(`ACHTUNG: Satz für ID ${family.id} hat kein erkennbares Wort aus der Familie! ("${sentence}")`);
             }
         }
     });
@@ -197,9 +219,8 @@ function startAP() {
 }
 
 function showTask() {
-    // Sicherheitsnetz: Wenn keine Sätze in der JSON definiert waren!
+    // Sicherheitsnetz
     if (tasks.length === 0 && mode === "drill") {
-        console.warn("Runde übersprungen: Keine gültigen Sätze in data_drill.json gefunden.");
         launchFireworks(false);
         return setTimeout(startNextDrillRound, 1500);
     }
@@ -228,6 +249,7 @@ function showTask() {
 
     if (t.solution && !t.gapId) {
         t.solution.forEach(sol => {
+            // Wir zensieren exakt die Form, die im Satz stand
             const regex = new RegExp(`\\b${escapeRegExp(sol)}\\b`, 'gi');
             textToDisplay = textToDisplay.replace(regex, "________");
         });
@@ -272,7 +294,6 @@ function checkAnswer() {
     const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
     
-    // Robuster Check
     const isCorrect = t.solution.some(s => s.toLowerCase() === val);
 
     if (isCorrect) {
@@ -282,7 +303,7 @@ function checkAnswer() {
         setTimeout(showTask, 300);
     } else {
         if (!handleLifeLoss()) {
-            tasks.push(tasks[taskIdx]); // Wort hinten anstellen
+            tasks.push(tasks[taskIdx]);
             taskIdx++;
             setTimeout(showTask, 300);
         }
