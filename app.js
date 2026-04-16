@@ -75,7 +75,7 @@ function findSolutionInSentence(sentence, familyWords) {
             if (match) return { word: w, matchedText: match[0] };
         }
     }
-    return null; // Kein Treffer (z.B. bei "took", wenn nur "take" im Array steht)
+    return null; // Kein Treffer
 }
 
 // --- HYBRID DRILL MODE ---
@@ -316,9 +316,19 @@ function updateHUD() {
     document.getElementById('score').innerText = score;
 }
 
+// DER FIX: Die active-Klasse wird jetzt wieder korrekt gesetzt!
 function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
-    document.getElementById(id + '-screen').classList.remove('hidden');
+    document.querySelectorAll('.screen').forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
+    
+    const target = document.getElementById(id + '-screen');
+    if (target) {
+        target.classList.remove('hidden');
+        target.classList.add('active');
+    }
+    
     document.getElementById('top-bar').classList.toggle('hidden', id === 'start' || id === 'result');
 }
 
