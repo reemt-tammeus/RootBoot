@@ -8,7 +8,7 @@ const MAX_ROUNDS = 5;
 const FAMILIES_PER_ROUND = 3;
 let currentFamilies = []; 
 let currentSortWords = []; 
-let currentDrillPhase = 1; // 1 = Sortieren, 2 = Tippen
+let currentDrillPhase = 1;
 
 async function init() {
     try {
@@ -33,7 +33,6 @@ const shuffle = (array) => {
     return a;
 };
 
-// Maskiert Sonderzeichen
 const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 function triggerFlash(isSuccess) {
@@ -54,20 +53,13 @@ function showModal(title, text, callback) {
     };
 }
 
-// --- INTELLIGENTE SATZ-ERKENNUNG (FÜR DEINE DATEN) ---
 function findSolutionInSentence(sentence, familyWords) {
-    // 1. Sortieren nach Länge (längste zuerst, damit "careful" vor "care" gefunden wird)
     let sortedWords = [...familyWords].sort((a,b) => b.length - a.length);
-
-    // 2. Versuch 1: EXAKTER Treffer (z.B. "shock", "beautiful")
     for (let w of sortedWords) {
         let exactRegex = new RegExp(`\\b${escapeRegExp(w)}\\b`, 'i');
         let match = sentence.match(exactRegex);
         if (match) return { word: w, matchedText: match[0] };
     }
-
-    // 3. Versuch 2: UNSCHARFER Treffer (z.B. "clean" findet "cleans", "catch" findet "catches")
-    // Nur bei Wörtern mit mind. 3 Buchstaben anwenden!
     for (let w of sortedWords) {
         if (w.length >= 3) {
             let prefixRegex = new RegExp(`\\b${escapeRegExp(w)}[a-z]*\\b`, 'i');
@@ -75,45 +67,35 @@ function findSolutionInSentence(sentence, familyWords) {
             if (match) return { word: w, matchedText: match[0] };
         }
     }
-    return null; // Kein Treffer
+    return null;
 }
 
 // --- HYBRID DRILL MODE ---
 function startDrill() {
-    mode = "drill"; 
-    score = 0; 
-    roundsPlayed = 0;
+    mode = "drill"; score = 0; roundsPlayed = 0;
     document.body.classList.add('game-active');
-    
     drillPool = shuffle(drillPool); 
     startNextDrillRound();
 }
 
 function startNextDrillRound() {
     if (roundsPlayed >= MAX_ROUNDS) {
-        launchFireworks(true); // GROSSES Feuerwerk!
+        launchFireworks(true);
         return setTimeout(() => endGame("Boot Camp exzellent bestanden!"), 2500);
     }
-
     roundsPlayed++;
-    roundStartScore = score; // Sichert den Score für evtl. Neustarts
+    roundStartScore = score; 
     document.getElementById('current-round').innerText = roundsPlayed;
     document.getElementById('task-current-round').innerText = roundsPlayed;
 
-    // 3 neue Familien ziehen
     const startIndex = (roundsPlayed - 1) * FAMILIES_PER_ROUND;
     currentFamilies = drillPool.slice(startIndex, startIndex + FAMILIES_PER_ROUND);
-    
     restartCurrentRound();
 }
 
 function restartCurrentRound() {
-    lives = 3;
-    score = roundStartScore; 
-    currentDrillPhase = 1;
+    lives = 3; score = roundStartScore; currentDrillPhase = 1;
     updateHUD();
-
-    // 1. Sortier-Wörter generieren
     currentSortWords = [];
     currentFamilies.forEach(family => {
         ['noun', 'verb', 'adjective', 'adverb'].forEach(cat => {
@@ -124,47 +106,41 @@ function restartCurrentRound() {
     });
     currentSortWords = shuffle(currentSortWords);
 
-    // 2. Tipp-Sätze generieren (MIT DER NEUEN INTELLIGENTEN ERKENNUNG)
     tasks = [];
     currentFamilies.forEach(family => {
         if(family.sentence) {
             let allWords = [...(family.noun||[]), ...(family.verb||[]), ...(family.adjective||[]), ...(family.adverb||[])];
             let sentence = family.sentence;
-            
             let result = findSolutionInSentence(sentence, allWords);
-            
             if (result) {
-                // Wir filtern das GEFUNDENE Stammwort aus der Liste heraus, um ein alternatives "Grundwort" anzuzeigen
                 let wordsNotInSentence = allWords.filter(w => w !== result.word);
                 let baseWord = wordsNotInSentence.length > 0 ? wordsNotInSentence[0] : "Wortfamilie";
-
                 tasks.push({
-                    text: sentence,
+                    blockText: sentence, // Für Drill Mode ist blockText = sentence
                     base_word: baseWord,
-                    solution: [result.matchedText] // Der User muss exakt das tippen, was im Satz stand (z.B. "catches")
+                    solution: [result.matchedText] 
                 });
-            } else {
-                console.warn(`ACHTUNG: Satz für ID ${family.id} hat kein erkennbares Wort aus der Familie! ("${sentence}")`);
             }
         }
     });
     tasks = shuffle(tasks);
     taskIdx = 0;
-
     document.getElementById('task-round-indicator').classList.add('hidden');
     showScreen('drill');
     showNextDrillWord();
 }
 
 function handleLifeLoss() {
-    lives--; 
-    triggerFlash(false);
-    updateHUD();
-    
+    lives--; triggerFlash(false); updateHUD();
     if (lives <= 0) {
         setTimeout(() => {
             showModal("Leben aufgebraucht!", "Du hast leider alle Herzen verloren. Diese Runde wird zurückgesetzt.", () => {
-                restartCurrentRound();
+                if(mode === "drill") {
+                    restartCurrentRound();
+                } else {
+                    // AP Modus komplett neu starten
+                    startAP();
+                }
             });
         }, 400);
         return true; 
@@ -172,7 +148,6 @@ function handleLifeLoss() {
     return false;
 }
 
-// --- DRILL PHASE 1: SORTIEREN ---
 function showNextDrillWord() {
     if (currentSortWords.length === 0) {
         currentDrillPhase = 2;
@@ -185,13 +160,8 @@ function showNextDrillWord() {
 
 function checkSort(categoryClicked) {
     const item = currentSortWords[0];
-    
     if (item.familyObj[categoryClicked] && item.familyObj[categoryClicked].includes(item.word)) {
-        score += 10;
-        triggerFlash(true);
-        currentSortWords.shift();
-        updateHUD();
-        showNextDrillWord();
+        score += 10; triggerFlash(true); currentSortWords.shift(); updateHUD(); showNextDrillWord();
     } else {
         if (!handleLifeLoss()) {
             currentSortWords.push(currentSortWords.shift());
@@ -200,18 +170,28 @@ function checkSort(categoryClicked) {
     }
 }
 
-// --- DRILL PHASE 2 & AP MODE: TIPPEN ---
+// --- AP MODE (TIPPEN) ---
 function startAP() {
     mode = "ap"; lives = 3; score = 0; taskIdx = 0; tasks = [];
     document.body.classList.add('game-active');
 
-    apPool.forEach(block => {
-        block.gaps.forEach(gap => {
-            tasks.push({ text: block.text, base_word: gap.base_word, solution: gap.solution, gapId: gap.id });
+    // Mische die Blöcke durch...
+    let shuffledBlocks = shuffle(apPool);
+
+    shuffledBlocks.forEach(block => {
+        // ...aber behalte die Lücken in chronologischer Reihenfolge!
+        let sortedGaps = [...block.gaps].sort((a, b) => a.id - b.id);
+        
+        sortedGaps.forEach(gap => {
+            tasks.push({ 
+                blockText: block.text, 
+                base_word: gap.base_word, 
+                solution: gap.solution, 
+                gapId: gap.id 
+            });
         });
     });
 
-    tasks = shuffle(tasks);
     document.getElementById('task-round-indicator').classList.add('hidden');
     updateHUD();
     showScreen('task');
@@ -219,7 +199,6 @@ function startAP() {
 }
 
 function showTask() {
-    // Sicherheitsnetz
     if (tasks.length === 0 && mode === "drill") {
         launchFireworks(false);
         return setTimeout(startNextDrillRound, 1500);
@@ -227,10 +206,11 @@ function showTask() {
 
     if(taskIdx >= tasks.length) {
         if (mode === "drill") {
-            launchFireworks(false); // Kleines Feuerwerk pro Runde
+            launchFireworks(false);
             return setTimeout(startNextDrillRound, 1500); 
         } else {
-            return endGame("AP-Bootcamp bestanden!");
+            launchFireworks(true);
+            return setTimeout(() => endGame("AP-Bootcamp bestanden!"), 2500);
         }
     }
 
@@ -238,18 +218,20 @@ function showTask() {
     document.getElementById('task-input').value = ""; 
     document.getElementById('task-hint').innerHTML = `Stammwort: <strong>${t.base_word || "?"}</strong>`;
 
-    let textToDisplay = t.text || "";
+    let textToDisplay = t.blockText || "";
     
+    // Die aktuelle Lücke markieren, damit wir gleich dorthin scrollen können
     if (t.gapId) {
         const activeRegex = new RegExp(`\\{${t.gapId}\\}`, 'g');
-        textToDisplay = textToDisplay.replace(activeRegex, `<span style="color: var(--secondary); border-bottom: 3px solid var(--secondary); padding: 0 5px; font-weight: bold;">[ HIER ]</span>`);
+        textToDisplay = textToDisplay.replace(activeRegex, `<span id="active-gap-element" class="active-gap">[ HIER ]</span>`);
     }
 
+    // Alle anderen {x} in leere Striche verwandeln
     textToDisplay = textToDisplay.replace(/\{\d+\}/g, "________");
 
+    // Drill Mode Logik beibehalten (zensieren der Lösung)
     if (t.solution && !t.gapId) {
         t.solution.forEach(sol => {
-            // Wir zensieren exakt die Form, die im Satz stand
             const regex = new RegExp(`\\b${escapeRegExp(sol)}\\b`, 'gi');
             textToDisplay = textToDisplay.replace(regex, "________");
         });
@@ -257,6 +239,14 @@ function showTask() {
 
     document.getElementById('task-display').innerHTML = textToDisplay;
     renderKeyboard();
+
+    // AUTO-SCROLL MAGIC: Springt zur aktuellen Lücke!
+    setTimeout(() => {
+        const activeGap = document.getElementById('active-gap-element');
+        if(activeGap) {
+            activeGap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 100);
 }
 
 function renderKeyboard() {
@@ -293,19 +283,20 @@ function renderKeyboard() {
 function checkAnswer() {
     const t = tasks[taskIdx];
     const val = document.getElementById('task-input').value.trim().toLowerCase();
-    
     const isCorrect = t.solution.some(s => s.toLowerCase() === val);
 
     if (isCorrect) {
-        score += 20; 
-        triggerFlash(true);
-        taskIdx++;
-        setTimeout(showTask, 300);
+        score += 20; triggerFlash(true); taskIdx++; setTimeout(showTask, 300);
     } else {
         if (!handleLifeLoss()) {
-            tasks.push(tasks[taskIdx]);
-            taskIdx++;
-            setTimeout(showTask, 300);
+            if (mode === "ap") {
+                // Im AP Mode versuchen wir die gleiche Lücke einfach nochmal (ohne sie ans Ende zu hängen)
+                setTimeout(showTask, 300);
+            } else {
+                tasks.push(tasks[taskIdx]);
+                taskIdx++;
+                setTimeout(showTask, 300);
+            }
         }
     }
 }
@@ -316,19 +307,12 @@ function updateHUD() {
     document.getElementById('score').innerText = score;
 }
 
-// DER FIX: Die active-Klasse wird jetzt wieder korrekt gesetzt!
 function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => {
-        s.classList.add('hidden');
-        s.classList.remove('active');
+        s.classList.add('hidden'); s.classList.remove('active');
     });
-    
     const target = document.getElementById(id + '-screen');
-    if (target) {
-        target.classList.remove('hidden');
-        target.classList.add('active');
-    }
-    
+    if (target) { target.classList.remove('hidden'); target.classList.add('active'); }
     document.getElementById('top-bar').classList.toggle('hidden', id === 'start' || id === 'result');
 }
 
@@ -339,13 +323,10 @@ function endGame(msg) {
     showScreen('result');
 }
 
-// --- DATENSCHUTZKONFORMES FEUERWERK (Vanilla JS) ---
 function launchFireworks(isBig) {
     const canvas = document.getElementById('fireworks-canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.style.display = 'block';
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight; canvas.style.display = 'block';
 
     let particles = [];
     const colors = ['#4A90E2', '#50E3C2', '#FF5252', '#FFD700', '#FF69B4'];
@@ -353,12 +334,9 @@ function launchFireworks(isBig) {
 
     for (let i = 0; i < particleCount; i++) {
         particles.push({
-            x: canvas.width / 2,
-            y: canvas.height / 2 + (isBig ? 0 : 100),
-            vx: (Math.random() - 0.5) * (isBig ? 15 : 8),
-            vy: (Math.random() - 0.5) * (isBig ? 15 : 8) - 2,
-            life: Math.random() * 50 + 50,
-            color: colors[Math.floor(Math.random() * colors.length)],
+            x: canvas.width / 2, y: canvas.height / 2 + (isBig ? 0 : 100),
+            vx: (Math.random() - 0.5) * (isBig ? 15 : 8), vy: (Math.random() - 0.5) * (isBig ? 15 : 8) - 2,
+            life: Math.random() * 50 + 50, color: colors[Math.floor(Math.random() * colors.length)],
             size: Math.random() * 3 + 1
         });
     }
@@ -366,23 +344,13 @@ function launchFireworks(isBig) {
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let alive = false;
-
         particles.forEach(p => {
             if (p.life > 0) {
-                alive = true;
-                p.x += p.vx; p.y += p.vy; p.vy += 0.1; p.life--; p.size *= 0.98;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
+                alive = true; p.x += p.vx; p.y += p.vy; p.vy += 0.1; p.life--; p.size *= 0.98;
+                ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
             }
         });
-
-        if (alive) {
-            requestAnimationFrame(animate);
-        } else {
-            canvas.style.display = 'none'; 
-        }
+        if (alive) requestAnimationFrame(animate); else canvas.style.display = 'none'; 
     }
     animate();
 }
