@@ -1,17 +1,15 @@
-/* 1. VARIABLEN & DESIGN-SYSTEM */
 :root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
     --text-main: #ffffff;
     --text-muted: #888;
-    --primary: #4A90E2;   /* Wird jetzt im Menü überschrieben, aber für Ingame-Elemente behalten */
+    --primary: #4A90E2;
     --secondary: #50E3C2;
     --danger: #FF5252;
     --success: #4CAF50;
     --keyboard-btn: #333;
 }
 
-/* 2. GRUNDLEGENDE OPTIMIERUNGEN */
 * { 
     box-sizing: border-box; margin: 0; padding: 0; 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
@@ -25,50 +23,31 @@ body {
     display: flex; justify-content: center; 
 }
 
-/* 3. LOGO HINTERGRUND (NEU: Volle Farbe, Unten verankert!) */
+/* 3. LOGO HINTERGRUND (Originalfarbe, unten verankert) */
 body::before {
     content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background-image: url('logo.png'); 
     background-size: contain; 
-    background-position: bottom center; /* Slogan "Find your word family!" bleibt immer unten sichtbar */
+    background-position: bottom center; 
     background-repeat: no-repeat;
-    transition: opacity 0.5s ease; 
     z-index: -1; pointer-events: none;
+    transition: opacity 0.5s ease;
 }
-
-/* Wenn das Spiel läuft, wird das Graffiti in den Hintergrund gedimmt */
 body.game-active::before { opacity: 0.15; }
 
-/* 4. OVERLAYS, FEUERWERK & MODAL */
-#fireworks-canvas {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    pointer-events: none; z-index: 10000; display: none;
-}
-#flash-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none; z-index: 9999; opacity: 0; transition: opacity 0.3s ease-out;
-}
+/* 4. OVERLAYS & MODAL */
+#fireworks-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10000; display: none; }
+#flash-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 9999; opacity: 0; transition: opacity 0.3s ease-out; }
 .flash-success #flash-overlay { background-color: var(--success); opacity: 0.5; transition: none; }
 .flash-error #flash-overlay { background-color: var(--danger); opacity: 0.5; transition: none; }
 
-#custom-modal {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center;
-    z-index: 10001; padding: 20px;
-}
-.modal-content {
-    background: var(--card-bg); padding: 30px 20px; border-radius: 15px; 
-    text-align: center; width: 100%; max-width: 350px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
+#custom-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 10001; padding: 20px; }
+.modal-content { background: var(--card-bg); padding: 30px 20px; border-radius: 15px; text-align: center; width: 100%; max-width: 350px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 .modal-content h2 { margin-bottom: 10px; color: var(--danger); }
 .modal-content p { margin-bottom: 25px; font-size: 1.1rem; line-height: 1.4; }
 
-/* 5. SCREENS, RESPONSIVE DESIGN & NAVIGATION */
-#app-container { 
-    width: 100%; max-width: 480px; display: flex; flex-direction: column; 
-    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
-    position: relative; z-index: 1; transition: max-width 0.3s;
-}
+/* 5. APP CONTAINER & RESPONSIVE FIXES */
+#app-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; position: relative; z-index: 1; }
 
 @media (min-width: 768px) {
     #app-container { max-width: 700px; }
@@ -81,104 +60,65 @@ body.game-active::before { opacity: 0.15; }
 .screen.active { display: flex; }
 .hidden { display: none !important; }
 
-/* DAS NEUE START-MENÜ (Glassmorphismus & Thumb Zone) */
+/* DAS NEUE START-DESIGN (Mittig in unterer Hälfte) */
 #start-screen { 
     justify-content: flex-end; 
     align-items: center; 
-    padding-bottom: 12vh; /* Schwebt im unteren Drittel, lässt dem Graffiti Platz */
+    padding-bottom: 15vh; /* Schiebt das Panel mittig in die untere Hälfte */
 }
 
 .menu-buttons-overlay { 
-    width: 100%; 
-    max-width: 360px;
-    background: rgba(15, 15, 15, 0.65); /* Abgedunkeltes Glas */
-    backdrop-filter: blur(15px);        /* Der coole Unschärfe-Effekt */
-    -webkit-backdrop-filter: blur(15px);
-    padding: 30px 25px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Edler, feiner Glanzrand */
+    width: 90%; 
+    max-width: 340px;
+    background: rgba(15, 15, 15, 0.7); /* Leicht transparentes Dunkel */
+    backdrop-filter: blur(20px);        /* Starker Frosted-Glass Effekt */
+    -webkit-backdrop-filter: blur(20px);
+    padding: 35px 25px;
+    border-radius: 28px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Edler feiner Glanzrand */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-header { display: flex; justify-content: space-between; padding: 10px 0; font-size: 1.1rem; font-weight: bold; }
-
-#branding-footer {
-    position: fixed; bottom: 10px; right: 15px; font-size: 0.75rem;
-    color: #fff; opacity: 0.3; z-index: 1000; pointer-events: none; font-style: italic;
-}
-
-/* 6. BUTTON-STYLING (NEU: Stealth Modus / iOS Style) */
+/* 6. BUTTON-STYLING (Tiefschwarz, Edler Look) */
 .btn { 
-    width: 100%; padding: 18px; border-radius: 14px; border: none; 
+    width: 100%; padding: 18px; border-radius: 16px; border: none; 
     font-size: 1.15rem; font-weight: bold; cursor: pointer; 
     transition: transform 0.1s, background 0.2s; 
 }
-
-/* Der erste Button bekommt kein top-margin im Panel */
-.menu-buttons-overlay .btn:first-child { margin-top: 0; margin-bottom: 15px; }
-
-/* Tiefschwarz, weiße Schrift, heller Rand */
 .primary-btn, .secondary-btn { 
     background: #000000; 
     color: #ffffff; 
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
-.primary-btn:active, .secondary-btn:active { 
-    background: #222222; 
-    transform: scale(0.97); 
-}
+.btn:active { transform: scale(0.96); background: #1a1a1a; }
 
-/* 7. SPIEL-ELEMENTE & TEXT-BOXEN */
-.text-box { 
-    background: var(--card-bg); padding: 15px; border-radius: 12px; 
-    margin-bottom: 15px; font-size: 1.05rem; line-height: 1.5; flex: 1; 
-    overflow-y: auto; -webkit-overflow-scrolling: touch; display: block; 
-    text-align: left; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
-    scroll-behavior: smooth;
-}
+header { display: flex; justify-content: space-between; padding: 10px 0; font-size: 1.1rem; font-weight: bold; }
+#branding-footer { position: fixed; bottom: 10px; right: 15px; font-size: 0.75rem; color: #fff; opacity: 0.3; z-index: 1000; pointer-events: none; font-style: italic; }
 
-.active-gap {
-    color: var(--secondary); border-bottom: 3px solid var(--secondary);
-    padding: 0 5px; font-weight: bold; display: inline-block;
-    animation: pulse 1.5s infinite;
-}
+/* 7. SPIEL-ELEMENTE & LÜCKEN */
+.text-box { background: var(--card-bg); padding: 15px; border-radius: 12px; margin-bottom: 15px; font-size: 1.05rem; line-height: 1.5; flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3); }
+.active-gap { color: var(--secondary); border-bottom: 3px solid var(--secondary); padding: 0 5px; font-weight: bold; display: inline-block; animation: pulse 1.5s infinite; }
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-
-.solved-gap {
-    color: var(--success); font-weight: bold;
-    border-bottom: 2px solid var(--success); padding: 0 3px;
-}
-
-.input-section, .keyboard { flex-shrink: 0; }
+.solved-gap { color: var(--success); font-weight: bold; border-bottom: 2px solid var(--success); padding: 0 3px; }
 .label { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; text-align: center; }
-.app-input { 
-    width: 100%; background: transparent; border: none; border-bottom: 3px solid var(--primary); 
-    color: white; font-size: 1.8rem; text-align: center; padding: 10px; outline: none; 
-    pointer-events: none; margin-bottom: 10px; 
-}
+.app-input { width: 100%; background: transparent; border: none; border-bottom: 3px solid var(--primary); color: white; font-size: 1.8rem; text-align: center; padding: 10px; outline: none; margin-bottom: 10px; pointer-events: none; }
 
-/* 8. QWERTZ-TASTATUR */
+/* 8. TASTATUR */
 .keyboard { display: flex; flex-direction: column; gap: 7px; margin-top: auto; padding: 15px 0 40px 0; }
 .keyboard-row { display: flex; justify-content: center; gap: 5px; }
-.key { 
-    flex: 1; max-width: 42px; height: 50px; background: var(--keyboard-btn); 
-    color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1.2rem; 
-    display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 0 #000;
-}
+.key { flex: 1; max-width: 42px; height: 50px; background: var(--keyboard-btn); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 0 #000; }
 .key:active { background: var(--primary); transform: translateY(2px); box-shadow: none; }
 .key.action { max-width: 65px; background: #444; font-size: 1rem; }
 .key.enter { background: var(--success); }
 
-/* 9. SORTIER-MODUS (DRILL) */
+/* 9. DRILL */
 #round-indicator, #task-round-indicator { text-align: center; color: var(--secondary); font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; }
 #drill-sorting-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-.drop-zone { 
-    background: var(--card-bg); border: 2px solid #333; color: white; 
-    padding: 35px 10px; border-radius: 15px; font-size: 1.2rem; 
-    font-weight: bold; cursor: pointer; text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: border-color 0.2s;
-}
+.drop-zone { background: var(--card-bg); border: 2px solid #333; color: white; padding: 35px 10px; border-radius: 15px; font-size: 1.2rem; font-weight: bold; cursor: pointer; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: border-color 0.2s; }
 .drop-zone:active { background: var(--primary); border-color: var(--secondary); }
 #active-word-area { text-align: center; margin-top: 10px; }
 #current-tap-word { font-size: 2.4rem; color: var(--secondary); text-shadow: 0 0 10px rgba(80, 227, 194, 0.3); }
