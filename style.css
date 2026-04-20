@@ -4,7 +4,7 @@
     --card-bg: #1e1e1e;
     --text-main: #ffffff;
     --text-muted: #888;
-    --primary: #4A90E2;
+    --primary: #4A90E2;   /* Wird jetzt im Menü überschrieben, aber für Ingame-Elemente behalten */
     --secondary: #50E3C2;
     --danger: #FF5252;
     --success: #4CAF50;
@@ -13,48 +13,31 @@
 
 /* 2. GRUNDLEGENDE OPTIMIERUNGEN */
 * { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
+    box-sizing: border-box; margin: 0; padding: 0; 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-    -webkit-tap-highlight-color: transparent; 
-    user-select: none; 
-    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
 }
 
 body { 
-    background-color: var(--bg-color); 
-    color: var(--text-main); 
-    height: 100vh; 
-    height: 100dvh; 
-    width: 100vw; 
-    overflow: hidden; 
-    position: fixed; 
-    touch-action: manipulation; 
-    overscroll-behavior: none; 
-    display: flex; 
-    justify-content: center; 
+    background-color: var(--bg-color); color: var(--text-main); 
+    height: 100vh; height: 100dvh; width: 100vw; overflow: hidden; 
+    position: fixed; touch-action: manipulation; overscroll-behavior: none; 
+    display: flex; justify-content: center; 
 }
 
-/* 3. LOGO HINTERGRUND */
+/* 3. LOGO HINTERGRUND (NEU: Volle Farbe, Unten verankert!) */
 body::before {
-    content: ""; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0;
+    content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background-image: url('logo.png'); 
     background-size: contain; 
-    background-position: center; 
+    background-position: bottom center; /* Slogan "Find your word family!" bleibt immer unten sichtbar */
     background-repeat: no-repeat;
-    filter: brightness(2.8) contrast(1.1); 
-    opacity: 0.55; 
-    transition: all 0.5s ease; 
-    z-index: -1; 
-    pointer-events: none;
+    transition: opacity 0.5s ease; 
+    z-index: -1; pointer-events: none;
 }
-body.game-active::before { filter: brightness(1); opacity: 0.15; }
+
+/* Wenn das Spiel läuft, wird das Graffiti in den Hintergrund gedimmt */
+body.game-active::before { opacity: 0.15; }
 
 /* 4. OVERLAYS, FEUERWERK & MODAL */
 #fireworks-canvas {
@@ -80,30 +63,17 @@ body.game-active::before { filter: brightness(1); opacity: 0.15; }
 .modal-content h2 { margin-bottom: 10px; color: var(--danger); }
 .modal-content p { margin-bottom: 25px; font-size: 1.1rem; line-height: 1.4; }
 
-/* 5. SCREENS & RESPONSIVE DESIGN (TABLET FIXES) */
+/* 5. SCREENS, RESPONSIVE DESIGN & NAVIGATION */
 #app-container { 
-    width: 100%; 
-    max-width: 480px; 
-    display: flex; 
-    flex-direction: column; 
+    width: 100%; max-width: 480px; display: flex; flex-direction: column; 
     padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px; 
-    position: relative; 
-    z-index: 1; 
-    transition: max-width 0.3s;
+    position: relative; z-index: 1; transition: max-width 0.3s;
 }
 
 @media (min-width: 768px) {
     #app-container { max-width: 700px; }
     .text-box { font-size: 1.25rem !important; }
-    
-    /* Tastatur auf dem Tablet zentrieren und noch weiter hochholen */
-    .keyboard { 
-        padding-bottom: 60px !important; 
-        max-width: 550px; 
-        margin-left: auto; 
-        margin-right: auto; 
-        width: 100%;
-    }
+    .keyboard { padding-bottom: 60px !important; max-width: 550px; margin-left: auto; margin-right: auto; width: 100%; }
     .key { height: 60px !important; font-size: 1.4rem !important; } 
 }
 
@@ -111,8 +81,25 @@ body.game-active::before { filter: brightness(1); opacity: 0.15; }
 .screen.active { display: flex; }
 .hidden { display: none !important; }
 
-#start-screen { justify-content: flex-end; padding-bottom: 240px; }
-.menu-buttons-overlay { width: 100%; }
+/* DAS NEUE START-MENÜ (Glassmorphismus & Thumb Zone) */
+#start-screen { 
+    justify-content: flex-end; 
+    align-items: center; 
+    padding-bottom: 12vh; /* Schwebt im unteren Drittel, lässt dem Graffiti Platz */
+}
+
+.menu-buttons-overlay { 
+    width: 100%; 
+    max-width: 360px;
+    background: rgba(15, 15, 15, 0.65); /* Abgedunkeltes Glas */
+    backdrop-filter: blur(15px);        /* Der coole Unschärfe-Effekt */
+    -webkit-backdrop-filter: blur(15px);
+    padding: 30px 25px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Edler, feiner Glanzrand */
+}
+
 header { display: flex; justify-content: space-between; padding: 10px 0; font-size: 1.1rem; font-weight: bold; }
 
 #branding-footer {
@@ -120,17 +107,29 @@ header { display: flex; justify-content: space-between; padding: 10px 0; font-si
     color: #fff; opacity: 0.3; z-index: 1000; pointer-events: none; font-style: italic;
 }
 
-/* 6. BUTTON-STYLING */
+/* 6. BUTTON-STYLING (NEU: Stealth Modus / iOS Style) */
 .btn { 
-    width: 100%; padding: 16px; border-radius: 12px; border: none; 
-    font-size: 1.1rem; font-weight: bold; margin-top: 15px; cursor: pointer; 
-    transition: transform 0.1s, opacity 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    width: 100%; padding: 18px; border-radius: 14px; border: none; 
+    font-size: 1.15rem; font-weight: bold; cursor: pointer; 
+    transition: transform 0.1s, background 0.2s; 
 }
-.btn:active { transform: scale(0.98); opacity: 0.8; }
-.primary-btn { background: var(--primary); color: white; }
-.secondary-btn { background: var(--secondary); color: black; }
 
-/* 7. SPIEL-ELEMENTE & LÜCKENTEXT-HIGHLIGHTS */
+/* Der erste Button bekommt kein top-margin im Panel */
+.menu-buttons-overlay .btn:first-child { margin-top: 0; margin-bottom: 15px; }
+
+/* Tiefschwarz, weiße Schrift, heller Rand */
+.primary-btn, .secondary-btn { 
+    background: #000000; 
+    color: #ffffff; 
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+.primary-btn:active, .secondary-btn:active { 
+    background: #222222; 
+    transform: scale(0.97); 
+}
+
+/* 7. SPIEL-ELEMENTE & TEXT-BOXEN */
 .text-box { 
     background: var(--card-bg); padding: 15px; border-radius: 12px; 
     margin-bottom: 15px; font-size: 1.05rem; line-height: 1.5; flex: 1; 
@@ -159,15 +158,8 @@ header { display: flex; justify-content: space-between; padding: 10px 0; font-si
     pointer-events: none; margin-bottom: 10px; 
 }
 
-/* 8. QWERTZ-TASTATUR (TASTATUR NACH OBEN VERSCHOBEN) */
-.keyboard { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 7px; 
-    margin-top: auto; 
-    /* 40px Padding unten drückt die Tastatur vom unteren Bildschirmrand weg! */
-    padding: 15px 0 40px 0; 
-}
+/* 8. QWERTZ-TASTATUR */
+.keyboard { display: flex; flex-direction: column; gap: 7px; margin-top: auto; padding: 15px 0 40px 0; }
 .keyboard-row { display: flex; justify-content: center; gap: 5px; }
 .key { 
     flex: 1; max-width: 42px; height: 50px; background: var(--keyboard-btn); 
